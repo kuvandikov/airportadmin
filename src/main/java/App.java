@@ -11,15 +11,17 @@ import javafx.stage.StageStyle;
 /**
  * Created by Loving on 14.12.2018.
  */
-public class Main extends Application {
+public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Admin");
+        Parent root = FXMLLoader.load(getClass().getResource("views/Login.fxml"));
+        primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root));
+        primaryStage.initStyle(StageStyle.UNIFIED);
+        primaryStage.setMaximized(false);
+        primaryStage.setResizable(false);
         primaryStage.show();
-
     }
 
 
