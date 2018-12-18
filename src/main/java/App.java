@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import utils.FxmlViews;
 
 /**
  * Created by Loving on 14.12.2018.
@@ -15,7 +16,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("views/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(FxmlViews.Login.LoginView));
         primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root));
         primaryStage.initStyle(StageStyle.UNIFIED);
@@ -23,7 +24,6 @@ public class App extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);
