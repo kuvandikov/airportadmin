@@ -44,6 +44,6 @@ public class LoginController implements Initializable{
     {
          Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
          stage.close();
-         new Wtransfer(FxmlViews.MainScreen.Menu,"Admin").show();
+         new Wtransfer(FxmlViews.MainScreen.navMenu,"Admin").show();
     }
 }

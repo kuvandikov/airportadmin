@@ -3,6 +3,7 @@ package controllers.widgets;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -16,12 +17,33 @@ public class Wtransfer {
     private String title;
     private Stage stage;
     private FXMLLoader loader;
+    private AnchorPane anchorPane;
 
     public Wtransfer(String fxmlUrl, String title) {
         this.fxmlUrl = fxmlUrl;
         this.title = title;
         this.init();
     }
+
+    public Wtransfer(AnchorPane anchorPane, String fxmlUrl) {
+        this.anchorPane = anchorPane;
+        this.fxmlUrl = fxmlUrl;
+        this.prepareInit();
+    }
+
+    private void prepareInit()
+    {
+        System.out.println(fxmlUrl);
+        if(anchorPane.getChildren() != null && anchorPane.getChildren().size() > 0)
+            this.anchorPane.getChildren().clear();
+        loader = new FXMLLoader(getClass().getClassLoader().getResource(this.fxmlUrl));
+        try {
+            anchorPane.getChildren().add(loader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void init() {
         try {
             System.out.println(fxmlUrl);

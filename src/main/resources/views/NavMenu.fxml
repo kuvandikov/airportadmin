@@ -15,7 +15,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NavController">
    <top>
       <VBox>
          <children>
@@ -41,7 +41,7 @@
                       </Menu>
                       <Menu mnemonicParsing="false">
                           <graphic>
-                              <Label text="Sozlamalar" textFill="white">
+                              <Label text="Sozlamalar" textFill="white" fx:id="settings">
                                   <font>
                                       <Font name="System Bold" size="13.0" />
                                   </font>
@@ -55,6 +55,38 @@
                               </Label>
                           </graphic>
                       </Menu>
+                        <Menu mnemonicParsing="false">
+                            <graphic>
+                                <Label text="Parol o`zgartirish" textFill="white" fx:id="changePass">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="26" fitWidth="26" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@/pictures/icons/Password_52px_1.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Label>
+                            </graphic>
+                        </Menu>
+                        <Menu mnemonicParsing="false">
+                            <graphic>
+                                <Label text="Chiqish" textFill="white" fx:id="exit">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="26" fitWidth="26" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@/pictures/icons/Exit_52px.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Label>
+                            </graphic>
+                        </Menu>
                     </menus>
                   </MenuBar>
                </children></HBox>
@@ -62,6 +94,6 @@
       </VBox>
    </top>
    <center>
-      <AnchorPane BorderPane.alignment="TOP_LEFT" />
+      <AnchorPane BorderPane.alignment="TOP_LEFT"  fx:id="content"/>
    </center>
 </BorderPane>

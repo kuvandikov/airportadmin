@@ -5,9 +5,12 @@ package utils;
  */
 public interface FxmlViews {
     interface Login{
-        String LoginView = "views/Login.fxml";
+        String loginView = "views/Login.fxml";
     }
     interface MainScreen{
-        String Menu = "views/MainMenu.fxml";
+        String navMenu = "views/NavMenu.fxml";
+        String settings = "views/Settings.fxml";
+        String changePassword = "views/ChangePass.fxml";
+        String mainSc = "views/MainScreen.fxml";
     }
 }
