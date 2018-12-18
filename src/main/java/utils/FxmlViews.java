@@ -8,6 +8,6 @@ public interface FxmlViews {
         String LoginView = "views/Login.fxml";
     }
     interface MainScreen{
-        String Menu = "views/Sample.fxml";
+        String Menu = "views/MainMenu.fxml";
     }
 }

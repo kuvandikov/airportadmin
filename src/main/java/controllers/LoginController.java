@@ -34,8 +34,10 @@ public class LoginController implements Initializable{
      * @param resources The resources used to localize the root object, or <tt>null</tt> if
      */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)
+    {
         click.setOnAction(this::handleAction);
+
     }
 
     private void handleAction(ActionEvent actionEvent)

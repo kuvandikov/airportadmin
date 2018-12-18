@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Loving on 14.12.2018.
  */
-public class Controller implements Initializable {
+public class MainWindowController implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
 

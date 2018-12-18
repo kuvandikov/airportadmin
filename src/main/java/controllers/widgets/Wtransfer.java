@@ -22,9 +22,9 @@ public class Wtransfer {
         this.title = title;
         this.init();
     }
-
     private void init() {
         try {
+            System.out.println(fxmlUrl);
             loader = new FXMLLoader();
             Parent root = loader.load(this.getClass().getClassLoader().getResource(fxmlUrl));
             stage = new Stage();

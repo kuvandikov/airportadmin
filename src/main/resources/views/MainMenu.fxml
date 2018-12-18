@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
+   <top>
+      <VBox>
+         <children>
+            <HBox>
+               <children>
+                  <MenuBar style="-fx-background-color: #2b5797;" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS">
+                    <menus>
+                      <Menu mnemonicParsing="false">
+                        <graphic>
+                            <Label fx:id="main" prefHeight="26.0" prefWidth="106.0" text="Bosh Menyu" textFill="white">
+                                <font>
+                                    <Font name="System Bold" size="13.0" />
+                                </font>
+                                <graphic>
+                                    <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@/pictures/icons/Airport_52px.png" />
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </Label>
+                        </graphic>
+                      </Menu>
+                      <Menu mnemonicParsing="false">
+                          <graphic>
+                              <Label text="Sozlamalar" textFill="white">
+                                  <font>
+                                      <Font name="System Bold" size="13.0" />
+                                  </font>
+                                  <graphic>
+                                      <ImageView fitHeight="26" fitWidth="26" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@/pictures/icons/Settings_50px.png"/>
+                                          </image>
+                                      </ImageView>
+                                  </graphic>
+                              </Label>
+                          </graphic>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+               </children></HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <AnchorPane BorderPane.alignment="TOP_LEFT" />
+   </center>
+</BorderPane>
