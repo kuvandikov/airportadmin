@@ -29,15 +29,17 @@ public class ChangePassController implements Initializable {
     private JFXButton saveit;
     @FXML
     private JFXButton showup;
+    @FXML
+    private JFXButton cancel;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         oldText.setVisible(false);
         firstText.setVisible(false);
         secondText.setVisible(false);
-        onClick(showup,saveit);
+        onClick(showup,saveit,cancel);
     }
-    private void onClick(JFXButton showup, JFXButton saveit) {
+    private void onClick(JFXButton showup, JFXButton saveit, JFXButton cancel) {
         showup.setOnAction(event -> {
         if(!oldText.isVisible()){
             oldText.setText(oldPass.getText());
@@ -62,6 +64,14 @@ public class ChangePassController implements Initializable {
             secondPass.setVisible(true);
             secondText.setVisible(false);
         }
+        });
+        cancel.setOnAction(event -> {
+            oldPass.setText("");
+            oldText.setText("");
+            firstText.setText("");
+            firstPass.setText("");
+            secondText.setText("");
+            secondPass.setText("");
         });
     }
 }

@@ -20,8 +20,8 @@ public class App extends Application {
         Parent root = FXMLLoader.load(getClass().getResource(FxmlViews.Login.loginView));
         primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root));
-        primaryStage.initStyle(StageStyle.UNIFIED);
-        primaryStage.setMaximized(false);
+        primaryStage.initStyle(StageStyle.DECORATED);
+    //   primaryStage.setMaximized(false);
         primaryStage.setResizable(false);
         primaryStage.show();
     }
