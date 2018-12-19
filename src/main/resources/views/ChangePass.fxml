@@ -16,10 +16,44 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChangePassController">
    <children>
-      <JFXTextField layoutX="214.0" layoutY="57.0" />
-      <JFXTextField layoutX="214.0" layoutY="136.0" />
+      <JFXTextField fx:id="oldText" layoutX="214.0" layoutY="57.0" />
+      <JFXTextField fx:id="firstText" layoutX="214.0" layoutY="136.0" prefHeight="25.0" prefWidth="135.0" />
+      <Label layoutX="214.0" layoutY="40.0" text="Eski parol">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Label>
+      <JFXPasswordField fx:id="firstPass"  layoutX="214.0" layoutY="136.0" prefHeight="25.0" prefWidth="135.0">
+      </JFXPasswordField>
+
+      <JFXPasswordField fx:id="oldPass" layoutX="214.0" layoutY="57.0">
+      </JFXPasswordField>
+
+      <JFXPasswordField fx:id="secondPass" layoutX="214.0" layoutY="200.0" prefHeight="25.0" prefWidth="135.0">
+      </JFXPasswordField>
+
+      <JFXTextField fx:id="secondText" layoutX="214.0" layoutY="200.0" prefHeight="25.0" prefWidth="135.0" />
+      <Label layoutX="214.0" layoutY="120.0" text="Yangi parol">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="214.0" layoutY="184.0" text="Yangi parol">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" fx:id="saveit" layoutX="206.0" layoutY="261.0" prefHeight="25.0" prefWidth="67.0" ripplerFill="#55eb4a" style="-fx-background-color: #290add; -fx-text-fill: white;" text="Saqlash">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" fx:id="showup" layoutX="309.0" layoutY="261.0" prefHeight="25.0" prefWidth="67.0" ripplerFill="#22ff00" style="-fx-background-color: #366be7; -fx-text-fill: white;" text="Ko`rish">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

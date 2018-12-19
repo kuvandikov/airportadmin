@@ -1,6 +1,7 @@
 /**
  * Created by Jack on 17.12.2018.
  */
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +11,7 @@ import javafx.stage.StageStyle;
 import utils.FxmlViews;
 
 /**
- * Created by Loving on 14.12.2018.
+ * Created by Jack on 14.12.2018.
  */
 public class App extends Application {
 

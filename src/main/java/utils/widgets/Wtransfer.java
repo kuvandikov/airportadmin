@@ -1,9 +1,10 @@
-package controllers.widgets;
+package utils.widgets;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -25,6 +26,28 @@ public class Wtransfer {
         this.init();
     }
 
+    public Wtransfer(String fxmlUrl) {
+        this.fxmlUrl = fxmlUrl;
+        this.initPopUp();
+    }
+
+    private void initPopUp()
+    {
+        System.out.println(fxmlUrl);
+        loader = new FXMLLoader();
+        try {
+            Parent root = loader.load(this.getClass().getClassLoader().getResource(fxmlUrl));
+            stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.setFullScreen(false);
+            stage.setMaximized(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public Wtransfer(AnchorPane anchorPane, String fxmlUrl) {
         this.anchorPane = anchorPane;
         this.fxmlUrl = fxmlUrl;
@@ -68,6 +91,9 @@ public class Wtransfer {
     }
     public void show(){
         this.stage.show();
+    }
+    public void setModality(Modality modality){
+        this.stage.initModality(modality);
     }
     public <T> T getController(){
         return loader.getController();

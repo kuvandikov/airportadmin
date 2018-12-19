@@ -1,13 +1,12 @@
 package controllers;
 
 
-import controllers.widgets.Wtransfer;
+
+import utils.widgets.Wtransfer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import utils.FxmlViews;
 
 import java.net.URL;
@@ -47,9 +46,7 @@ public class NavController implements Initializable {
             new Wtransfer(content,FxmlViews.MainScreen.mainSc);
         });
         exit.setOnMouseClicked(event -> {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            stage.close();
+          new Wtransfer(FxmlViews.Addition.askedExit);
         });
 
 

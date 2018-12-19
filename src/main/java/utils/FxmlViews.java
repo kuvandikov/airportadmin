@@ -13,4 +13,7 @@ public interface FxmlViews {
         String changePassword = "views/ChangePass.fxml";
         String mainSc = "views/MainScreen.fxml";
     }
+    interface Addition{
+        String askedExit = "views/ExitDialog.fxml";
+    }
 }

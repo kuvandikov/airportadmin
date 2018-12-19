@@ -1,25 +1,19 @@
 package controllers;
 
 import com.jfoenix.controls.JFXButton;
-import utils.widgets.Wtransfer;
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import utils.FxmlViews;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by Jack on 18.12.2018.
+ * Created by Jack on 19.12.2018.
  */
-public class LoginController implements Initializable{
-    @FXML
-    private JFXButton click;
-
-
+public class ExitDialogController implements Initializable {
     /**
      * Called to initialize a controller after its root element has been
      * completely processed.
@@ -28,17 +22,19 @@ public class LoginController implements Initializable{
      *                  <tt>null</tt> if the location is not known.
      * @param resources The resources used to localize the root object, or <tt>null</tt> if
      */
+    @FXML
+    private JFXButton yes;
+    @FXML
+    private JFXButton no;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        click.setOnAction(this::handleAction);
-
-    }
-
-    private void handleAction(ActionEvent actionEvent)
-    {
-         Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
-         stage.close();
-         new Wtransfer(FxmlViews.MainScreen.navMenu,"Admin").show();
+        yes.setOnAction(event -> {
+            Platform.exit();
+        });
+        no.setOnAction(event -> {
+            Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            stage.close();
+        });
     }
 }
