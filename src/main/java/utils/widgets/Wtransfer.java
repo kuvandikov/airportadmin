@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Created by Jack on 18.12.2018.
@@ -19,13 +21,13 @@ public class Wtransfer {
     private Stage stage;
     private FXMLLoader loader;
     private AnchorPane anchorPane;
-
-    public Wtransfer(String fxmlUrl, String title) {
+    private Locale locale;
+    public Wtransfer(String fxmlUrl, String title, Locale locale) {
         this.fxmlUrl = fxmlUrl;
         this.title = title;
+        this.locale = locale;
         this.init();
     }
-
     public Wtransfer(String fxmlUrl) {
         this.fxmlUrl = fxmlUrl;
         this.initPopUp();
@@ -71,7 +73,7 @@ public class Wtransfer {
         try {
             System.out.println(fxmlUrl);
             loader = new FXMLLoader();
-            Parent root = loader.load(this.getClass().getClassLoader().getResource(fxmlUrl));
+            Parent root = loader.load(this.getClass().getClassLoader().getResource(fxmlUrl),ResourceBundle.getBundle("multilanguage.My_Bundle",locale));
             stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle(title);

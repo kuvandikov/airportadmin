@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import utils.FxmlViews;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -39,6 +40,6 @@ public class LoginController implements Initializable{
     {
          Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
          stage.close();
-         new Wtransfer(FxmlViews.MainScreen.navMenu,"Admin").show();
+         new Wtransfer(FxmlViews.MainScreen.navMenu,"Admin",new Locale("ru","RU")).show();
     }
 }

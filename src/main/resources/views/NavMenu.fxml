@@ -57,7 +57,7 @@
                       </Menu>
                         <Menu mnemonicParsing="false">
                             <graphic>
-                                <Label text="Parol o`zgartirish" textFill="white" fx:id="changePass">
+                                <Label text="Parol almashtirish" textFill="white" fx:id="changePass">
                                     <font>
                                         <Font name="System Bold" size="13.0" />
                                     </font>
