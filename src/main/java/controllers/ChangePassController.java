@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,9 +32,21 @@ public class ChangePassController implements Initializable {
     private JFXButton showup;
     @FXML
     private JFXButton cancel;
+    @FXML
+    private Label info1;
+    @FXML
+    private Label info2;
+    @FXML
+    private Label info3;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        info1.setText(resources.getString("key8"));
+        info2.setText(resources.getString("key9"));
+        info3.setText(resources.getString("key10"));
+        saveit.setText(resources.getString("key11"));
+        cancel.setText(resources.getString("key12"));
+        showup.setText(resources.getString("key13"));
         oldText.setVisible(false);
         firstText.setVisible(false);
         secondText.setVisible(false);

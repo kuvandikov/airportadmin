@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -26,9 +27,14 @@ public class ExitDialogController implements Initializable {
     private JFXButton yes;
     @FXML
     private JFXButton no;
+    @FXML
+    private Label info;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        info.setText(resources.getString("key5"));
+        yes.setText(resources.getString("key6"));
+        no.setText(resources.getString("key7"));
         yes.setOnAction(event -> {
             Platform.exit();
         });

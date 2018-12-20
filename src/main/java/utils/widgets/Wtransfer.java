@@ -28,8 +28,9 @@ public class Wtransfer {
         this.locale = locale;
         this.init();
     }
-    public Wtransfer(String fxmlUrl) {
+    public Wtransfer(String fxmlUrl, Locale locale) {
         this.fxmlUrl = fxmlUrl;
+        this.locale = locale;
         this.initPopUp();
     }
 
@@ -38,7 +39,8 @@ public class Wtransfer {
         System.out.println(fxmlUrl);
         loader = new FXMLLoader();
         try {
-            Parent root = loader.load(this.getClass().getClassLoader().getResource(fxmlUrl));
+            Parent root = loader.load(this.getClass().getClassLoader().getResource(fxmlUrl),ResourceBundle.
+                    getBundle("multilanguage.My_Bundle",locale));
             stage = new Stage();
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL);
@@ -50,8 +52,9 @@ public class Wtransfer {
             e.printStackTrace();
         }
     }
-    public Wtransfer(AnchorPane anchorPane, String fxmlUrl) {
+    public Wtransfer(AnchorPane anchorPane, String fxmlUrl,Locale locale) {
         this.anchorPane = anchorPane;
+        this.locale = locale;
         this.fxmlUrl = fxmlUrl;
         this.prepareInit();
     }
@@ -61,7 +64,7 @@ public class Wtransfer {
         System.out.println(fxmlUrl);
         if(anchorPane.getChildren() != null && anchorPane.getChildren().size() > 0)
             this.anchorPane.getChildren().clear();
-        loader = new FXMLLoader(getClass().getClassLoader().getResource(this.fxmlUrl));
+        loader = new FXMLLoader(getClass().getClassLoader().getResource(this.fxmlUrl),ResourceBundle.getBundle("multilanguage.My_Bundle",locale));
         try {
             anchorPane.getChildren().add(loader.load());
         } catch (IOException e) {
@@ -88,6 +91,8 @@ public class Wtransfer {
     public void setFullScreen(boolean yes){
         this.stage.setFullScreen(yes);
     }
+    public void setResizeble(boolean yes){this.stage.setResizable(yes);}
+    public void setMaximized(boolean yes){this.stage.setMaximized(yes);}
     public void setStageStyle(StageStyle stageStyle){
         this.stage.initStyle(stageStyle);
     }

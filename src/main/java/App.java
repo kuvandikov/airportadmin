@@ -2,6 +2,7 @@
  * Created by Jack on 17.12.2018.
  */
 
+import controllers.NavController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import utils.FxmlViews;
+import utils.widgets.Wtransfer;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,22 +41,26 @@ public class App extends Application {
         if(temp.equals("RUS")){
             locale = new Locale("ru","RUS");
         }
-        Parent root = null;
+        Wtransfer wtransfer = null;
         if(locale != null){
-            root = FXMLLoader.load(getClass().getResource(FxmlViews.Login.loginView),
-                    ResourceBundle.getBundle("multilanguage.My_Bundle",locale));
+            wtransfer = new Wtransfer(FxmlViews.Login.loginView,"Admin",locale);
         }
         else
         {
-            root =  FXMLLoader.load(getClass().getResource(FxmlViews.Login.loginView));
-            System.out.println("Fayldan oqishda hato");
+            System.err.println("faylda hato bor qaysi tilni oqishni bilmayabdi locale null qaytyabdi");
+            wtransfer =  new Wtransfer(FxmlViews.Login.loginView,"Admin",locale);
+
         }
-        primaryStage.setTitle("Admin");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.initStyle(StageStyle.DECORATED);
+     //   wtransfer = new Wtransfer(FxmlViews.Login.loginView,"Admin",locale);
+        wtransfer.setStageStyle(StageStyle.DECORATED);
+        wtransfer.setResizeble(false);
+        wtransfer.setMaximized(false);
+        wtransfer.show();
+      //  primaryStage.setScene(new Scene(root));
+      //  primaryStage.initStyle(StageStyle.DECORATED);
     //   primaryStage.setMaximized(false);
-        primaryStage.setResizable(false);
-        primaryStage.show();
+     //   primaryStage.setResizable(false);
+      //  primaryStage.show();
     }
 
     public static void main(String[] args) {

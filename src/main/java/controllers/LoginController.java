@@ -20,7 +20,7 @@ public class LoginController implements Initializable{
     @FXML
     private JFXButton click;
 
-
+    private ResourceBundle resourceBundle;
     /**
      * Called to initialize a controller after its root element has been
      * completely processed.
@@ -32,6 +32,7 @@ public class LoginController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        this.resourceBundle = resources;
         click.setOnAction(this::handleAction);
 
     }
@@ -40,6 +41,6 @@ public class LoginController implements Initializable{
     {
          Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
          stage.close();
-         new Wtransfer(FxmlViews.MainScreen.navMenu,"Admin",new Locale("ru","RU")).show();
+         new Wtransfer(FxmlViews.MainScreen.navMenu,"Admin",resourceBundle.getLocale()).show();
     }
 }

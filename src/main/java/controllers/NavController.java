@@ -34,30 +34,30 @@ public class NavController implements Initializable {
     @FXML
     private Label main;
 
-    private ResourceBundle bundle;
-
     public void initialize(URL location, ResourceBundle resources)
     {
-        bundle = ResourceBundle.getBundle("multilanguage.My_Bundle",new Locale("ru","RU"));
-        main.setText(bundle.getString("key1"));
-        settings.setText(bundle.getString("key2"));
-        changePass.setText(bundle.getString("key3"));
-        exit.setText(bundle.getString("key4"));
+
+        main.setText(resources.getString("key1"));
+        settings.setText(resources.getString("key2"));
+        changePass.setText(resources.getString("key3"));
+        exit.setText(resources.getString("key4"));
         settings.setOnMouseClicked(event ->
         {
-            new Wtransfer(content,FxmlViews.MainScreen.settings);
+            new Wtransfer(content,FxmlViews.MainScreen.settings,resources.getLocale());
         });
         changePass.setOnMouseClicked(event ->
         {
-        new Wtransfer(content,FxmlViews.MainScreen.changePassword);
+        new Wtransfer(content,FxmlViews.MainScreen.changePassword,resources.getLocale());
         });
         main.setOnMouseClicked(event -> {
-            new Wtransfer(content,FxmlViews.MainScreen.mainSc);
+            new Wtransfer(content,FxmlViews.MainScreen.mainSc,resources.getLocale());
         });
         exit.setOnMouseClicked(event -> {
-          new Wtransfer(FxmlViews.Addition.askedExit);
+          new Wtransfer(FxmlViews.Addition.askedExit,resources.getLocale());
         });
 
 
     }
+
+
 }
