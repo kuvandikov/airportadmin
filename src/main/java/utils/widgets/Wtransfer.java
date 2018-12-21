@@ -45,7 +45,7 @@ public class Wtransfer {
                     getBundle("multilanguage.My_Bundle",locale));
             stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UTILITY);
             stage.setFullScreen(false);
             stage.setMaximized(false);
