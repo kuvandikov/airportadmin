@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import utils.widgets.MyResourceBundle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,9 +33,10 @@ public class ExitDialogController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        info.setText(resources.getString("key5"));
-        yes.setText(resources.getString("key6"));
-        no.setText(resources.getString("key7"));
+        MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
+        info.setText(myResourceBundle.getString("key5"));
+        yes.setText(myResourceBundle.getString("key6"));
+        no.setText(myResourceBundle.getString("key7"));
         yes.setOnAction(event -> {
             Platform.exit();
         });

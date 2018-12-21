@@ -15,6 +15,7 @@ import utils.widgets.Wtransfer;
 import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -39,7 +40,7 @@ public class App extends Application {
             locale = new Locale("en","EN");
         }
         if(temp.equals("RUS")){
-            locale = new Locale("ru","RUS");
+            locale = new Locale("ru","RU");
         }
         Wtransfer wtransfer = null;
         if(locale != null){

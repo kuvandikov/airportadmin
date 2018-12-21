@@ -1,5 +1,6 @@
 package utils.widgets;
 
+import com.sun.org.apache.xerces.internal.impl.io.UTF8Reader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -38,6 +39,7 @@ public class Wtransfer {
     {
         System.out.println(fxmlUrl);
         loader = new FXMLLoader();
+
         try {
             Parent root = loader.load(this.getClass().getClassLoader().getResource(fxmlUrl),ResourceBundle.
                     getBundle("multilanguage.My_Bundle",locale));

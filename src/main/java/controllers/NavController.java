@@ -2,6 +2,7 @@ package controllers;
 
 
 
+import utils.widgets.MyResourceBundle;
 import utils.widgets.Wtransfer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,9 +10,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import utils.FxmlViews;
 
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
@@ -34,13 +37,16 @@ public class NavController implements Initializable {
     @FXML
     private Label main;
 
+    private ResourceBundle resourceBundle;
+
     public void initialize(URL location, ResourceBundle resources)
     {
+        MyResourceBundle resourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
+        main.setText(resourceBundle.getString("key1"));
+        settings.setText(resourceBundle.getString("key2"));
+        changePass.setText(resourceBundle.getString("key3"));
+        exit.setText(resourceBundle.getString("key4"));
 
-        main.setText(resources.getString("key1"));
-        settings.setText(resources.getString("key2"));
-        changePass.setText(resources.getString("key3"));
-        exit.setText(resources.getString("key4"));
         settings.setOnMouseClicked(event ->
         {
             new Wtransfer(content,FxmlViews.MainScreen.settings,resources.getLocale());

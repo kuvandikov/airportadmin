@@ -6,6 +6,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import utils.widgets.MyResourceBundle;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,12 +43,14 @@ public class ChangePassController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        info1.setText(resources.getString("key8"));
-        info2.setText(resources.getString("key9"));
-        info3.setText(resources.getString("key10"));
-        saveit.setText(resources.getString("key11"));
-        cancel.setText(resources.getString("key12"));
-        showup.setText(resources.getString("key13"));
+        MyResourceBundle resourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
+        info1.setText(resourceBundle.getString("key8"));
+        info2.setText(resourceBundle.getString("key9"));
+        info3.setText(resourceBundle.getString("key10"));
+        saveit.setText(resourceBundle.getString("key11"));
+        saveit.setText(resourceBundle.getString("key11"));
+        cancel.setText(resourceBundle.getString("key12"));
+        showup.setText(resourceBundle.getString("key13"));
         oldText.setVisible(false);
         firstText.setVisible(false);
         secondText.setVisible(false);
