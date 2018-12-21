@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import utils.FxmlViews;
+import utils.widgets.Utils;
 import utils.widgets.Wtransfer;
 
 import java.io.File;
@@ -32,16 +33,7 @@ public class App extends Application {
         String temp = "";
         temp = cine.next();
         System.out.println(temp);
-        Locale locale = null;
-        if(temp.equals("UZB")){
-            locale = new Locale("uz","UZ");
-        }
-        if(temp.equals("ENG")){
-            locale = new Locale("en","EN");
-        }
-        if(temp.equals("RUS")){
-            locale = new Locale("ru","RU");
-        }
+        Locale locale = new Utils().getLocale(temp);
         Wtransfer wtransfer = null;
         if(locale != null){
             wtransfer = new Wtransfer(FxmlViews.Login.loginView,"Admin",locale);

@@ -74,7 +74,6 @@ public class Wtransfer {
             e.printStackTrace();
         }
     }
-
     private void init() {
         try {
             System.out.println(fxmlUrl);

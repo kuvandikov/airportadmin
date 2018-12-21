@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import utils.FxmlViews;
 import utils.widgets.MyResourceBundle;
+import utils.widgets.Utils;
 import utils.widgets.Wtransfer;
 
 
@@ -74,9 +75,7 @@ public class SettingController implements Initializable {
         saveit.setText(myResourceBundle.getString("changePass.save"));
         checkOnlyOne(uzbekSelect,rusSelect,englishSelect);
         onClick(saveit);
-
     }
-
     private void onClick(JFXButton saveit) {
         saveit.setOnAction(event ->
         {
@@ -99,16 +98,7 @@ public class SettingController implements Initializable {
             }
             printWriter.write(temp);
             printWriter.close();
-            Locale locale = null;
-            if(temp.equals("UZB")){
-                locale = new Locale("uz","UZ");
-            }
-            else if(temp.equals("RUS")){
-                locale = new Locale("ru","RU");
-            }
-            else if(temp.equals("ENG")){
-                locale = new Locale("en","EN");
-            }
+            Locale locale = new Utils().getLocale(temp);
             Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
             stage.close();
             Wtransfer wtransfer = new Wtransfer(FxmlViews.MainScreen.navMenu,"Admin",locale);
@@ -119,11 +109,8 @@ public class SettingController implements Initializable {
             wtransfer.setFullScreen(true);
             wtransfer.setHint(myResourceBundle.getString("settings.afterChangeLang"));
             wtransfer.show();
-
-
         });
     }
-
     private void checkOnlyOne(JFXCheckBox uzbekSelect, JFXCheckBox rusSelect, JFXCheckBox englishSelect)
     {
         uzbekSelect.setOnAction(event -> {

@@ -2,6 +2,12 @@ package controllers;
 
 
 
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import utils.widgets.MyResourceBundle;
 import utils.widgets.Wtransfer;
 import javafx.fxml.FXML;
@@ -57,9 +63,10 @@ public class NavController  implements Initializable  {
         {
           new Wtransfer(FxmlViews.Addition.askedExit,resources.getLocale());
         });
-
+        new Wtransfer(content,FxmlViews.MainScreen.mainSc,resources.getLocale());
 
     }
+
 
 
 }
