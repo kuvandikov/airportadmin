@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Loving on 14.12.2018.
  */
-public class NavController implements Initializable {
+public class NavController  implements Initializable  {
 
     @FXML
     private AnchorPane content;

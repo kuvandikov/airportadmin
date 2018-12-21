@@ -4,13 +4,20 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import utils.FxmlViews;
 import utils.widgets.MyResourceBundle;
+import utils.widgets.Wtransfer;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
@@ -92,7 +99,26 @@ public class SettingController implements Initializable {
             }
             printWriter.write(temp);
             printWriter.close();
-
+            Locale locale = null;
+            if(temp.equals("UZB")){
+                locale = new Locale("uz","UZ");
+            }
+            else if(temp.equals("RUS")){
+                locale = new Locale("ru","RU");
+            }
+            else if(temp.equals("ENG")){
+                locale = new Locale("en","EN");
+            }
+            Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            stage.close();
+            Wtransfer wtransfer = new Wtransfer(FxmlViews.MainScreen.navMenu,"Admin",locale);
+            MyResourceBundle myResourceBundle = new MyResourceBundle(locale,"UTF-8");
+            wtransfer.setStageStyle(StageStyle.DECORATED);
+            wtransfer.setResizeble(false);
+            wtransfer.setMaximized(false);
+            wtransfer.setFullScreen(true);
+            wtransfer.setHint(myResourceBundle.getString("settings.afterChangeLang"));
+            wtransfer.show();
 
 
         });

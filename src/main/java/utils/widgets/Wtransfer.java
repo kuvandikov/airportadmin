@@ -91,6 +91,7 @@ public class Wtransfer {
             e.printStackTrace();
         }
     }
+    public void  setHint(String hint){this.stage.setFullScreenExitHint(hint);}
     public void setFullScreen(boolean yes){
         this.stage.setFullScreen(yes);
     }
