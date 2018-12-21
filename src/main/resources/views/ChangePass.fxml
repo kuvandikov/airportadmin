@@ -41,17 +41,17 @@
             <Font name="Times New Roman" size="14.0" />
          </font>
       </Label>
-      <JFXButton fx:id="saveit" buttonType="RAISED" layoutX="206.0" layoutY="261.0" prefHeight="25.0" prefWidth="67.0" ripplerFill="#55eb4a" style="-fx-background-color: #290add; -fx-text-fill: white;" text="Saqlash">
+      <JFXButton fx:id="saveit" buttonType="RAISED" layoutX="161.0" layoutY="261.0" prefHeight="25.0" prefWidth="90.0" ripplerFill="#55eb4a" style="-fx-background-color: #290add; -fx-text-fill: white;" text="Saqlash">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="showup" buttonType="RAISED" layoutX="375.0" layoutY="261.0" prefHeight="25.0" prefWidth="67.0" ripplerFill="#22ff00" style="-fx-background-color: #366be7; -fx-text-fill: white;" text="Ko`rish">
+      <JFXButton fx:id="showup" buttonType="RAISED" layoutX="375.0" layoutY="261.0" prefHeight="25.0" prefWidth="90.0" ripplerFill="#22ff00" style="-fx-background-color: #366be7; -fx-text-fill: white;" text="Ko`rish">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="cancel" buttonType="RAISED" layoutX="290.0" layoutY="261.0" prefHeight="25.0" prefWidth="67.0" ripplerFill="#22ff00" style="-fx-background-color: #366be7; -fx-text-fill: white;" text="Bekor">
+      <JFXButton fx:id="cancel" buttonType="RAISED" layoutX="270.0" layoutY="261.0" prefHeight="25.0" prefWidth="90.0" ripplerFill="#22ff00" style="-fx-background-color: #366be7; -fx-text-fill: white;" text="Bekor">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>

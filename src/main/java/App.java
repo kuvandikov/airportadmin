@@ -50,7 +50,6 @@ public class App extends Application {
         {
             System.err.println("faylda hato bor qaysi tilni oqishni bilmayabdi locale null qaytyabdi");
             wtransfer =  new Wtransfer(FxmlViews.Login.loginView,"Admin",locale);
-
         }
      //   wtransfer = new Wtransfer(FxmlViews.Login.loginView,"Admin",locale);
         wtransfer.setStageStyle(StageStyle.DECORATED);

@@ -44,13 +44,13 @@ public class ChangePassController implements Initializable {
     public void initialize(URL location, ResourceBundle resources)
     {
         MyResourceBundle resourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
-        info1.setText(resourceBundle.getString("key8"));
-        info2.setText(resourceBundle.getString("key9"));
-        info3.setText(resourceBundle.getString("key10"));
-        saveit.setText(resourceBundle.getString("key11"));
-        saveit.setText(resourceBundle.getString("key11"));
-        cancel.setText(resourceBundle.getString("key12"));
-        showup.setText(resourceBundle.getString("key13"));
+        info1.setText(resourceBundle.getString("changePass.oldP"));
+        info2.setText(resourceBundle.getString("changePass.new"));
+        info3.setText(resourceBundle.getString("changePass.newr"));
+        saveit.setText(resourceBundle.getString("changePass.save"));
+        saveit.setText(resourceBundle.getString("changePass.save"));
+        cancel.setText(resourceBundle.getString("changePass.cancel"));
+        showup.setText(resourceBundle.getString("changePass.see"));
         oldText.setVisible(false);
         firstText.setVisible(false);
         secondText.setVisible(false);

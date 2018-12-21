@@ -14,14 +14,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="195.0" prefWidth="413.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ExitDialogController">
+<AnchorPane  prefHeight="195.0" prefWidth="443.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ExitDialogController">
    <children>
       <JFXButton fx:id="yes" buttonType="RAISED" layoutX="125.0" layoutY="98.0" prefHeight="25.0" prefWidth="65.0" ripplerFill="BLACK" style="-fx-background-color: rgb(13,72,128);" text="Xa" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </JFXButton>
-      <Label fx:id="info" layoutX="91.0" layoutY="47.0" text="Haqiqatan dasturdan chiqmoqchimisiz?">
+      <Label fx:id="info" layoutX="87.0" layoutY="49.0" prefHeight="16.0" prefWidth="321.0" text="Haqiqatan dasturdan chiqmoqchimisiz?">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>

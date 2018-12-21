@@ -34,9 +34,9 @@ public class ExitDialogController implements Initializable {
     public void initialize(URL location, ResourceBundle resources)
     {
         MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
-        info.setText(myResourceBundle.getString("key5"));
-        yes.setText(myResourceBundle.getString("key6"));
-        no.setText(myResourceBundle.getString("key7"));
+        info.setText(myResourceBundle.getString("exit.ask"));
+        yes.setText(myResourceBundle.getString("exit.yes"));
+        no.setText(myResourceBundle.getString("exit.no"));
         yes.setOnAction(event -> {
             Platform.exit();
         });
