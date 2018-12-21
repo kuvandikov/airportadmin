@@ -52,6 +52,9 @@ public class MainScreenController implements Initializable
     @FXML
     private TableColumn<TableData,String> tableShowDs;
 
+    @FXML
+    private TableColumn<TableData,String> tableShowDt;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -67,6 +70,8 @@ public class MainScreenController implements Initializable
         tableShowDm.setText(myResourceBundle.getString("mainScreen.tableMarshrut"));
         tableShowDr.setText(myResourceBundle.getString("mainScreen.tableRace"));
         tableShowDs.setText(myResourceBundle.getString("mainScreen.tableStatus"));
+        tableShowDt.setText(myResourceBundle.getString("mainScreen.tableTerminal"));
+
 
 
 

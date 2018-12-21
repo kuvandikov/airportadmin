@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="470.0" prefWidth="617.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddDialogController">
+   <children>
+      <Label fx:id="header" alignment="CENTER" layoutY="24.0" prefHeight="17.0" prefWidth="569.0" text="PRILYOT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font name="Times New Roman Bold" size="18.0" />
+         </font>
+      </Label>
+      <VBox layoutY="89.0" prefHeight="399.0" prefWidth="617.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+         <children>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
+                  <Label fx:id="ldate" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Sana:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0">
+                     <image>
+                        <Image url="@../pictures/icons/AddDialogIcons/Calendar_64px_1.png" />
+                     </image>
+                  </ImageView>
+                  <DatePicker />
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
+                  <Label fx:id="ltime" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Vaqt:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0">
+                     <image>
+                        <Image url="@../pictures/icons/AddDialogIcons/Time_50px.png" />
+                     </image>
+                  </ImageView>
+                  <JFXTextField prefHeight="25.0" prefWidth="177.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </JFXTextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
+                  <Label fx:id="lflight" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Parvoz:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0">
+                     <image>
+                        <Image url="@../pictures/icons/AddDialogIcons/Airplane Take Off_48px.png" />
+                     </image>
+                  </ImageView>
+                  <JFXTextField prefHeight="25.0" prefWidth="177.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
+                  <Label fx:id="ldirection" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Yo`nalish:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0">
+                     <image>
+                        <Image url="@../pictures/icons/AddDialogIcons/Windsock_64px.png" />
+                     </image>
+                  </ImageView>
+                  <JFXTextField prefHeight="25.0" prefWidth="177.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
+                  <Label fx:id="lstatus" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Holat:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0">
+                     <image>
+                        <Image url="@../pictures/icons/AddDialogIcons/Do Not Disturb_50px.png" />
+                     </image>
+                  </ImageView>
+                  <JFXComboBox prefHeight="25.0" prefWidth="177.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
+                  <Label fx:id="ltimes" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Holat vaqti:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0">
+                     <image>
+                        <Image url="@../pictures/icons/AddDialogIcons/Time Span_50px.png" />
+                     </image>
+                  </ImageView>
+                  <JFXTextField prefHeight="25.0" prefWidth="177.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="52.0" prefWidth="617.0">
+               <children>
+                  <JFXButton fx:id="saveit" buttonType="RAISED" prefHeight="25.0" prefWidth="90.0" ripplerFill="#55eb4a" style="-fx-background-color: #290add; -fx-text-fill: white;" text="Saqlash">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="220.0" top="20.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="cancel" buttonType="RAISED" prefHeight="25.0" prefWidth="90.0" ripplerFill="RED" style="-fx-background-color: ff9a00; -fx-text-fill: white;" text="Bekor">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" top="20.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

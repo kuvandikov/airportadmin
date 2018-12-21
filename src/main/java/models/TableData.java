@@ -11,9 +11,10 @@ public class TableData {
     private String flight;
     private String destination;
     private String status;
+    private String terminal;
     public TableData() {
     }
-    public TableData(String time, ImageView imageView, String flight, String destination, String status) {
+    public TableData(String time, ImageView imageView, String flight, String destination, String status,String terminal) {
         this.time = time;
         imageView.setFitHeight(50);
         imageView.setFitWidth(220);
@@ -21,6 +22,7 @@ public class TableData {
         this.flight = flight;
         this.destination = destination;
         this.status = status;
+        this.terminal = terminal;
     }
 
     public String getTime() {
