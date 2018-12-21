@@ -16,15 +16,45 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="869.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainScreenController">
    <children>
-      <TableView fx:id="tableShow" layoutY="127.0" prefHeight="273.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
-        <columns>
-          <TableColumn prefWidth="103.0" text="C1" />
-          <TableColumn prefWidth="120.0" text="C2" />
-            <TableColumn prefWidth="120.0" text="C2" />
-            <TableColumn prefWidth="120.0" text="C2" />
-        </columns>
-      </TableView>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab fx:id="kelish" text="Prilyoti">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableShowA" layoutY="122.0" prefHeight="249.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="122.0">
+                          <columns>
+                            <TableColumn fx:id="tableShowAtime" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Vaqt" />
+                              <TableColumn maxWidth="400.0" minWidth="400.0" prefWidth="400.0" />
+                            <TableColumn fx:id="tableShowAr" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Reys" />
+                              <TableColumn fx:id="tableShowAm" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" text="Marshrut" />
+                              <TableColumn fx:id="tableShowAs" maxWidth="275.0" minWidth="275.0" prefWidth="275.0" text="Status" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="ketish" text="Otpravleniya">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="750.0">
+                     <children>
+                        <TableView fx:id="tableShowD" prefHeight="249.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="122.0">
+                           <columns>
+                              <TableColumn fx:id="tableShowDtime" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Vaqt" />
+                              <TableColumn maxWidth="400.0" minWidth="400.0" prefWidth="400.0" />
+                              <TableColumn fx:id="tableShowDr" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Reys" />
+                              <TableColumn fx:id="tableShowDm" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" text="Marshrut" />
+                              <TableColumn fx:id="tableShowDs" maxWidth="275.0" minWidth="275.0" prefWidth="275.0" text="Status" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>
