@@ -1,6 +1,7 @@
 package controllers;
 
 import com.jfoenix.controls.JFXButton;
+import utils.widgets.MyResourceBundle;
 import utils.widgets.Wtransfer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,14 +33,15 @@ public class LoginController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
+        click.setText(myResourceBundle.getString("login.pass"));
         this.resourceBundle = resources;
         click.setOnAction(this::handleAction);
 
     }
 
     private void handleAction(ActionEvent actionEvent)
-    {
-         Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
+    {    Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
          stage.close();
          new Wtransfer(FxmlViews.MainScreen.navMenu,"Admin",resourceBundle.getLocale()).show();
     }

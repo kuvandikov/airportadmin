@@ -16,6 +16,20 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="623.0" style="-fx-background-color: ;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingController">
+   <children>
+      <Label fx:id="changeLang" layoutX="37.0" layoutY="31.0" text="Tilni o`zgartirish">
+         <font>
+            <Font name="Times New Roman Bold" size="16.0" />
+         </font>
+      </Label>
+      <JFXCheckBox fx:id="uzbekSelect" layoutX="73.0" layoutY="66.0" prefHeight="18.0" prefWidth="146.0" text="O`zbek  tili" />
+      <JFXCheckBox fx:id="rusSelect" layoutX="73.0" layoutY="95.0" prefHeight="18.0" prefWidth="146.0" text="Rus tili" />
+      <JFXCheckBox fx:id="englishSelect" layoutX="72.0" layoutY="127.0" prefHeight="18.0" prefWidth="146.0" text="Ingliz tili" />
+      <JFXButton fx:id="saveit" buttonType="RAISED" layoutX="64.0" layoutY="188.0" prefHeight="25.0" prefWidth="90.0" ripplerFill="#55eb4a" style="-fx-background-color: #290add; -fx-text-fill: white;" text="Saqlash">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
 </AnchorPane>
