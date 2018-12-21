@@ -37,6 +37,14 @@
                      </image>
                   </ImageView>
                   <DatePicker />
+                  <Label fx:id="warn" text="To`ldirlimagan" textFill="#f20707">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="40.0" prefWidth="617.0">
@@ -55,7 +63,18 @@
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </JFXTextField>
+                  <Label fx:id="warn1" text="To`ldirlimagan" textFill="#f20707">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="40.0" prefWidth="617.0">
@@ -70,7 +89,18 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Airplane Take Off_48px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0" />
+                  <JFXTextField prefHeight="25.0" prefWidth="177.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXTextField>
+                  <Label fx:id="warn2" text="To`ldirlimagan" textFill="#f20707">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="40.0" prefWidth="617.0">
@@ -85,7 +115,18 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Windsock_64px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0" />
+                  <JFXTextField prefHeight="25.0" prefWidth="177.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXTextField>
+                  <Label fx:id="warn3" text="To`ldirlimagan" textFill="#f20707">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="40.0" prefWidth="617.0">
@@ -101,6 +142,14 @@
                      </image>
                   </ImageView>
                   <JFXComboBox prefHeight="25.0" prefWidth="177.0" />
+                  <Label fx:id="warn4" text="To`ldirlimagan" textFill="#f20707">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="40.0" prefWidth="617.0">
@@ -115,7 +164,18 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Time Span_50px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0" />
+                  <JFXTextField prefHeight="25.0" prefWidth="177.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXTextField>
+                  <Label fx:id="warn5" text="To`ldirlimagan" textFill="#f20707">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
             </HBox>
             <HBox prefHeight="52.0" prefWidth="617.0">

@@ -1,12 +1,15 @@
 package controllers;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import models.TableData;
+import utils.FxmlViews;
 import utils.widgets.MyResourceBundle;
+import utils.widgets.Wtransfer;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,6 +30,9 @@ public class MainScreenController implements Initializable
 
     @FXML
     private Tab ketish;
+
+    @FXML
+    private JFXButton enter;
 
     @FXML
     private TableColumn<TableData,String> tableShowAtime;
@@ -71,10 +77,19 @@ public class MainScreenController implements Initializable
         tableShowDr.setText(myResourceBundle.getString("mainScreen.tableRace"));
         tableShowDs.setText(myResourceBundle.getString("mainScreen.tableStatus"));
         tableShowDt.setText(myResourceBundle.getString("mainScreen.tableTerminal"));
+        enter.setText(myResourceBundle.getString("mainScreen.enters"));
+        onClick(enter,resources);
 
 
 
 
+    }
+
+    private void onClick(JFXButton enter,ResourceBundle resources)
+    {
+        enter.setOnAction(event -> {
+            new Wtransfer(FxmlViews.Addition.addDialog,resources.getLocale());
+        });
 
     }
 }
