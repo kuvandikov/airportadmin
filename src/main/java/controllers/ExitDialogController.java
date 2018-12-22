@@ -38,7 +38,7 @@ public class ExitDialogController implements Initializable {
         yes.setText(myResourceBundle.getString("exit.yes"));
         no.setText(myResourceBundle.getString("exit.no"));
         yes.setOnAction(event -> {
-            Platform.exit();
+           System.exit(0);
         });
         no.setOnAction(event -> {
             Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();

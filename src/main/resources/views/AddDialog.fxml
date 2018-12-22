@@ -36,7 +36,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Calendar_64px_1.png" />
                      </image>
                   </ImageView>
-                  <DatePicker />
+                  <DatePicker fx:id="dateChooser" />
                   <Label fx:id="warn" text="To`ldirlimagan" textFill="#f20707">
                      <HBox.margin>
                         <Insets left="30.0" />
@@ -59,7 +59,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Time_50px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0">
+                  <JFXTextField prefHeight="25.0" prefWidth="177.0" fx:id="timeField">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -89,7 +89,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Airplane Take Off_48px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0">
+                  <JFXTextField prefHeight="25.0" prefWidth="177.0" fx:id="flightField">
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>
@@ -115,7 +115,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Windsock_64px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0">
+                  <JFXTextField prefHeight="25.0" prefWidth="177.0" fx:id="destField">
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>
@@ -141,7 +141,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Do Not Disturb_50px.png" />
                      </image>
                   </ImageView>
-                  <JFXComboBox prefHeight="25.0" prefWidth="177.0" />
+                  <JFXComboBox prefHeight="25.0" prefWidth="177.0" fx:id="statusField" />
                   <Label fx:id="warn4" text="To`ldirlimagan" textFill="#f20707">
                      <font>
                         <Font size="14.0" />
@@ -164,7 +164,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Time Span_50px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0">
+                  <JFXTextField prefHeight="25.0" prefWidth="177.0" fx:id="statusTimeField">
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>

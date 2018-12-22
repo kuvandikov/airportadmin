@@ -1,9 +1,14 @@
 package controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import utils.widgets.MyResourceBundle;
 
 import java.net.URL;
@@ -59,6 +64,25 @@ public class AddDialogController implements Initializable
     @FXML
     private Label warn5;
 
+    @FXML
+    private DatePicker dateChooser;
+
+    @FXML
+    private JFXTextField timeField;
+
+    @FXML
+    private JFXTextField flightField;
+
+    @FXML
+    private JFXTextField destField;
+
+    @FXML
+    private JFXComboBox statusField;
+
+    @FXML
+    private JFXTextField statusTimeField;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -85,8 +109,35 @@ public class AddDialogController implements Initializable
         warn3.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn4.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn5.setText(myResourceBundle.getString("AddDialog.warnings"));
+        onClick(saveit,cancel);
     }
 
+    private void onClick(JFXButton saveit, JFXButton cancel)
+    {
+        cancel.setOnAction(event ->
+        {
+            Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+            stage.close();
+        });
+        saveit.setOnAction(event ->
+        {
+            warn.setVisible(dateChooser.getEditor().getText().isEmpty());
+            warn1.setVisible(timeField.getText().isEmpty());
+            warn2.setVisible(flightField.getText().isEmpty());
+            warn3.setVisible(destField.getText().isEmpty());
+            warn4.setVisible(statusField.getEditor().getText().isEmpty());
+            warn5.setVisible(statusTimeField.getText().isEmpty());
+
+            if(!(warn.isVisible()
+                    || warn1.isVisible()
+                    || warn3.isVisible()
+                    || warn2.isVisible()
+                    || warn5.isVisible()))
+            {
+                System.out.println("Ready to write into database");
+            }
+        });
+    }
     private void prepareForLabels() {
         warn.setVisible(false);
         warn1.setVisible(false);
