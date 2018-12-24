@@ -17,8 +17,10 @@ import java.util.ResourceBundle;
 /**
  * Created by Jack on 21.12.2018.
  */
-public class AddDialogController implements Initializable
+public class AddDialogDepatureController implements Initializable
 {
+
+
     @FXML
     private Label header;
 
@@ -84,17 +86,18 @@ public class AddDialogController implements Initializable
 
 
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         prepareForLabels();
         prepareMultiLanguage(resources);
-
     }
     private void prepareMultiLanguage(ResourceBundle resources)
     {
+
         MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
-        header.setText(myResourceBundle.getString("AddDialog.header"));
+        header.setText(myResourceBundle.getString("AddDialog.header1"));
         ldate.setText(myResourceBundle.getString("AddDialog.date"));
         ltime.setText(myResourceBundle.getString("AddDialog.timeF"));
         lflight.setText(myResourceBundle.getString("AddDialog.race"));
@@ -147,4 +150,5 @@ public class AddDialogController implements Initializable
         warn5.setVisible(false);
 
     }
+
 }

@@ -15,6 +15,7 @@ public interface FxmlViews {
     }
     interface Addition{
         String askedExit = "views/ExitDialog.fxml";
-        String addDialog = "views/AddDialog.fxml";
+        String addDialogA = "views/AddDialogArrive.fxml";
+        String addDialogD = "views/AddDialogDepature.fxml";
     }
 }

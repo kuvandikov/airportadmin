@@ -3,6 +3,8 @@
  */
 
 import controllers.NavController;
+import controllers.events.EventBus;
+import controllers.events.FXEventBus;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +26,7 @@ import java.util.Scanner;
  * Created by Jack on 14.12.2018.
  */
 public class App extends Application {
+
 
     @Override
     public void start(Stage primaryStage) throws Exception

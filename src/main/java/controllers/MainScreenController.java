@@ -19,6 +19,8 @@ import java.util.ResourceBundle;
  */
 public class MainScreenController implements Initializable
 {
+
+
     @FXML
     private TableView<TableData> tableShowA;
 
@@ -31,9 +33,10 @@ public class MainScreenController implements Initializable
     @FXML
     private Tab ketish;
 
+    private AddDialogArriveController addDialogController;
+
     @FXML
     private JFXButton enter;
-
     @FXML
     private TableColumn<TableData,String> tableShowAtime;
 
@@ -61,6 +64,9 @@ public class MainScreenController implements Initializable
     @FXML
     private TableColumn<TableData,String> tableShowDt;
 
+    @FXML
+    private JFXButton enter1;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -78,17 +84,26 @@ public class MainScreenController implements Initializable
         tableShowDs.setText(myResourceBundle.getString("mainScreen.tableStatus"));
         tableShowDt.setText(myResourceBundle.getString("mainScreen.tableTerminal"));
         enter.setText(myResourceBundle.getString("mainScreen.enters"));
-        onClick(enter,resources);
-
-
-
+        enter1.setText(myResourceBundle.getString("mainScreen.enters"));
+        onClick(enter,enter1,resources);
 
     }
 
-    private void onClick(JFXButton enter,ResourceBundle resources)
+    private void onClick(JFXButton enter,JFXButton enter1,ResourceBundle resources)
     {
-        enter.setOnAction(event -> {
-            new Wtransfer(FxmlViews.Addition.addDialog,resources.getLocale());
+        enter.setOnAction(event ->
+        {
+            // Arrive
+            new Wtransfer(FxmlViews.Addition.addDialogA,resources.getLocale());
+
+        });
+
+        enter1.setOnAction(event ->
+        {
+            // Depature
+            new Wtransfer(FxmlViews.Addition.addDialogD,resources.getLocale());
+
+
         });
 
     }
