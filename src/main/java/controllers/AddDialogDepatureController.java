@@ -84,6 +84,16 @@ public class AddDialogDepatureController implements Initializable
     @FXML
     private JFXTextField statusTimeField;
 
+    @FXML
+    private Label terminal;
+
+    @FXML
+    private JFXTextField terminalField;
+
+    @FXML
+    private Label warn6;
+
+
 
 
 
@@ -104,6 +114,7 @@ public class AddDialogDepatureController implements Initializable
         ldirection.setText(myResourceBundle.getString("AddDialog.itenary"));
         lstatus.setText(myResourceBundle.getString("AddDialog.status"));
         ltimes.setText(myResourceBundle.getString("AddDialog.statusTime"));
+        terminal.setText(myResourceBundle.getString("AddDialog.terminal"));
         saveit.setText(myResourceBundle.getString("changePass.save"));
         cancel.setText(myResourceBundle.getString("changePass.cancel"));
         warn.setText(myResourceBundle.getString("AddDialog.warnings"));
@@ -112,6 +123,7 @@ public class AddDialogDepatureController implements Initializable
         warn3.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn4.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn5.setText(myResourceBundle.getString("AddDialog.warnings"));
+        warn6.setText(myResourceBundle.getString("AddDialog.warnings"));
         onClick(saveit,cancel);
     }
 
@@ -130,12 +142,14 @@ public class AddDialogDepatureController implements Initializable
             warn3.setVisible(destField.getText().isEmpty());
             warn4.setVisible(statusField.getEditor().getText().isEmpty());
             warn5.setVisible(statusTimeField.getText().isEmpty());
+            warn6.setVisible(terminalField.getText().isEmpty());
 
             if(!(warn.isVisible()
                     || warn1.isVisible()
                     || warn3.isVisible()
                     || warn2.isVisible()
-                    || warn5.isVisible()))
+                    || warn5.isVisible()
+                    || warn6.isVisible()))
             {
                 System.out.println("Ready to write into database");
             }
@@ -148,7 +162,7 @@ public class AddDialogDepatureController implements Initializable
         warn3.setVisible(false);
         warn4.setVisible(false);
         warn5.setVisible(false);
-
+        warn6.setVisible(false);
     }
 
 }

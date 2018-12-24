@@ -59,7 +59,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Time_50px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0" fx:id="timeField">
+                  <JFXTextField fx:id="timeField" prefHeight="25.0" prefWidth="177.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -89,7 +89,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Airplane Take Off_48px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0" fx:id="flightField">
+                  <JFXTextField fx:id="flightField" prefHeight="25.0" prefWidth="177.0">
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>
@@ -115,7 +115,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Windsock_64px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0" fx:id="destField">
+                  <JFXTextField fx:id="destField" prefHeight="25.0" prefWidth="177.0">
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>
@@ -141,7 +141,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Do Not Disturb_50px.png" />
                      </image>
                   </ImageView>
-                  <JFXComboBox prefHeight="25.0" prefWidth="177.0" fx:id="statusField" />
+                  <JFXComboBox fx:id="statusField" prefHeight="25.0" prefWidth="177.0" />
                   <Label fx:id="warn4" text="To`ldirlimagan" textFill="#f20707">
                      <font>
                         <Font size="14.0" />
@@ -164,11 +164,38 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Time Span_50px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0" fx:id="statusTimeField">
+                  <JFXTextField fx:id="statusTimeField" prefHeight="25.0" prefWidth="177.0">
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>
                   <Label fx:id="warn5" text="To`ldirlimagan" textFill="#f20707">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
+                  <Label fx:id="terminal" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Terminal:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0">
+                     <image>
+                        <Image url="@../pictures/icons/AddDialogIcons/Import_52px.png" />
+                     </image>
+                  </ImageView>
+                  <JFXTextField fx:id="terminalField" prefHeight="25.0" prefWidth="177.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <Label fx:id="warn6" text="To`ldirlimagan" textFill="#f20707">
                      <font>
                         <Font size="14.0" />
                      </font>
