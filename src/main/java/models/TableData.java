@@ -65,4 +65,11 @@ public class TableData {
         this.status = status;
     }
 
+    public String getTerminal() {
+        return terminal;
+    }
+
+    public void setTerminal(String terminal) {
+        this.terminal = terminal;
+    }
 }

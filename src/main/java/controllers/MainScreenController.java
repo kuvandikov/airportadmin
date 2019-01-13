@@ -1,11 +1,14 @@
 package controllers;
 
 import com.jfoenix.controls.JFXButton;
+import httpRequests.HttpRequests;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import models.TableData;
 import utils.FxmlViews;
 import utils.widgets.MyResourceBundle;
@@ -37,6 +40,7 @@ public class MainScreenController implements Initializable
 
     @FXML
     private JFXButton enter;
+    //Arrive
     @FXML
     private TableColumn<TableData,String> tableShowAtime;
 
@@ -49,6 +53,7 @@ public class MainScreenController implements Initializable
     @FXML
     private TableColumn<TableData,String> tableShowAs;
 
+    //Depart
     @FXML
     private TableColumn<TableData,String> tableShowDtime;
 
@@ -74,20 +79,25 @@ public class MainScreenController implements Initializable
         MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         kelish.setText(myResourceBundle.getString("mainScreen.kelish"));
         ketish.setText(myResourceBundle.getString("mainScreen.ketish"));
+        //Arrive
         tableShowAtime.setText(myResourceBundle.getString("mainScreen.tableTime"));
         tableShowAm.setText(myResourceBundle.getString("mainScreen.tableMarshrut"));
         tableShowAr.setText(myResourceBundle.getString("mainScreen.tableRace"));
         tableShowAs.setText(myResourceBundle.getString("mainScreen.tableStatus"));
+        //Depart
         tableShowDtime.setText(myResourceBundle.getString("mainScreen.tableTime"));
         tableShowDm.setText(myResourceBundle.getString("mainScreen.tableMarshrut"));
         tableShowDr.setText(myResourceBundle.getString("mainScreen.tableRace"));
         tableShowDs.setText(myResourceBundle.getString("mainScreen.tableStatus"));
         tableShowDt.setText(myResourceBundle.getString("mainScreen.tableTerminal"));
+        bindData();
         enter.setText(myResourceBundle.getString("mainScreen.enters"));
         enter1.setText(myResourceBundle.getString("mainScreen.enters"));
         onClick(enter,enter1,resources);
-
+        System.out.println("here");
+        new HttpRequests().getAll();
     }
+
 
     private void onClick(JFXButton enter,JFXButton enter1,ResourceBundle resources)
     {
@@ -105,6 +115,15 @@ public class MainScreenController implements Initializable
 
 
         });
+
+    }
+    private void bindData()
+    {
+        tableShowDtime.setCellValueFactory(new PropertyValueFactory<TableData, String>("time"));
+        tableShowDm.setCellValueFactory(new PropertyValueFactory<TableData, String>("destination"));
+        tableShowDr.setCellValueFactory(new PropertyValueFactory<TableData, String>("flight"));
+        tableShowDs.setCellValueFactory(new PropertyValueFactory<TableData, String>("status"));
+        tableShowDt.setCellValueFactory(new PropertyValueFactory<TableData, String>("terminal"));
 
     }
 }
