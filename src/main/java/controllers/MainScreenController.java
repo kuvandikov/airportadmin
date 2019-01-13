@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import httpRequests.HttpRequests;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -15,6 +14,8 @@ import utils.widgets.MyResourceBundle;
 import utils.widgets.Wtransfer;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -95,9 +96,9 @@ public class MainScreenController implements Initializable
         enter1.setText(myResourceBundle.getString("mainScreen.enters"));
         onClick(enter,enter1,resources);
         System.out.println("here");
-        new HttpRequests().getAll();
-    }
+        new HttpRequests().getAll(tableShowD);
 
+    }
 
     private void onClick(JFXButton enter,JFXButton enter1,ResourceBundle resources)
     {
