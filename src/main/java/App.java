@@ -3,8 +3,6 @@
  */
 
 import controllers.NavController;
-import controllers.events.EventBus;
-import controllers.events.FXEventBus;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +20,8 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import static com.sun.xml.internal.ws.api.message.Packet.State.ClientRequest;
+
 /**
  * Created by Jack on 14.12.2018.
  */
@@ -31,6 +31,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+
         String cwd = new File("").getAbsolutePath();
         Scanner cine = new Scanner(new File(cwd + "/src/main/resources/multilanguage/Language.txt"));
         String temp = "";

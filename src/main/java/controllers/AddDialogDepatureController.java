@@ -9,11 +9,22 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
+import org.json.JSONObject;
 import utils.widgets.MyResourceBundle;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 /**
  * Created by Jack on 21.12.2018.
  */
@@ -100,6 +111,7 @@ public class AddDialogDepatureController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+
         prepareForLabels();
         prepareMultiLanguage(resources);
     }
@@ -151,7 +163,37 @@ public class AddDialogDepatureController implements Initializable
                     || warn5.isVisible()
                     || warn6.isVisible()))
             {
-                System.out.println("Ready to write into database");
+
+                try {
+                    CloseableHttpClient client =  HttpClientBuilder.create().build();
+                    HttpPost postRequest = new HttpPost("http://localhost:8080/departure/");
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("departDate",dateChooser.getPromptText());
+                    jsonObject.put("time",timeField.getText());
+                    jsonObject.put("flight",flightField.getText());
+                    jsonObject.put("destination",destField.getText());
+                    jsonObject.put("statusTime",statusTimeField.getText());
+                    jsonObject.put("terminal",terminalField.getText());
+                    StringEntity se = null;
+                    se = new StringEntity(jsonObject.toString());
+                    se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,"application/json"));
+                    postRequest.setEntity(se);
+                    HttpResponse response = client.execute(postRequest);
+                    System.out.println("AFTER REQUEST");
+                    System.out.println(response.getEntity());
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (ClientProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+
+
             }
         });
     }
