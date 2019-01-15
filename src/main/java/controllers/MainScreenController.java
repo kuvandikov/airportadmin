@@ -96,7 +96,7 @@ public class MainScreenController implements Initializable
         enter1.setText(myResourceBundle.getString("mainScreen.enters"));
         onClick(enter,enter1,resources);
         System.out.println("here");
-        new HttpRequests().getAll(tableShowD);
+       // new HttpRequests().getAll(tableShowD);
 
     }
 

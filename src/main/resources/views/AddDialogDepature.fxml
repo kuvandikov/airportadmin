@@ -136,15 +136,13 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="25.0" fitWidth="25.0">
-                     <image>
-                        <Image url="@../pictures/icons/AddDialogIcons/Windsock_64px.png" />
-                     </image>
-                  </ImageView>
                   <JFXTextField fx:id="destField1" prefHeight="25.0" prefWidth="177.0">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
                   </JFXTextField>
                   <Label fx:id="warn31" text="To`ldirlimagan" textFill="#f20707">
                      <font>
@@ -163,15 +161,13 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="25.0" fitWidth="25.0">
-                     <image>
-                        <Image url="@../pictures/icons/AddDialogIcons/Windsock_64px.png" />
-                     </image>
-                  </ImageView>
                   <JFXTextField fx:id="destField2" prefHeight="25.0" prefWidth="177.0">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
                   </JFXTextField>
                   <Label fx:id="warn311" text="To`ldirlimagan" textFill="#f20707">
                      <font>

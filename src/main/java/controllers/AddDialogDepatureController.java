@@ -138,6 +138,8 @@ public class AddDialogDepatureController implements Initializable
         warn4.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn5.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn6.setText(myResourceBundle.getString("AddDialog.warnings"));
+        warn31.setText(myResourceBundle.getString("AddDialog.warnings"));
+        warn311.setText(myResourceBundle.getString("AddDialog.warnings"));
         List<String> statusWord = new ArrayList<>();
         statusWord.add(myResourceBundle.getString("Status1"));
         statusWord.add(myResourceBundle.getString("Status2"));
@@ -162,7 +164,12 @@ public class AddDialogDepatureController implements Initializable
             warn1.setVisible(timeField.getText().isEmpty());
             warn2.setVisible(flightField.getText().isEmpty());
             warn3.setVisible(destField.getText().isEmpty());
-            warn4.setVisible(statusField.getValue().isEmpty());
+            if(statusField.getValue() == null){
+                warn4.setVisible(true);
+            }
+            else{
+                warn4.setVisible(false);
+            }
             warn5.setVisible(statusTimeField.getText().isEmpty());
             warn6.setVisible(terminalField.getText().isEmpty());
             warn31.setVisible(destField1.getText().isEmpty());
