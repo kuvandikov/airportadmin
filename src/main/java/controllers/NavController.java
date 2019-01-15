@@ -61,7 +61,11 @@ public class NavController  implements Initializable  {
         });
         exit.setOnMouseClicked(event ->
         {
-          new Wtransfer(FxmlViews.Addition.askedExit,resources.getLocale());
+            Wtransfer wtransfer = new Wtransfer();
+            wtransfer.toGetController(FxmlViews.Addition.askedExit, resources.getLocale());
+            ExitDialogController exitDialogController = (ExitDialogController)wtransfer.getController();
+            exitDialogController.setLocaleToExit(resources.getLocale());
+            wtransfer.showAndWait();
         });
         new Wtransfer(content,FxmlViews.MainScreen.mainSc,resources.getLocale());
 

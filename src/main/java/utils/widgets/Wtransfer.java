@@ -1,6 +1,6 @@
 package utils.widgets;
 
-import com.sun.org.apache.xerces.internal.impl.io.UTF8Reader;
+import controllers.ExitDialogController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,6 +23,9 @@ public class Wtransfer {
     private FXMLLoader loader;
     private AnchorPane anchorPane;
     private Locale locale;
+    public Wtransfer(){
+
+    }
     public Wtransfer(String fxmlUrl, String title, Locale locale) {
         this.fxmlUrl = fxmlUrl;
         this.title = title;
@@ -90,6 +93,24 @@ public class Wtransfer {
             e.printStackTrace();
         }
     }
+    public void toGetController(String fxmlUrl, Locale locale)
+    {
+        try {
+            System.out.println(fxmlUrl);
+            loader = new FXMLLoader();
+            Parent root = loader.load(this.getClass().getClassLoader().getResource(fxmlUrl).openStream());
+            stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle(title);
+            stage.setResizable(false);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initStyle(StageStyle.DECORATED);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
     public void  setHint(String hint){this.stage.setFullScreenExitHint(hint);}
     public void setFullScreen(boolean yes){
         this.stage.setFullScreen(yes);
@@ -102,6 +123,7 @@ public class Wtransfer {
     public void show(){
         this.stage.show();
     }
+    public void showAndWait(){this.stage.showAndWait();}
     public void setModality(Modality modality){
         this.stage.initModality(modality);
     }

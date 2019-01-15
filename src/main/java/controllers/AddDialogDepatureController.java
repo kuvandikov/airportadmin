@@ -11,7 +11,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.json.JSONObject;
+import utils.FxmlViews;
 import utils.widgets.MyResourceBundle;
+import utils.widgets.Wtransfer;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -79,7 +81,7 @@ public class AddDialogDepatureController implements Initializable
     private JFXTextField flightField;
 
     @FXML
-    private JFXTextField destField;
+    private JFXTextField destFieldU;
 
     @FXML
     private JFXComboBox<String> statusField;
@@ -97,10 +99,10 @@ public class AddDialogDepatureController implements Initializable
     private Label warn6;
 
     @FXML
-    private JFXTextField destField1;
+    private JFXTextField destFieldR;
 
     @FXML
-    private JFXTextField destField2;
+    private JFXTextField destFieldE;
 
     @FXML
     private Label warn31;
@@ -146,12 +148,12 @@ public class AddDialogDepatureController implements Initializable
         statusWord.add(myResourceBundle.getString("Status3"));
         statusWord.add(myResourceBundle.getString("Status4"));
         statusField.getItems().addAll(statusWord);
-        onClick(saveit,cancel);
+        onClick(saveit,cancel,resources);
 
 
     }
 
-    private void onClick(JFXButton saveit, JFXButton cancel)
+    private void onClick(JFXButton saveit, JFXButton cancel, ResourceBundle resources)
     {
         cancel.setOnAction(event ->
         {
@@ -163,7 +165,7 @@ public class AddDialogDepatureController implements Initializable
             warn.setVisible(dateChooser.getEditor().getText().isEmpty());
             warn1.setVisible(timeField.getText().isEmpty());
             warn2.setVisible(flightField.getText().isEmpty());
-            warn3.setVisible(destField.getText().isEmpty());
+            warn3.setVisible(destFieldU.getText().isEmpty());
             if(statusField.getValue() == null){
                 warn4.setVisible(true);
             }
@@ -172,8 +174,8 @@ public class AddDialogDepatureController implements Initializable
             }
             warn5.setVisible(statusTimeField.getText().isEmpty());
             warn6.setVisible(terminalField.getText().isEmpty());
-            warn31.setVisible(destField1.getText().isEmpty());
-            warn311.setVisible(destField2.getText().isEmpty());
+            warn31.setVisible(destFieldR.getText().isEmpty());
+            warn311.setVisible(destFieldE.getText().isEmpty());
             if(!(warn.isVisible()
                     || warn1.isVisible()
                     || warn3.isVisible()
@@ -185,14 +187,22 @@ public class AddDialogDepatureController implements Initializable
                     || warn311.isVisible()
             ))
             {
+
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("departDate",dateChooser.getValue());
                     jsonObject.put("time",timeField.getText());
                     jsonObject.put("flight",flightField.getText());
-                    jsonObject.put("destination",destField.getText());
+                    jsonObject.put("destinationUzb", destFieldU.getText());
+                    jsonObject.put("destinationEng",destFieldE.getText());
+                    jsonObject.put("destinationRus",destFieldR.getText());
                     jsonObject.put("statusTime",statusTimeField.getText());
                     jsonObject.put("terminal",terminalField.getText());
-                    if(new HttpRequests().departPost(jsonObject))
+                    Wtransfer wtransfer = new Wtransfer();
+                    wtransfer.toGetController(FxmlViews.Addition.askedExit, resources.getLocale());
+                    ExitDialogController exitDialogController = (ExitDialogController)wtransfer.getController();
+                    exitDialogController.setLocaleToSave(resources.getLocale(),jsonObject);
+                    wtransfer.showAndWait();
+                   /* if(new HttpRequests().departPost(jsonObject))
                     {
                         System.out.println("YES");
                     }
@@ -200,7 +210,7 @@ public class AddDialogDepatureController implements Initializable
                     {
                         System.out.println("NO");
                     }
-
+                    */
             }
 
         });

@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="519.0" prefWidth="617.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddDialogDepatureController">
+<AnchorPane prefHeight="519.0" prefWidth="617.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddDialogDepatureController">
    <children>
       <Label fx:id="header" alignment="CENTER" layoutY="24.0" prefHeight="17.0" prefWidth="569.0" text="PRILYOT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
@@ -115,7 +113,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Windsock_64px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField fx:id="destField" prefHeight="25.0" prefWidth="177.0">
+                  <JFXTextField fx:id="destFieldU" prefHeight="25.0" prefWidth="177.0">
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>
@@ -136,7 +134,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="destField1" prefHeight="25.0" prefWidth="177.0">
+                  <JFXTextField fx:id="destFieldR" prefHeight="25.0" prefWidth="177.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -161,7 +159,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="destField2" prefHeight="25.0" prefWidth="177.0">
+                  <JFXTextField fx:id="destFieldE" prefHeight="25.0" prefWidth="177.0">
                      <font>
                         <Font size="14.0" />
                      </font>

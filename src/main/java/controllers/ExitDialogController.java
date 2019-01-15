@@ -7,9 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 import utils.widgets.MyResourceBundle;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -30,19 +32,51 @@ public class ExitDialogController implements Initializable {
     private JFXButton no;
     @FXML
     private Label info;
+    private Locale locale;
+    private JSONObject jsonObject;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
-        info.setText(myResourceBundle.getString("exit.ask"));
-        yes.setText(myResourceBundle.getString("exit.yes"));
-        no.setText(myResourceBundle.getString("exit.no"));
-        yes.setOnAction(event -> {
-           System.exit(0);
+
+        yes.setOnAction(event ->
+        {
+            if(jsonObject == null)
+            {
+                System.exit(0);
+            }
+            else
+            {
+                System.out.println("Save into database");
+
+            }
+
         });
         no.setOnAction(event -> {
             Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
             stage.close();
         });
+    }
+
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocaleToSave(Locale locale, JSONObject jsonObject)
+    {
+        this.locale = locale;
+        this.jsonObject = jsonObject;
+        MyResourceBundle myResourceBundle =  myResourceBundle = new MyResourceBundle(locale,"UTF-8");
+        info.setText(myResourceBundle.getString("AskToSave"));
+        yes.setText(myResourceBundle.getString("exit.yes"));
+        no.setText(myResourceBundle.getString("exit.no"));
+
+    }
+    public void setLocaleToExit(Locale locale)
+    {
+        this.locale = locale;
+        MyResourceBundle myResourceBundle =  myResourceBundle = new MyResourceBundle(locale,"UTF-8");
+        info.setText(myResourceBundle.getString("exit.ask"));
+        yes.setText(myResourceBundle.getString("exit.yes"));
+        no.setText(myResourceBundle.getString("exit.no"));
     }
 }
