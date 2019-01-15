@@ -202,15 +202,13 @@ public class AddDialogDepatureController implements Initializable
                     ExitDialogController exitDialogController = (ExitDialogController)wtransfer.getController();
                     exitDialogController.setLocaleToSave(resources.getLocale(),jsonObject);
                     wtransfer.showAndWait();
-                   /* if(new HttpRequests().departPost(jsonObject))
+                    System.out.println(exitDialogController.success);
+                    if(exitDialogController.success)
                     {
-                        System.out.println("YES");
+                      Stage stage =   (Stage)((Button)(event).getSource()).getScene().getWindow();
+                      stage.close();
                     }
-                    else
-                    {
-                        System.out.println("NO");
-                    }
-                    */
+
             }
 
         });

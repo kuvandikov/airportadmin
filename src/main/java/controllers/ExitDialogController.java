@@ -1,6 +1,7 @@
 package controllers;
 
 import com.jfoenix.controls.JFXButton;
+import httpRequests.HttpRequests;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,22 +35,14 @@ public class ExitDialogController implements Initializable {
     private Label info;
     private Locale locale;
     private JSONObject jsonObject;
+    public boolean success;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
 
         yes.setOnAction(event ->
         {
-            if(jsonObject == null)
-            {
                 System.exit(0);
-            }
-            else
-            {
-                System.out.println("Save into database");
-
-            }
-
         });
         no.setOnAction(event -> {
             Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
@@ -67,8 +60,21 @@ public class ExitDialogController implements Initializable {
         this.jsonObject = jsonObject;
         MyResourceBundle myResourceBundle =  myResourceBundle = new MyResourceBundle(locale,"UTF-8");
         info.setText(myResourceBundle.getString("AskToSave"));
-        yes.setText(myResourceBundle.getString("exit.yes"));
-        no.setText(myResourceBundle.getString("exit.no"));
+        yes.setVisible(false);
+        no.setVisible(false);
+        if(new HttpRequests().departPost(jsonObject))
+        {
+            info.setText("Saqlandi");
+            success = true;
+        }
+        else
+        {
+            info.setStyle("-fx-text-fill: red");
+            info.setText("Hatolik ro`y berdi!!");
+            success = false;
+        }
+
+
 
     }
     public void setLocaleToExit(Locale locale)
