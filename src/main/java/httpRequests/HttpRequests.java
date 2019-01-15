@@ -102,6 +102,10 @@ public class HttpRequests
             TableData tableData = new TableData();
             tableData.setFlight(jsonObject.getString("flight"));
             tableData.setDestination(jsonObject.getString("destination"));
+           /* if(jsonObject.getString("status") == null)
+            {
+                System.out.println("null bo`lganlari bu");
+            }*/
             tableShowD.getItems().add(tableData);
           //  tableData.setStatus(jsonObject.getString("status"));
             //tableData.setTime(jsonObject.getString("departDate"));

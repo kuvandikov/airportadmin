@@ -14,6 +14,8 @@ import org.json.JSONObject;
 import utils.widgets.MyResourceBundle;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 /**
  * Created by Jack on 21.12.2018.
@@ -80,7 +82,7 @@ public class AddDialogDepatureController implements Initializable
     private JFXTextField destField;
 
     @FXML
-    private JFXComboBox statusField;
+    private JFXComboBox<String> statusField;
 
     @FXML
     private JFXTextField statusTimeField;
@@ -94,21 +96,31 @@ public class AddDialogDepatureController implements Initializable
     @FXML
     private Label warn6;
 
+    @FXML
+    private JFXTextField destField1;
 
+    @FXML
+    private JFXTextField destField2;
 
+    @FXML
+    private Label warn31;
+
+    @FXML
+    private Label warn311;
+
+    private static MyResourceBundle myResourceBundle;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
+        myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         prepareForLabels();
         prepareMultiLanguage(resources);
     }
     private void prepareMultiLanguage(ResourceBundle resources)
     {
 
-        MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         header.setText(myResourceBundle.getString("AddDialog.header1"));
         ldate.setText(myResourceBundle.getString("AddDialog.date"));
         ltime.setText(myResourceBundle.getString("AddDialog.timeF"));
@@ -126,6 +138,12 @@ public class AddDialogDepatureController implements Initializable
         warn4.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn5.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn6.setText(myResourceBundle.getString("AddDialog.warnings"));
+        List<String> statusWord = new ArrayList<>();
+        statusWord.add(myResourceBundle.getString("Status1"));
+        statusWord.add(myResourceBundle.getString("Status2"));
+        statusWord.add(myResourceBundle.getString("Status3"));
+        statusWord.add(myResourceBundle.getString("Status4"));
+        statusField.getItems().addAll(statusWord);
         onClick(saveit,cancel);
 
 
@@ -144,16 +162,21 @@ public class AddDialogDepatureController implements Initializable
             warn1.setVisible(timeField.getText().isEmpty());
             warn2.setVisible(flightField.getText().isEmpty());
             warn3.setVisible(destField.getText().isEmpty());
-            warn4.setVisible(statusField.getEditor().getText().isEmpty());
+            warn4.setVisible(statusField.getValue().isEmpty());
             warn5.setVisible(statusTimeField.getText().isEmpty());
             warn6.setVisible(terminalField.getText().isEmpty());
-
+            warn31.setVisible(destField1.getText().isEmpty());
+            warn311.setVisible(destField2.getText().isEmpty());
             if(!(warn.isVisible()
                     || warn1.isVisible()
                     || warn3.isVisible()
                     || warn2.isVisible()
                     || warn5.isVisible()
-                    || warn6.isVisible()))
+                    || warn6.isVisible()
+                    || warn4.isVisible()
+                    || warn31.isVisible()
+                    || warn311.isVisible()
+            ))
             {
                     JSONObject jsonObject = new JSONObject();
                     jsonObject.put("departDate",dateChooser.getValue());
@@ -172,6 +195,7 @@ public class AddDialogDepatureController implements Initializable
                     }
 
             }
+
         });
     }
     private void prepareForLabels() {
@@ -182,6 +206,8 @@ public class AddDialogDepatureController implements Initializable
         warn4.setVisible(false);
         warn5.setVisible(false);
         warn6.setVisible(false);
+        warn31.setVisible(false);
+        warn311.setVisible(false);
     }
 
 }

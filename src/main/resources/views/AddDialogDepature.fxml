@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="470.0" prefWidth="617.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddDialogDepatureController">
+<AnchorPane prefHeight="519.0" prefWidth="617.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddDialogDepatureController">
    <children>
       <Label fx:id="header" alignment="CENTER" layoutY="24.0" prefHeight="17.0" prefWidth="569.0" text="PRILYOT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
@@ -120,6 +120,60 @@
                         <Font size="14.0" />
                      </font></JFXTextField>
                   <Label fx:id="warn3" text="To`ldirlimagan" textFill="#f20707">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
+                  <Label fx:id="ldirection1" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Rus">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0">
+                     <image>
+                        <Image url="@../pictures/icons/AddDialogIcons/Windsock_64px.png" />
+                     </image>
+                  </ImageView>
+                  <JFXTextField fx:id="destField1" prefHeight="25.0" prefWidth="177.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <Label fx:id="warn31" text="To`ldirlimagan" textFill="#f20707">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
+                  <Label fx:id="ldirection11" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Eng">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0">
+                     <image>
+                        <Image url="@../pictures/icons/AddDialogIcons/Windsock_64px.png" />
+                     </image>
+                  </ImageView>
+                  <JFXTextField fx:id="destField2" prefHeight="25.0" prefWidth="177.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <Label fx:id="warn311" text="To`ldirlimagan" textFill="#f20707">
                      <font>
                         <Font size="14.0" />
                      </font>
