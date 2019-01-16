@@ -79,13 +79,14 @@ public class ExitDialogController implements Initializable {
         no.setVisible(false);
         if(new HttpRequests().departPost(jsonObject))
         {
-            info.setText("Saqlandi");
+            info.setStyle("-fx-text-fill: green");
+            info.setText(myResourceBundle.getString("infoSave"));
             success = true;
         }
         else
         {
             info.setStyle("-fx-text-fill: red");
-            info.setText("Hatolik ro`y berdi!!");
+            info.setText(myResourceBundle.getString("infoError"));
             success = false;
         }
 
