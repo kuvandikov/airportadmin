@@ -5,8 +5,10 @@ import httpRequests.HttpRequests;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 import utils.widgets.MyResourceBundle;
@@ -33,9 +35,16 @@ public class ExitDialogController implements Initializable {
     private JFXButton no;
     @FXML
     private Label info;
+
     private Locale locale;
+
     private JSONObject jsonObject;
+
     public boolean success;
+
+    @FXML
+    private AnchorPane pane;
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -47,6 +56,12 @@ public class ExitDialogController implements Initializable {
         no.setOnAction(event -> {
             Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
             stage.close();
+        });
+        pane.setOnMouseClicked(event -> {
+            if(!(yes.isVisible() && no.isVisible())){
+                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage.close();
+            }
         });
     }
 

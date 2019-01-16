@@ -103,8 +103,8 @@ public class Wtransfer {
             stage.setScene(new Scene(root));
             stage.setTitle(title);
             stage.setResizable(false);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initStyle(StageStyle.DECORATED);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UTILITY);
         }
         catch (IOException e) {
             e.printStackTrace();
