@@ -41,7 +41,7 @@ public class HttpRequests
        Boolean responseServer = false;
        try
        {
-           se = new StringEntity(jsonObject.toString());
+           se = new StringEntity(jsonObject.toString(),"UTF-8");
            se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,"application/json"));
            postRequest.setEntity(se);
            HttpResponse response = client.execute(postRequest);

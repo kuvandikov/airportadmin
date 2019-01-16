@@ -197,6 +197,18 @@ public class AddDialogDepatureController implements Initializable
                     jsonObject.put("destinationRus",destFieldR.getText());
                     jsonObject.put("statusTime",statusTimeField.getText());
                     jsonObject.put("terminal",terminalField.getText());
+                    if(myResourceBundle.getString("Status1").equals(statusField.getValue())){
+                        jsonObject.put("status","schedule");
+                    }
+                    if(myResourceBundle.getString("Status2").equals(statusField.getValue())){
+                    jsonObject.put("status","expected");
+                    }
+                    if(myResourceBundle.getString("Status3").equals(statusField.getValue())){
+                        jsonObject.put("status","arrive");
+                    }
+                    if(myResourceBundle.getString("Status3").equals(statusField.getValue())){
+                    jsonObject.put("status","cancel");
+                    }
                     Wtransfer wtransfer = new Wtransfer();
                     wtransfer.toGetController(FxmlViews.Addition.askedExit, resources.getLocale());
                     ExitDialogController exitDialogController = (ExitDialogController)wtransfer.getController();
