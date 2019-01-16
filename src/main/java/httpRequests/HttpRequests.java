@@ -15,6 +15,7 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import utils.widgets.MyResourceBundle;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,7 +57,7 @@ public class HttpRequests
        }
         return responseServer;
    }
-   public void getAll(TableView<TableData> tableShowD)
+   public void getAll(TableView<TableData> tableShowD, MyResourceBundle myResourceBundle)
    {
 
      /*  try
@@ -101,7 +102,24 @@ public class HttpRequests
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             TableData tableData = new TableData();
             tableData.setFlight(jsonObject.getString("flight"));
-            tableData.setDestination(jsonObject.getString("destination"));
+            tableData.setDestination(jsonObject.getString("destinationUzb"));
+           // tableData.setStatus(jsonObject.getString("status"));
+            if(jsonObject.getString("status").equals("schedule")){
+                tableData.setStatus(myResourceBundle.getString("Status1"));
+            }
+            if(jsonObject.getString("status").equals("expected")){
+                tableData.setStatus(myResourceBundle.getString("Status2"));
+            }
+            if(jsonObject.getString("status").equals("arrive")){
+                tableData.setStatus(myResourceBundle.getString("Status3"));
+            }
+            if(jsonObject.getString("status").equals("cancel")){
+                tableData.setStatus(myResourceBundle.getString("Status4"));
+            }
+            //label.setText(myresourcebundle.getString("birinchi"))
+            tableData.setTime(jsonObject.getString("statusTime"));
+            tableData.setTerminal(jsonObject.getString("terminal"));
+            //tableData.setStatus(myResourceBundle.getString());
            /* if(jsonObject.getString("status") == null)
             {
                 System.out.println("null bo`lganlari bu");
