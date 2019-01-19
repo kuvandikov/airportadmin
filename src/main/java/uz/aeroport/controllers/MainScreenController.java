@@ -1,21 +1,21 @@
-package controllers;
+package uz.aeroport.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import httpRequests.HttpRequests;
+import uz.aeroport.App;
+import uz.aeroport.controllers.eventsController.AddDialogDepatureEvent;
+import uz.aeroport.httpRequests.HttpRequests;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import models.TableData;
-import utils.FxmlViews;
-import utils.widgets.MyResourceBundle;
-import utils.widgets.Wtransfer;
+import uz.aeroport.models.TableData;
+import uz.aeroport.utils.FxmlViews;
+import uz.aeroport.utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.Wtransfer;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -73,11 +73,20 @@ public class MainScreenController implements Initializable
     @FXML
     private JFXButton enter1;
 
+    private static int eventOnly = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
+        if(eventOnly == 0){
+            App.eventBus.addEventHandler(AddDialogDepatureEvent.ANY,event ->
+            {
+                new HttpRequests().getAll(tableShowD,myResourceBundle);
+
+            });
+            eventOnly ++;
+        }
         kelish.setText(myResourceBundle.getString("mainScreen.kelish"));
         ketish.setText(myResourceBundle.getString("mainScreen.ketish"));
         //Arrive
@@ -96,8 +105,13 @@ public class MainScreenController implements Initializable
         enter1.setText(myResourceBundle.getString("mainScreen.enters"));
         onClick(enter,enter1,resources);
         System.out.println("here");
-        new HttpRequests().getAll(tableShowD,myResourceBundle);
+        updateTable(myResourceBundle);
 
+
+    }
+
+    public void updateTable(MyResourceBundle myResourceBundle) {
+        new HttpRequests().getAll(tableShowD,myResourceBundle);
     }
 
     private void onClick(JFXButton enter,JFXButton enter1,ResourceBundle resources)

@@ -1,20 +1,14 @@
-package controllers;
+package uz.aeroport.controllers;
 
 
 
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
-import utils.widgets.MyResourceBundle;
-import utils.widgets.Wtransfer;
+import uz.aeroport.utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.Wtransfer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import utils.FxmlViews;
+import uz.aeroport.utils.FxmlViews;
 
 import java.net.URL;
 import java.util.ResourceBundle;

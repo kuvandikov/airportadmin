@@ -1,32 +1,26 @@
-/**
+package uz.aeroport; /**
  * Created by Jack on 17.12.2018.
  */
 
-import controllers.NavController;
+import uz.aeroport.events.EventBus;
+import uz.aeroport.events.FxEventBus;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import utils.FxmlViews;
-import utils.widgets.Utils;
-import utils.widgets.Wtransfer;
+import uz.aeroport.utils.FxmlViews;
+import uz.aeroport.utils.widgets.Utils;
+import uz.aeroport.utils.widgets.Wtransfer;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Locale;
-import java.util.Properties;
-import java.util.ResourceBundle;
 import java.util.Scanner;
-
-import static com.sun.xml.internal.ws.api.message.Packet.State.ClientRequest;
 
 /**
  * Created by Jack on 14.12.2018.
  */
 public class App extends Application {
 
+    public static EventBus eventBus = new FxEventBus();
 
     @Override
     public void start(Stage primaryStage) throws Exception

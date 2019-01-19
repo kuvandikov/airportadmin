@@ -1,8 +1,8 @@
-package httpRequests;
+package uz.aeroport.httpRequests;
 
 
 import javafx.scene.control.TableView;
-import models.TableData;
+import uz.aeroport.models.TableData;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -15,18 +15,11 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.MyResourceBundle;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Jack on 13.01.2019.

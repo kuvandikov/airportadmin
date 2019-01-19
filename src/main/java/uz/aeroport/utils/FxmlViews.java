@@ -1,4 +1,4 @@
-package utils;
+package uz.aeroport.utils;
 
 /**
  * Created by Jack on 18.12.2018.

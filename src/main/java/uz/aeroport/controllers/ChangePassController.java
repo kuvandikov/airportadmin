@@ -1,4 +1,4 @@
-package controllers;
+package uz.aeroport.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -6,7 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.MyResourceBundle;
 
 
 import java.net.URL;

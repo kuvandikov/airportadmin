@@ -1,4 +1,4 @@
-package utils.widgets;
+package uz.aeroport.utils.widgets;
 
 import java.util.Locale;
 

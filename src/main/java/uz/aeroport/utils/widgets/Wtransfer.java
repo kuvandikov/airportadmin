@@ -1,6 +1,5 @@
-package utils.widgets;
+package uz.aeroport.utils.widgets;
 
-import controllers.ExitDialogController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

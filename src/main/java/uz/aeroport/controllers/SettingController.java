@@ -1,4 +1,4 @@
-package controllers;
+package uz.aeroport.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -8,10 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import utils.FxmlViews;
-import utils.widgets.MyResourceBundle;
-import utils.widgets.Utils;
-import utils.widgets.Wtransfer;
+import uz.aeroport.utils.FxmlViews;
+import uz.aeroport.utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.Utils;
+import uz.aeroport.utils.widgets.Wtransfer;
 
 
 import java.io.File;

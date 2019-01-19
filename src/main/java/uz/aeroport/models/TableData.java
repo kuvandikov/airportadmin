@@ -1,4 +1,4 @@
-package models;
+package uz.aeroport.models;
 
 import javafx.scene.image.ImageView;
 

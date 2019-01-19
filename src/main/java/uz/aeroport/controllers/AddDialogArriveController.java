@@ -1,4 +1,4 @@
-package controllers;
+package uz.aeroport.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.MyResourceBundle;
 
 import java.net.URL;
 import java.util.ResourceBundle;

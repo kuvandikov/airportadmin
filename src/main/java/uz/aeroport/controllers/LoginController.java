@@ -1,17 +1,16 @@
-package controllers;
+package uz.aeroport.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import utils.widgets.MyResourceBundle;
-import utils.widgets.Wtransfer;
+import uz.aeroport.utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.Wtransfer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import utils.FxmlViews;
+import uz.aeroport.utils.FxmlViews;
 
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**

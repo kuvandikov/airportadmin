@@ -1,19 +1,21 @@
-package controllers;
+package uz.aeroport.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import httpRequests.HttpRequests;
+import uz.aeroport.App;
+import uz.aeroport.controllers.eventsController.AddDialogDepatureEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.JSONObject;
-import utils.FxmlViews;
-import utils.widgets.MyResourceBundle;
-import utils.widgets.Wtransfer;
+import uz.aeroport.utils.FxmlViews;
+import uz.aeroport.utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.Wtransfer;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -109,6 +111,9 @@ public class AddDialogDepatureController implements Initializable
 
     @FXML
     private Label warn311;
+
+    @FXML
+    private AnchorPane anchorId;
 
     private static MyResourceBundle myResourceBundle;
 
@@ -217,8 +222,11 @@ public class AddDialogDepatureController implements Initializable
                     System.out.println(exitDialogController.success);
                     if(exitDialogController.success)
                     {
-                      Stage stage =   (Stage)((Button)(event).getSource()).getScene().getWindow();
-                      stage.close();
+                         Stage stage =   (Stage)((Button)(event).getSource()).getScene().getWindow();
+                         stage.close();
+                         AddDialogDepatureEvent addDialogDepatureEvent = new AddDialogDepatureEvent(AddDialogDepatureEvent.ANY);
+                         App.eventBus.fireEvent(addDialogDepatureEvent);
+
                     }
 
             }
