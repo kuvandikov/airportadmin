@@ -123,12 +123,41 @@ public class AddDialogDepatureController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        App.eventBus.addEventHandler(SendDepartureEvent.ANY,event -> {
-            System.out.println(event.getJsonObject());
+        App.eventBus.addEventHandler(SendDepartureEvent.ANY,event ->
+        {
+            fillWithData(event.getJsonObject());
+
         });
         myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         prepareForLabels();
         prepareMultiLanguage(resources);
+
+    }
+
+    private void fillWithData(JSONObject jsonObject)
+    {
+        timeField.setText(jsonObject.getString("time"));
+        flightField.setText(jsonObject.getString("flight"));
+        destFieldE.setText(jsonObject.getString("destinationEng"));
+        destFieldR.setText(jsonObject.getString("destinationRus"));
+        destFieldU.setText(jsonObject.getString("destinationUzb"));
+        terminalField.setText(jsonObject.getString("terminal"));
+        statusTimeField.setText(jsonObject.getString("statusTime"));
+      /*  if(jsonObject.getString("status").equals("schedule")){
+            statusField.getEditor().setText(myResourceBundle.getString("schedule"));
+        }
+        if(jsonObject.getString("status").equals("expected")){
+            statusField.getEditor().setText(myResourceBundle.getString("expected"));
+        }
+        if(jsonObject.getString("status").equals("arrive")){
+            statusField.getEditor().setText(myResourceBundle.getString("arrive"));
+        }
+        if(jsonObject.getString("status").equals("cancel")){
+            statusField.getEditor().setText(myResourceBundle.getString("cancel"));
+        }*/
+
+ //        jsonObject.put("departDate",dateChooser.getValue());
+ //       jsonObject.put("statusTime",statusTimeField.getText());
 
     }
 
