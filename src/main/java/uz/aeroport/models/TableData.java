@@ -5,7 +5,10 @@ import javafx.scene.image.ImageView;
 /**
  * Created by Jack on 21.12.2018.
  */
-public class TableData {
+public class TableData
+{
+    private Long dataId;
+    private Long id;
     private String time;
     private ImageView imageView;
     private String flight;
@@ -71,5 +74,21 @@ public class TableData {
 
     public void setTerminal(String terminal) {
         this.terminal = terminal;
+    }
+
+    public Long getDataId() {
+        return dataId;
+    }
+
+    public void setDataId(Long dataId) {
+        this.dataId = dataId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

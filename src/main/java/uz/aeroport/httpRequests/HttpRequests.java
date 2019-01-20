@@ -94,6 +94,8 @@ public class HttpRequests
            {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             TableData tableData = new TableData();
+            tableData.setId((long) (i  + 1));
+            tableData.setDataId(jsonObject.getLong("id"));
             tableData.setFlight(jsonObject.getString("flight"));
             tableData.setDestination(jsonObject.getString("destinationUzb"));
            // tableData.setStatus(jsonObject.getString("status"));

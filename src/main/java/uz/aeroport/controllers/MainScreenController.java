@@ -71,6 +71,10 @@ public class MainScreenController implements Initializable
     private TableColumn<TableData,String> tableShowDt;
 
     @FXML
+    private TableColumn<TableData,Long> countDId;
+
+
+    @FXML
     private JFXButton enter1;
 
     private static int eventOnly = 0;
@@ -116,6 +120,11 @@ public class MainScreenController implements Initializable
 
     private void onClick(JFXButton enter,JFXButton enter1,ResourceBundle resources)
     {
+        tableShowD.setOnMouseClicked(event ->
+        {
+            System.out.println("Clicked" + tableShowD.getSelectionModel().getSelectedItem().getDataId());
+
+        });
         enter.setOnAction(event ->
         {
             // Arrive
@@ -134,6 +143,7 @@ public class MainScreenController implements Initializable
     }
     private void bindData()
     {
+        countDId.setCellValueFactory(new PropertyValueFactory<TableData, Long>("id"));
         tableShowDtime.setCellValueFactory(new PropertyValueFactory<TableData, String>("time"));
         tableShowDm.setCellValueFactory(new PropertyValueFactory<TableData, String>("destination"));
         tableShowDr.setCellValueFactory(new PropertyValueFactory<TableData, String>("flight"));
