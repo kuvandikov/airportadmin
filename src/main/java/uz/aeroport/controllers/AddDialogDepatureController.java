@@ -143,19 +143,18 @@ public class AddDialogDepatureController implements Initializable
         destFieldU.setText(jsonObject.getString("destinationUzb"));
         terminalField.setText(jsonObject.getString("terminal"));
         statusTimeField.setText(jsonObject.getString("statusTime"));
-      /*  if(jsonObject.getString("status").equals("schedule")){
-            statusField.getEditor().setText(myResourceBundle.getString("schedule"));
+        if(jsonObject.getString("status").equals("schedule")){
+            statusField.getSelectionModel().select(myResourceBundle.getString("Status1"));
         }
         if(jsonObject.getString("status").equals("expected")){
-            statusField.getEditor().setText(myResourceBundle.getString("expected"));
+            statusField.getSelectionModel().select(myResourceBundle.getString("Status2"));
         }
         if(jsonObject.getString("status").equals("arrive")){
-            statusField.getEditor().setText(myResourceBundle.getString("arrive"));
+            statusField.getSelectionModel().select(myResourceBundle.getString("Status3"));
         }
         if(jsonObject.getString("status").equals("cancel")){
-            statusField.getEditor().setText(myResourceBundle.getString("cancel"));
-        }*/
-
+            statusField.getSelectionModel().select(myResourceBundle.getString("Status4"));
+        }
  //        jsonObject.put("departDate",dateChooser.getValue());
  //       jsonObject.put("statusTime",statusTimeField.getText());
 
