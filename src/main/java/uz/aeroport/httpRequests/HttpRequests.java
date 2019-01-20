@@ -2,6 +2,7 @@ package uz.aeroport.httpRequests;
 
 
 import javafx.scene.control.TableView;
+import org.apache.http.client.methods.HttpPut;
 import uz.aeroport.models.TableData;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -49,6 +50,29 @@ public class HttpRequests
            e.printStackTrace();
        }
         return responseServer;
+   }
+   public boolean departPut(JSONObject jsonObject)
+   {
+       CloseableHttpClient client = HttpClientBuilder.create().build();
+       HttpPut put = new HttpPut(url);
+       StringEntity stringEntity = null;
+       boolean responseServer = false;
+       try
+       {
+           stringEntity = new StringEntity(jsonObject.toString(),"UTF-8");
+           stringEntity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,"application/json"));
+           put.setEntity(stringEntity);
+           HttpResponse response = client.execute(put);
+           responseServer = (response != null) ? true : false;
+       } catch (UnsupportedEncodingException e)
+       {
+           e.printStackTrace();
+       } catch (ClientProtocolException e) {
+           e.printStackTrace();
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+       return responseServer;
    }
    public void getAll(TableView<TableData> tableShowD, MyResourceBundle myResourceBundle)
    {

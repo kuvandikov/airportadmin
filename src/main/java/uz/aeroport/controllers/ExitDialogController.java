@@ -72,15 +72,23 @@ public class ExitDialogController implements Initializable {
         return locale;
     }
 
-    public void setLocaleToSave(Locale locale, JSONObject jsonObject)
+    public void setLocaleToSave(Locale locale, JSONObject jsonObject, boolean saveOrUpdate)
     {
+
         this.locale = locale;
         this.jsonObject = jsonObject;
         MyResourceBundle myResourceBundle =  myResourceBundle = new MyResourceBundle(locale,"UTF-8");
         info.setText(myResourceBundle.getString("AskToSave"));
         yes.setVisible(false);
         no.setVisible(false);
-        if(new HttpRequests().departPost(jsonObject))
+        if(saveOrUpdate == false && new HttpRequests().departPut(jsonObject))
+        {
+            System.out.println("update");
+            info.setStyle("-fx-text-fill: green");
+            info.setText(myResourceBundle.getString("infoUpdate"));
+            success = true;
+        }
+        else if(new HttpRequests().departPost(jsonObject) && saveOrUpdate == true)
         {
             info.setStyle("-fx-text-fill: green");
             info.setText(myResourceBundle.getString("infoSave"));

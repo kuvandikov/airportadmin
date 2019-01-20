@@ -118,17 +118,21 @@ public class AddDialogDepatureController implements Initializable
     @FXML
     private AnchorPane anchorId;
 
+    private boolean saveOrUpdate;
+
     private static MyResourceBundle myResourceBundle;
 
     private  int getAirId = 0;
-
+    private JSONObject jsonObject;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+
         App.eventBus.addEventHandler(SendDepartureEvent.ANY,event ->
         {
             fillWithData(event.getJsonObject());
-
+            this.jsonObject = event.getJsonObject();
+            saveOrUpdate = false;
         });
         myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         prepareForLabels();
@@ -232,7 +236,10 @@ public class AddDialogDepatureController implements Initializable
             ))
             {
 
-                    JSONObject jsonObject = new JSONObject();
+                    if(jsonObject == null){
+                        jsonObject = new JSONObject();
+                        saveOrUpdate = true;
+                    }
                     jsonObject.put("departDate",dateChooser.getValue());
                     jsonObject.put("time",timeField.getText());
                     jsonObject.put("flight",flightField.getText());
@@ -256,7 +263,7 @@ public class AddDialogDepatureController implements Initializable
                     Wtransfer wtransfer = new Wtransfer();
                     wtransfer.toGetController(FxmlViews.Addition.askedExit, resources.getLocale());
                     ExitDialogController exitDialogController = (ExitDialogController)wtransfer.getController();
-                    exitDialogController.setLocaleToSave(resources.getLocale(),jsonObject);
+                    exitDialogController.setLocaleToSave(resources.getLocale(),jsonObject , saveOrUpdate);
                     wtransfer.showAndWait();
                     System.out.println(exitDialogController.success);
                     if(exitDialogController.success)
