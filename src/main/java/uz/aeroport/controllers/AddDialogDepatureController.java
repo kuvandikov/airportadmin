@@ -19,6 +19,8 @@ import uz.aeroport.utils.widgets.MyResourceBundle;
 import uz.aeroport.utils.widgets.Wtransfer;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -155,6 +157,9 @@ public class AddDialogDepatureController implements Initializable
         if(jsonObject.getString("status").equals("cancel")){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status4"));
         }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(jsonObject.getString("departDate"),formatter);
+        dateChooser.setValue(localDate);
  //        jsonObject.put("departDate",dateChooser.getValue());
  //       jsonObject.put("statusTime",statusTimeField.getText());
 
