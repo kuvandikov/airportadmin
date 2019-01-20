@@ -82,6 +82,7 @@ public class HttpRequests
        }
        System.out.println("OK");
        */
+        tableShowD.getItems().clear();
         HttpResponse response;
         CloseableHttpClient client =  HttpClientBuilder.create().build();
         HttpGet get = new HttpGet(url);
@@ -131,6 +132,23 @@ public class HttpRequests
            e.printStackTrace();
        }
 
+   }
+   public JSONObject getById(Long id)
+   {
+       JSONObject jsonObject = null;
+       HttpResponse httpResponse;
+       CloseableHttpClient client =  HttpClientBuilder.create().build();
+       HttpGet get = new HttpGet(url+"id="+id);
+
+       try
+       {
+           httpResponse = client.execute(get);
+           String jsonString = EntityUtils.toString(httpResponse.getEntity(),"UTF-8");
+           jsonObject = new JSONObject(jsonString);
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+       return jsonObject;
    }
 
 }

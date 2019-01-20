@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.JSONObject;
+import uz.aeroport.controllers.eventsController.SendDepartureEvent;
 import uz.aeroport.utils.FxmlViews;
 import uz.aeroport.utils.widgets.MyResourceBundle;
 import uz.aeroport.utils.widgets.Wtransfer;
@@ -117,17 +118,22 @@ public class AddDialogDepatureController implements Initializable
 
     private static MyResourceBundle myResourceBundle;
 
+    private  int getAirId = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        App.eventBus.addEventHandler(SendDepartureEvent.ANY,event -> {
+            System.out.println(event.getJsonObject());
+        });
         myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         prepareForLabels();
         prepareMultiLanguage(resources);
+
     }
+
     private void prepareMultiLanguage(ResourceBundle resources)
     {
-
         header.setText(myResourceBundle.getString("AddDialog.header1"));
         ldate.setText(myResourceBundle.getString("AddDialog.date"));
         ltime.setText(myResourceBundle.getString("AddDialog.timeF"));
@@ -224,6 +230,7 @@ public class AddDialogDepatureController implements Initializable
                     {
                          Stage stage =   (Stage)((Button)(event).getSource()).getScene().getWindow();
                          stage.close();
+                         //Here where Event fired and will start in MainScreen update table
                          AddDialogDepatureEvent addDialogDepatureEvent = new AddDialogDepatureEvent(AddDialogDepatureEvent.ANY);
                          App.eventBus.fireEvent(addDialogDepatureEvent);
 
@@ -245,4 +252,11 @@ public class AddDialogDepatureController implements Initializable
         warn311.setVisible(false);
     }
 
+    public int getGetAirId() {
+        return getAirId;
+    }
+
+    public void setGetAirId(int getAirId) {
+        this.getAirId = getAirId;
+    }
 }

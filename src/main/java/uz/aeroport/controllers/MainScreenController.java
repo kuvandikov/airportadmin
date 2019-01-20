@@ -1,8 +1,10 @@
 package uz.aeroport.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import org.json.JSONObject;
 import uz.aeroport.App;
 import uz.aeroport.controllers.eventsController.AddDialogDepatureEvent;
+import uz.aeroport.controllers.eventsController.SendDepartureEvent;
 import uz.aeroport.httpRequests.HttpRequests;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -82,15 +84,18 @@ public class MainScreenController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
-        if(eventOnly == 0){
-            App.eventBus.addEventHandler(AddDialogDepatureEvent.ANY,event ->
-            {
-                new HttpRequests().getAll(tableShowD,myResourceBundle);
+           MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
+           allEventsHere(myResourceBundle);
+           changeMultiLanguage(myResourceBundle);
+            bindData();
+            onClick(enter,enter1,resources);
+            updateTable(myResourceBundle);
 
-            });
-            eventOnly ++;
-        }
+
+    }
+
+    private void changeMultiLanguage(MyResourceBundle myResourceBundle)
+    {
         kelish.setText(myResourceBundle.getString("mainScreen.kelish"));
         ketish.setText(myResourceBundle.getString("mainScreen.ketish"));
         //Arrive
@@ -104,14 +109,22 @@ public class MainScreenController implements Initializable
         tableShowDr.setText(myResourceBundle.getString("mainScreen.tableRace"));
         tableShowDs.setText(myResourceBundle.getString("mainScreen.tableStatus"));
         tableShowDt.setText(myResourceBundle.getString("mainScreen.tableTerminal"));
-        bindData();
+
         enter.setText(myResourceBundle.getString("mainScreen.enters"));
         enter1.setText(myResourceBundle.getString("mainScreen.enters"));
-        onClick(enter,enter1,resources);
-        System.out.println("here");
-        updateTable(myResourceBundle);
+    }
 
+    private void allEventsHere(MyResourceBundle myResourceBundle)
+    {
 
+        if(eventOnly == 0)
+        {
+            App.eventBus.addEventHandler(AddDialogDepatureEvent.ANY,event ->
+            {
+                new HttpRequests().getAll(tableShowD,myResourceBundle);
+            });
+            eventOnly++;
+        }
     }
 
     public void updateTable(MyResourceBundle myResourceBundle) {
@@ -123,7 +136,10 @@ public class MainScreenController implements Initializable
         tableShowD.setOnMouseClicked(event ->
         {
             System.out.println("Clicked" + tableShowD.getSelectionModel().getSelectedItem().getDataId());
-
+            JSONObject jsonObject = new HttpRequests().getById(tableShowD.getSelectionModel().getSelectedItem().getDataId());
+            new Wtransfer(FxmlViews.Addition.addDialogD,resources.getLocale());
+            SendDepartureEvent sendDepartureEvent = new SendDepartureEvent(SendDepartureEvent.ANY,jsonObject);
+            App.eventBus.fireEvent(sendDepartureEvent);
         });
         enter.setOnAction(event ->
         {

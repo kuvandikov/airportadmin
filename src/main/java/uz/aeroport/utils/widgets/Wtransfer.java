@@ -52,7 +52,7 @@ public class Wtransfer {
             stage.setFullScreen(false);
             stage.setMaximized(false);
             stage.setResizable(false);
-            stage.showAndWait();
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

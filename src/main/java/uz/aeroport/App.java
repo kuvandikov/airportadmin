@@ -2,6 +2,7 @@ package uz.aeroport; /**
  * Created by Jack on 17.12.2018.
  */
 
+import uz.aeroport.controllers.eventsController.SendDepartureEvent;
 import uz.aeroport.events.EventBus;
 import uz.aeroport.events.FxEventBus;
 import javafx.application.Application;
@@ -41,16 +42,10 @@ public class App extends Application {
             System.err.println("faylda hato bor qaysi tilni oqishni bilmayabdi locale null qaytyabdi");
             wtransfer =  new Wtransfer(FxmlViews.Login.loginView,"Admin",locale);
         }
-     //   wtransfer = new Wtransfer(FxmlViews.Login.loginView,"Admin",locale);
         wtransfer.setStageStyle(StageStyle.DECORATED);
         wtransfer.setResizeble(false);
         wtransfer.setMaximized(false);
         wtransfer.show();
-      //  primaryStage.setScene(new Scene(root));
-      //  primaryStage.initStyle(StageStyle.DECORATED);
-    //   primaryStage.setMaximized(false);
-     //   primaryStage.setResizable(false);
-      //  primaryStage.show();
     }
 
     public static void main(String[] args) {
