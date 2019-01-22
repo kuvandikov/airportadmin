@@ -64,5 +64,10 @@
             <Insets top="30.0" />
          </padding>
       </Label>
+      <Label fx:id="infoChange" layoutX="130.0" layoutY="316.0" prefHeight="25.0" prefWidth="364.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

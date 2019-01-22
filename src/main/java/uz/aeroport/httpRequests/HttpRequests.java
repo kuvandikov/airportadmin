@@ -199,4 +199,23 @@ public class HttpRequests
        return  new Utils().checkLoginAndPassword(jsonObject,login,password);
    }
 
+    public boolean checkOldPassword(String password) throws NoSuchAlgorithmException {
+        JSONObject jsonObject = null;
+        url = URI.create(url.toString() + "checker/");
+        boolean check = true;
+        HttpResponse httpResponse;
+        CloseableHttpClient closeableHttpClient = HttpClientBuilder.create().build();
+        HttpGet httpGet = new HttpGet(url);
+        try
+        {
+            httpResponse = closeableHttpClient.execute(httpGet);
+            String json = EntityUtils.toString(httpResponse.getEntity(),"UTF-8");
+            jsonObject = new JSONObject(json);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return  new Utils().checkLoginOldPassword(jsonObject,password);
+    }
+
 }

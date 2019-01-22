@@ -37,4 +37,15 @@ public class Utils
         checker &= hashedOutPut.equals(jsonObject.getString("password"));
         return checker;
     }
+
+    public boolean checkLoginOldPassword(JSONObject jsonObject, String password) throws NoSuchAlgorithmException {
+        boolean checker = true;
+        MessageDigest messageDigest = null;
+        messageDigest = MessageDigest.getInstance("MD5");
+        messageDigest.update(password.getBytes());
+        byte[] dig = messageDigest.digest();
+        String hashedoutPut = DatatypeConverter.printHexBinary(dig);
+        checker &= hashedoutPut.equals(jsonObject.getString("oldPassword"));
+        return checker;
+    }
 }

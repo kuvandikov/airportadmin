@@ -6,10 +6,12 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import uz.aeroport.httpRequests.HttpRequests;
 import uz.aeroport.utils.widgets.MyResourceBundle;
 
 
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 /**
@@ -40,9 +42,12 @@ public class ChangePassController implements Initializable {
     private Label info2;
     @FXML
     private Label info3;
+    @FXML
+    private Label infoChange;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        infoChange.setStyle("-fx-text-fill: red");
         MyResourceBundle resourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         info1.setText(resourceBundle.getString("changePass.oldP"));
         info2.setText(resourceBundle.getString("changePass.new"));
@@ -54,9 +59,10 @@ public class ChangePassController implements Initializable {
         oldText.setVisible(false);
         firstText.setVisible(false);
         secondText.setVisible(false);
-        onClick(showup,saveit,cancel);
+        onClick(showup,saveit,cancel,resourceBundle);
     }
-    private void onClick(JFXButton showup, JFXButton saveit, JFXButton cancel) {
+    private void onClick(JFXButton showup, JFXButton saveit, JFXButton cancel,MyResourceBundle resourceBundle)
+    {
         showup.setOnAction(event -> {
         if(!oldText.isVisible()){
             oldText.setText(oldPass.getText());
@@ -89,6 +95,42 @@ public class ChangePassController implements Initializable {
             firstPass.setText("");
             secondText.setText("");
             secondPass.setText("");
+        });
+        saveit.setOnAction(event ->
+        {
+            if((!oldPass.getText().isEmpty() && !firstPass.getText().isEmpty() && !secondPass.getText().isEmpty()))
+            {
+                try
+                {
+
+                    if(new HttpRequests().checkOldPassword(oldPass.getText()))
+                    {
+                        if(firstPass.getText().equals(secondPass.getText()))
+                        {
+                            System.out.println("here is wake up");
+                        }
+                        else
+                        {
+
+                           infoChange.setText(resourceBundle.getString("changePass1"));
+                        }
+
+                    }
+                    else
+                    {
+
+                        infoChange.setText(resourceBundle.getString("changePass2"));
+                    }
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+            }
+            else
+            {
+
+                infoChange.setText(resourceBundle.getString("changePass"));
+
+            }
         });
     }
 }
