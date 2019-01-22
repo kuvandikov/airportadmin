@@ -15,14 +15,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="470.0" prefWidth="617.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uz.aeroport.controllers.AddDialogArriveController">
+<AnchorPane prefHeight="519.0" prefWidth="617.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uz.aeroport.controllers.AddDialogArriveController">
    <children>
       <Label fx:id="header" alignment="CENTER" layoutY="24.0" prefHeight="17.0" prefWidth="569.0" text="PRILYOT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font name="Times New Roman Bold" size="18.0" />
          </font>
       </Label>
-      <VBox layoutY="89.0" prefHeight="399.0" prefWidth="617.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <VBox layoutY="89.0" prefHeight="422.0" prefWidth="617.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="-32.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
          <children>
             <HBox prefHeight="40.0" prefWidth="617.0">
                <children>
@@ -59,7 +59,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Time_50px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0" fx:id="timeField">
+                  <JFXTextField fx:id="timeField" prefHeight="25.0" prefWidth="177.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -89,7 +89,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Airplane Take Off_48px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0" fx:id="flightField">
+                  <JFXTextField fx:id="flightField" prefHeight="25.0" prefWidth="177.0">
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>
@@ -115,11 +115,61 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Windsock_64px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0" fx:id="destField">
+                  <JFXTextField fx:id="destField" prefHeight="25.0" prefWidth="177.0">
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>
                   <Label fx:id="warn3" text="To`ldirlimagan" textFill="#f20707">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
+                  <Label fx:id="ldirection1" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Rus">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="destFieldR" prefHeight="25.0" prefWidth="177.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+                  <Label fx:id="warnR" text="To`ldirlimagan" textFill="#f20707">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
+                  <Label fx:id="ldirection11" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Eng">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="destFieldE" prefHeight="25.0" prefWidth="177.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </JFXTextField>
+                  <Label fx:id="warnE" text="To`ldirlimagan" textFill="#f20707">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -141,7 +191,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Do Not Disturb_50px.png" />
                      </image>
                   </ImageView>
-                  <JFXComboBox prefHeight="25.0" prefWidth="177.0" fx:id="statusField" />
+                  <JFXComboBox fx:id="statusField" prefHeight="25.0" prefWidth="177.0" />
                   <Label fx:id="warn4" text="To`ldirlimagan" textFill="#f20707">
                      <font>
                         <Font size="14.0" />
@@ -164,7 +214,7 @@
                         <Image url="@../pictures/icons/AddDialogIcons/Time Span_50px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="25.0" prefWidth="177.0" fx:id="statusTimeField">
+                  <JFXTextField fx:id="statusTimeField" prefHeight="25.0" prefWidth="177.0">
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>

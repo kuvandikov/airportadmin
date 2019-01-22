@@ -84,7 +84,17 @@ public class AddDialogArriveController implements Initializable
     @FXML
     private JFXTextField statusTimeField;
 
+    @FXML
+    private JFXTextField destFieldR;
 
+    @FXML
+    private JFXTextField destFieldE;
+
+    @FXML
+    private Label warnR;
+
+    @FXML
+    private Label warnE;
 
 
     @Override
@@ -95,8 +105,13 @@ public class AddDialogArriveController implements Initializable
     }
     private void prepareMultiLanguage(ResourceBundle resources)
     {
-
         MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
+        mulitLanguage(myResourceBundle);
+        onClick(saveit,cancel);
+    }
+
+    private void mulitLanguage(MyResourceBundle myResourceBundle)
+    {
         header.setText(myResourceBundle.getString("AddDialog.header"));
         ldate.setText(myResourceBundle.getString("AddDialog.date"));
         ltime.setText(myResourceBundle.getString("AddDialog.timeF"));
@@ -112,7 +127,7 @@ public class AddDialogArriveController implements Initializable
         warn3.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn4.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn5.setText(myResourceBundle.getString("AddDialog.warnings"));
-        onClick(saveit,cancel);
+
     }
 
     private void onClick(JFXButton saveit, JFXButton cancel)
@@ -130,13 +145,19 @@ public class AddDialogArriveController implements Initializable
             warn3.setVisible(destField.getText().isEmpty());
             warn4.setVisible(statusField.getEditor().getText().isEmpty());
             warn5.setVisible(statusTimeField.getText().isEmpty());
+            warnE.setVisible(destFieldE.getText().isEmpty());
+            warnR.setVisible(destFieldR.getText().isEmpty());
 
             if(!(warn.isVisible()
                     || warn1.isVisible()
                     || warn3.isVisible()
                     || warn2.isVisible()
-                    || warn5.isVisible()))
+                    || warn5.isVisible()
+                    || warnR.isVisible()
+                    || warnE.isVisible()
+            ))
             {
+
                 System.out.println("Ready to write into database");
             }
         });
@@ -148,6 +169,8 @@ public class AddDialogArriveController implements Initializable
         warn3.setVisible(false);
         warn4.setVisible(false);
         warn5.setVisible(false);
+        warnE.setVisible(false);
+        warnR.setVisible(false);
 
     }
 
