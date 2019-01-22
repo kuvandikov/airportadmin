@@ -2,12 +2,15 @@ package uz.aeroport; /**
  * Created by Jack on 17.12.2018.
  */
 
+import com.jfoenix.controls.JFXTextField;
+import javafx.fxml.FXML;
 import uz.aeroport.controllers.eventsController.SendDepartureEvent;
 import uz.aeroport.events.EventBus;
 import uz.aeroport.events.FxEventBus;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import uz.aeroport.httpRequests.HttpRequests;
 import uz.aeroport.utils.FxmlViews;
 import uz.aeroport.utils.widgets.Utils;
 import uz.aeroport.utils.widgets.Wtransfer;
@@ -23,6 +26,7 @@ public class App extends Application {
 
     public static EventBus eventBus = new FxEventBus();
 
+
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -34,7 +38,8 @@ public class App extends Application {
         System.out.println(temp);
         Locale locale = new Utils().getLocale(temp);
         Wtransfer wtransfer = null;
-        if(locale != null){
+        if(locale != null)
+        {
             wtransfer = new Wtransfer(FxmlViews.Login.loginView,"Admin",locale);
         }
         else

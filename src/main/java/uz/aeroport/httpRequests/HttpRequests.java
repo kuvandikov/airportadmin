@@ -17,19 +17,22 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import uz.aeroport.utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.Utils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by Jack on 13.01.2019.
  */
 public class HttpRequests
 {
-   private static URI url = URI.create("http://localhost:8080/departure/");
+   private  URI url = URI.create("http://localhost:8080/");
    public boolean departPost(JSONObject jsonObject)
    {
+       url = URI.create(url.toString() + "departure/");
        CloseableHttpClient client =  HttpClientBuilder.create().build();
        HttpPost postRequest = new HttpPost(url);
        StringEntity se = null;
@@ -53,6 +56,7 @@ public class HttpRequests
    }
    public boolean departPut(JSONObject jsonObject)
    {
+       url = URI.create(url.toString() + "departure/");
        CloseableHttpClient client = HttpClientBuilder.create().build();
        HttpPut put = new HttpPut(url);
        StringEntity stringEntity = null;
@@ -106,6 +110,7 @@ public class HttpRequests
        }
        System.out.println("OK");
        */
+        url = URI.create(url.toString() + "departure/");
         tableShowD.getItems().clear();
         HttpResponse response;
         CloseableHttpClient client =  HttpClientBuilder.create().build();
@@ -159,6 +164,7 @@ public class HttpRequests
    }
    public JSONObject getById(Long id)
    {
+       url = URI.create(url.toString() + "departure/");
        JSONObject jsonObject = null;
        HttpResponse httpResponse;
        CloseableHttpClient client =  HttpClientBuilder.create().build();
@@ -173,6 +179,24 @@ public class HttpRequests
            e.printStackTrace();
        }
        return jsonObject;
+   }
+   public boolean checkLoginAndPassword(String login, String password) throws NoSuchAlgorithmException {
+        JSONObject jsonObject = null;
+        url = URI.create(url.toString() + "checker/");
+        boolean check = true;
+        HttpResponse httpResponse;
+        CloseableHttpClient closeableHttpClient = HttpClientBuilder.create().build();
+        HttpGet httpGet = new HttpGet(url);
+       try
+       {
+           httpResponse = closeableHttpClient.execute(httpGet);
+           String json = EntityUtils.toString(httpResponse.getEntity(),"UTF-8");
+           jsonObject = new JSONObject(json);
+
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+       return  new Utils().checkLoginAndPassword(jsonObject,login,password);
    }
 
 }

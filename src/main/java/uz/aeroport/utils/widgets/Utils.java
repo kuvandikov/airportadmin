@@ -1,5 +1,10 @@
 package uz.aeroport.utils.widgets;
 
+import org.json.JSONObject;
+
+import javax.xml.bind.DatatypeConverter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 
 /**
@@ -20,5 +25,16 @@ public class Utils
             locale = new Locale("ru","RU");
         }
         return locale;
+    }
+    public boolean checkLoginAndPassword(JSONObject jsonObject,String login , String password) throws NoSuchAlgorithmException {
+        boolean checker = true;
+        checker &= login.equals(jsonObject.getString("login"));
+        MessageDigest messageDigest = null;
+        messageDigest = MessageDigest.getInstance("MD5");
+        messageDigest.update(password.getBytes());
+        byte [] dig = messageDigest.digest();
+        String hashedOutPut = DatatypeConverter.printHexBinary(dig);
+        checker &= hashedOutPut.equals(jsonObject.getString("password"));
+        return checker;
     }
 }
