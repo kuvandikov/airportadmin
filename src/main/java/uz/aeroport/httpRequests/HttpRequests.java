@@ -217,5 +217,26 @@ public class HttpRequests
         }
         return  new Utils().checkLoginOldPassword(jsonObject,password);
     }
+    // parolni o`zgartirish
+    public boolean changePassword(JSONObject jsonObject)
+    {
+        System.out.println(jsonObject);
+        url = URI.create(url.toString()+"checker/");
+        boolean change = false;
+
+        HttpPost post = new HttpPost(url);
+        CloseableHttpClient http =  HttpClientBuilder.create().build();
+        StringEntity stringEntity = new StringEntity(jsonObject.toString(),"UTF-8");
+        stringEntity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,"application/json"));
+        post.setEntity(stringEntity);
+        try
+        {
+            HttpResponse  response = http.execute(post);
+            change = (response != null) ? true : false;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return change;
+    }
 
 }

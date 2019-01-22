@@ -6,8 +6,10 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import org.json.JSONObject;
 import uz.aeroport.httpRequests.HttpRequests;
 import uz.aeroport.utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.Utils;
 
 
 import java.net.URL;
@@ -107,18 +109,26 @@ public class ChangePassController implements Initializable {
                     {
                         if(firstPass.getText().equals(secondPass.getText()))
                         {
-                            System.out.println("here is wake up");
+                            JSONObject jsonObject = new JSONObject();
+                            jsonObject.put("login","Admin");
+                            jsonObject.put("oldPassword",oldPass.getText());
+                            jsonObject.put("password",firstPass.getText());
+                          if(new HttpRequests().changePassword(jsonObject))
+                          {
+                              infoChange.setText(resourceBundle.getString("changePass3"));
+                              infoChange.setStyle("-fx-text-fill: green");
+                          }
                         }
                         else
                         {
-
+                            infoChange.setStyle("-fx-text-fill: red");
                            infoChange.setText(resourceBundle.getString("changePass1"));
                         }
 
                     }
                     else
                     {
-
+                        infoChange.setStyle("-fx-text-fill: red");
                         infoChange.setText(resourceBundle.getString("changePass2"));
                     }
                 } catch (NoSuchAlgorithmException e) {
@@ -127,7 +137,7 @@ public class ChangePassController implements Initializable {
             }
             else
             {
-
+                infoChange.setStyle("-fx-text-fill: red");
                 infoChange.setText(resourceBundle.getString("changePass"));
 
             }
