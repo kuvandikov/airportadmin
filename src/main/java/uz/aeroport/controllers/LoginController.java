@@ -3,18 +3,18 @@ package uz.aeroport.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import javafx.application.Application;
-import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
-import uz.aeroport.httpRequests.HttpRequests;
-import uz.aeroport.utils.widgets.MyResourceBundle;
-import uz.aeroport.utils.widgets.Wtransfer;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import uz.aeroport.httpRequests.HttpRequests;
 import uz.aeroport.utils.FxmlViews;
+import uz.aeroport.utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.Wtransfer;
 
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
@@ -36,6 +36,9 @@ public class LoginController implements Initializable{
     @FXML
     private Label idInfo;
 
+    @FXML
+    private AnchorPane anchorPaneId;
+
     private ResourceBundle resourceBundle;
     /**
      * Called to initialize a controller after its root element has been
@@ -52,6 +55,26 @@ public class LoginController implements Initializable{
         MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         click.setText(myResourceBundle.getString("login.pass"));
         this.resourceBundle = resources;
+        anchorPaneId.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER))
+            {
+                try {
+                    if(new HttpRequests().checkLoginAndPassword(login.getText(),password.getText()))
+                    {
+                        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                        stage.close();
+                        new Wtransfer(FxmlViews.MainScreen.navMenu,"Admin",resourceBundle.getLocale()).show();
+                    }
+                    else
+                    {
+                        idInfo.setText(myResourceBundle.getString("checkError"));
+                        idInfo.setStyle("-fx-text-fill: red");
+                    }
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         click.setOnAction(event ->
         {
             try {
@@ -75,6 +98,8 @@ public class LoginController implements Initializable{
 
 
     }
+
+
 
 
 }
