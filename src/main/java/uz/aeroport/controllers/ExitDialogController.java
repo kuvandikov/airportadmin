@@ -72,7 +72,7 @@ public class ExitDialogController implements Initializable {
         return locale;
     }
 
-    public void setLocaleToSave(Locale locale, JSONObject jsonObject, boolean saveOrUpdate)
+    public void setLocaleToSave(Locale locale, JSONObject jsonObject, boolean saveOrUpdate, boolean arriveOrDepart)
     {
 
         this.locale = locale;
@@ -81,25 +81,34 @@ public class ExitDialogController implements Initializable {
         info.setText(myResourceBundle.getString("AskToSave"));
         yes.setVisible(false);
         no.setVisible(false);
-        if(saveOrUpdate == false && new HttpRequests().departPut(jsonObject))
+        if(arriveOrDepart == false)
         {
-            System.out.println("update");
-            info.setStyle("-fx-text-fill: green");
-            info.setText(myResourceBundle.getString("infoUpdate"));
-            success = true;
-        }
-        else if(new HttpRequests().departPost(jsonObject) && saveOrUpdate == true)
-        {
-            info.setStyle("-fx-text-fill: green");
-            info.setText(myResourceBundle.getString("infoSave"));
-            success = true;
+            if(saveOrUpdate == false && new HttpRequests().departPut(jsonObject))
+            {
+                System.out.println("update");
+                info.setStyle("-fx-text-fill: green");
+                info.setText(myResourceBundle.getString("infoUpdate"));
+                success = true;
+            }
+            else if(new HttpRequests().departPost(jsonObject) && saveOrUpdate == true)
+            {
+                info.setStyle("-fx-text-fill: green");
+                info.setText(myResourceBundle.getString("infoSave"));
+                success = true;
+            }
+            else
+            {
+                info.setStyle("-fx-text-fill: red");
+                info.setText(myResourceBundle.getString("infoError"));
+                success = false;
+            }
         }
         else
         {
-            info.setStyle("-fx-text-fill: red");
-            info.setText(myResourceBundle.getString("infoError"));
-            success = false;
+            System.out.println("here is");
+
         }
+
 
 
 

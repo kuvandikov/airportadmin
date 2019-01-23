@@ -124,6 +124,7 @@ public class AddDialogDepatureController implements Initializable
 
     private  int getAirId = 0;
     private JSONObject jsonObject;
+    private boolean arriveOrDepart;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -260,10 +261,12 @@ public class AddDialogDepatureController implements Initializable
                     if(myResourceBundle.getString("Status3").equals(statusField.getValue())){
                     jsonObject.put("status","cancel");
                     }
+                    // arriveOrDepart bu yerda false bo`ladi
+                    arriveOrDepart = false;
                     Wtransfer wtransfer = new Wtransfer();
                     wtransfer.toGetController(FxmlViews.Addition.askedExit, resources.getLocale());
                     ExitDialogController exitDialogController = (ExitDialogController)wtransfer.getController();
-                    exitDialogController.setLocaleToSave(resources.getLocale(),jsonObject , saveOrUpdate);
+                    exitDialogController.setLocaleToSave(resources.getLocale(),jsonObject , saveOrUpdate,arriveOrDepart);
                     wtransfer.showAndWait();
                     System.out.println(exitDialogController.success);
                     if(exitDialogController.success)

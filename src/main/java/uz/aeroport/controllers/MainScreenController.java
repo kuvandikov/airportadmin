@@ -3,6 +3,7 @@ package uz.aeroport.controllers;
 import com.jfoenix.controls.JFXButton;
 import org.json.JSONObject;
 import uz.aeroport.App;
+import uz.aeroport.controllers.eventsController.AddDialogArriveEvent;
 import uz.aeroport.controllers.eventsController.AddDialogDepatureEvent;
 import uz.aeroport.controllers.eventsController.SendDepartureEvent;
 import uz.aeroport.httpRequests.HttpRequests;
@@ -121,9 +122,14 @@ public class MainScreenController implements Initializable
         {
             App.eventBus.addEventHandler(AddDialogDepatureEvent.ANY,event ->
             {
+                // here Table Departure should be written
                 new HttpRequests().getAll(tableShowD,myResourceBundle);
             });
             eventOnly++;
+            App.eventBus.addEventHandler(AddDialogArriveEvent.ANY,event ->
+            {
+              // here Table Arrive should be written
+            });
         }
     }
 
@@ -152,7 +158,6 @@ public class MainScreenController implements Initializable
         {
             // Depature
             new Wtransfer(FxmlViews.Addition.addDialogD,resources.getLocale());
-
 
         });
 

@@ -9,9 +9,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.json.JSONObject;
+import uz.aeroport.App;
+import uz.aeroport.controllers.eventsController.AddDialogArriveEvent;
+import uz.aeroport.utils.FxmlViews;
 import uz.aeroport.utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.Wtransfer;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -96,7 +103,12 @@ public class AddDialogArriveController implements Initializable
     @FXML
     private Label warnE;
 
+    private boolean saveOrUpdate;
 
+    private static MyResourceBundle myResourceBundle;
+    private boolean arriveOrDepart;
+
+    private JSONObject jsonObject;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -105,12 +117,12 @@ public class AddDialogArriveController implements Initializable
     }
     private void prepareMultiLanguage(ResourceBundle resources)
     {
-        MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
-        mulitLanguage(myResourceBundle);
-        onClick(saveit,cancel);
+        myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
+        mulitLanguage();
+        onClick(saveit,cancel,resources);
     }
 
-    private void mulitLanguage(MyResourceBundle myResourceBundle)
+    private void mulitLanguage()
     {
         header.setText(myResourceBundle.getString("AddDialog.header"));
         ldate.setText(myResourceBundle.getString("AddDialog.date"));
@@ -127,10 +139,15 @@ public class AddDialogArriveController implements Initializable
         warn3.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn4.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn5.setText(myResourceBundle.getString("AddDialog.warnings"));
-
+        List<String> statusWord = new ArrayList<>();
+        statusWord.add(myResourceBundle.getString("Status1"));
+        statusWord.add(myResourceBundle.getString("Status2"));
+        statusWord.add(myResourceBundle.getString("Status3"));
+        statusWord.add(myResourceBundle.getString("Status4"));
+        statusField.getItems().addAll(statusWord);
     }
 
-    private void onClick(JFXButton saveit, JFXButton cancel)
+    private void onClick(JFXButton saveit, JFXButton cance,ResourceBundle resources)
     {
         cancel.setOnAction(event ->
         {
@@ -143,7 +160,12 @@ public class AddDialogArriveController implements Initializable
             warn1.setVisible(timeField.getText().isEmpty());
             warn2.setVisible(flightField.getText().isEmpty());
             warn3.setVisible(destField.getText().isEmpty());
-            warn4.setVisible(statusField.getEditor().getText().isEmpty());
+            if(statusField.getValue() == null){
+                warn4.setVisible(true);
+            }
+            else{
+                warn4.setVisible(false);
+            }
             warn5.setVisible(statusTimeField.getText().isEmpty());
             warnE.setVisible(destFieldE.getText().isEmpty());
             warnR.setVisible(destFieldR.getText().isEmpty());
@@ -155,10 +177,50 @@ public class AddDialogArriveController implements Initializable
                     || warn5.isVisible()
                     || warnR.isVisible()
                     || warnE.isVisible()
+                    || warn4.isVisible()
             ))
             {
 
-                System.out.println("Ready to write into database");
+                if(jsonObject == null){
+                    jsonObject = new JSONObject();
+                    saveOrUpdate = true;
+                }
+                jsonObject.put("departDate",dateChooser.getValue());
+                jsonObject.put("time",timeField.getText());
+                jsonObject.put("flight",flightField.getText());
+                jsonObject.put("destinationUzb", destField.getText());
+                jsonObject.put("destinationEng",destFieldE.getText());
+                jsonObject.put("destinationRus",destFieldR.getText());
+                jsonObject.put("statusTime",statusTimeField.getText());
+                if(myResourceBundle.getString("Status1").equals(statusField.getValue())){
+                    jsonObject.put("status","schedule");
+                }
+                if(myResourceBundle.getString("Status2").equals(statusField.getValue())){
+                    jsonObject.put("status","expected");
+                }
+                if(myResourceBundle.getString("Status3").equals(statusField.getValue())){
+                    jsonObject.put("status","arrive");
+                }
+                if(myResourceBundle.getString("Status3").equals(statusField.getValue())){
+                    jsonObject.put("status","cancel");
+                }
+                // arriveOrDepart bu yerda true bo`ladi
+                arriveOrDepart = true;
+                Wtransfer wtransfer = new Wtransfer();
+                wtransfer.toGetController(FxmlViews.Addition.askedExit, resources.getLocale());
+                ExitDialogController exitDialogController = (ExitDialogController)wtransfer.getController();
+                exitDialogController.setLocaleToSave(resources.getLocale(),jsonObject , saveOrUpdate,arriveOrDepart);
+                wtransfer.showAndWait();
+                System.out.println(exitDialogController.success);
+                if(exitDialogController.success)
+                {
+                    Stage stage =   (Stage)((Button)(event).getSource()).getScene().getWindow();
+                    stage.close();
+                    //Here where Event fired and will start in MainScreen update table
+                    AddDialogArriveEvent addDialogArriveEvent = new AddDialogArriveEvent(AddDialogArriveEvent.ANY);
+                    App.eventBus.fireEvent(addDialogArriveEvent);
+                }
+
             }
         });
     }
