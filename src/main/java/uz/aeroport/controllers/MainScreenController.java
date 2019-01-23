@@ -1,6 +1,7 @@
 package uz.aeroport.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.scene.control.TabPane;
 import org.json.JSONObject;
 import uz.aeroport.App;
 import uz.aeroport.controllers.eventsController.AddDialogArriveEvent;
@@ -76,6 +77,11 @@ public class MainScreenController implements Initializable
     @FXML
     private TableColumn<TableData,Long> countDId;
 
+    @FXML
+    private TableColumn<TableData,Long> countAId;
+
+    @FXML
+    private TabPane tabPaneView;
 
     @FXML
     private JFXButton enter1;
@@ -85,9 +91,9 @@ public class MainScreenController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-           MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
-           allEventsHere(myResourceBundle);
-           changeMultiLanguage(myResourceBundle);
+            MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
+            allEventsHere(myResourceBundle);
+            changeMultiLanguage(myResourceBundle);
             bindData();
             onClick(enter,enter1,resources);
             updateTable(myResourceBundle);
@@ -118,23 +124,36 @@ public class MainScreenController implements Initializable
     private void allEventsHere(MyResourceBundle myResourceBundle)
     {
 
+
+        tabPaneView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+        {
+            System.out.println(tabPaneView.getSelectionModel().getSelectedIndex());
+            if(tabPaneView.getSelectionModel().getSelectedIndex() == 0){
+                new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"arrive/");
+            }
+            else
+            {
+                new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"departure/");
+            }
+
+        });
         if(eventOnly == 0)
         {
             App.eventBus.addEventHandler(AddDialogDepatureEvent.ANY,event ->
             {
                 // here Table Departure should be written
-                new HttpRequests().getAll(tableShowD,myResourceBundle);
+                new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"departure/");
             });
             eventOnly++;
             App.eventBus.addEventHandler(AddDialogArriveEvent.ANY,event ->
             {
-              // here Table Arrive should be written
+              new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"arrive/");
             });
         }
     }
 
     public void updateTable(MyResourceBundle myResourceBundle) {
-        new HttpRequests().getAll(tableShowD,myResourceBundle);
+        new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"arrive/");
     }
 
     private void onClick(JFXButton enter,JFXButton enter1,ResourceBundle resources)
@@ -170,6 +189,10 @@ public class MainScreenController implements Initializable
         tableShowDr.setCellValueFactory(new PropertyValueFactory<TableData, String>("flight"));
         tableShowDs.setCellValueFactory(new PropertyValueFactory<TableData, String>("status"));
         tableShowDt.setCellValueFactory(new PropertyValueFactory<TableData, String>("terminal"));
-
+        countAId.setCellValueFactory(new PropertyValueFactory<TableData, Long>("id"));
+        tableShowAtime.setCellValueFactory(new PropertyValueFactory<TableData, String>("time"));
+        tableShowAm.setCellValueFactory(new PropertyValueFactory<TableData, String>("destination"));
+        tableShowAr.setCellValueFactory(new PropertyValueFactory<TableData, String>("flight"));
+        tableShowAs.setCellValueFactory(new PropertyValueFactory<TableData, String>("status"));
     }
 }

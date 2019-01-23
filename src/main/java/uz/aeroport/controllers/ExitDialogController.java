@@ -3,19 +3,15 @@ package uz.aeroport.controllers;
 import com.jfoenix.controls.JFXButton;
 import uz.aeroport.httpRequests.HttpRequests;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.JSONObject;
-import uz.aeroport.utils.FxmlViews;
 import uz.aeroport.utils.widgets.MyResourceBundle;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -90,7 +86,7 @@ public class ExitDialogController implements Initializable {
                 info.setText(myResourceBundle.getString("infoUpdate"));
                 success = true;
             }
-            else if(new HttpRequests().departPost(jsonObject) && saveOrUpdate == true)
+            else if(new HttpRequests().dataPost(jsonObject,"departure/") && saveOrUpdate == true)
             {
                 info.setStyle("-fx-text-fill: green");
                 info.setText(myResourceBundle.getString("infoSave"));
@@ -105,7 +101,12 @@ public class ExitDialogController implements Initializable {
         }
         else
         {
-            System.out.println("here is");
+            if(saveOrUpdate == true && new HttpRequests().dataPost(jsonObject,"arrive/"))
+            {
+                info.setStyle("-fx-text-fill: green");
+                info.setText(myResourceBundle.getString("infoSave"));
+                success = true;
+            }
 
         }
 
