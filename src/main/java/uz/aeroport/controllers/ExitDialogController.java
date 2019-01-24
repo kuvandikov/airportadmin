@@ -79,7 +79,7 @@ public class ExitDialogController implements Initializable {
         no.setVisible(false);
         if(arriveOrDepart == false)
         {
-            if(saveOrUpdate == false && new HttpRequests().departPut(jsonObject))
+            if(saveOrUpdate == false && new HttpRequests().departPut(jsonObject,"departure/"))
             {
                 System.out.println("update");
                 info.setStyle("-fx-text-fill: green");
@@ -106,6 +106,17 @@ public class ExitDialogController implements Initializable {
                 info.setStyle("-fx-text-fill: green");
                 info.setText(myResourceBundle.getString("infoSave"));
                 success = true;
+            }
+            else if(saveOrUpdate == false && new HttpRequests().departPut(jsonObject,"arrive/")){
+                info.setStyle("-fx-text-fill: green");
+                info.setText(myResourceBundle.getString("infoUpdate"));
+                success = true;
+            }
+            else
+            {
+                info.setStyle("-fx-text-fill: red");
+                info.setText(myResourceBundle.getString("infoError"));
+                success = false;
             }
 
         }

@@ -54,9 +54,9 @@ public class HttpRequests
        }
         return responseServer;
    }
-   public boolean departPut(JSONObject jsonObject)
+   public boolean departPut(JSONObject jsonObject,String temp)
    {
-       url = URI.create(url.toString() + "departure/");
+       url = URI.create(url.toString() + temp);
        CloseableHttpClient client = HttpClientBuilder.create().build();
        HttpPut put = new HttpPut(url);
        StringEntity stringEntity = null;
@@ -82,7 +82,6 @@ public class HttpRequests
    {
 
         url = URI.create(url.toString() + temp);
-        tableShowD.getItems().clear();
         HttpResponse response;
         CloseableHttpClient client =  HttpClientBuilder.create().build();
         HttpGet get = new HttpGet(url);
@@ -93,6 +92,7 @@ public class HttpRequests
            JSONArray jsonArray = new JSONArray(jsonString);
            if(temp.equals("departure/"))
            {
+               tableShowD.getItems().clear();
            for(int i = 0 ; i < jsonArray.length();i ++)
            {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -121,6 +121,7 @@ public class HttpRequests
            }
            else
            {
+               tableShowA.getItems().clear();
                for(int i = 0 ; i < jsonArray.length();i ++)
                {
                    JSONObject jsonObject = jsonArray.getJSONObject(i);
