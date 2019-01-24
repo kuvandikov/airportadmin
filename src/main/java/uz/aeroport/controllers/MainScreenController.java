@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import uz.aeroport.App;
 import uz.aeroport.controllers.eventsController.AddDialogArriveEvent;
 import uz.aeroport.controllers.eventsController.AddDialogDepatureEvent;
+import uz.aeroport.controllers.eventsController.SendArriveEvent;
 import uz.aeroport.controllers.eventsController.SendDepartureEvent;
 import uz.aeroport.httpRequests.HttpRequests;
 import javafx.fxml.FXML;
@@ -161,10 +162,19 @@ public class MainScreenController implements Initializable
         tableShowD.setOnMouseClicked(event ->
         {
             System.out.println("Clicked" + tableShowD.getSelectionModel().getSelectedItem().getDataId());
-            JSONObject jsonObject = new HttpRequests().getById(tableShowD.getSelectionModel().getSelectedItem().getDataId());
+            JSONObject jsonObject = new HttpRequests().getById(tableShowD.getSelectionModel().getSelectedItem().getDataId(),"departure/");
             new Wtransfer(FxmlViews.Addition.addDialogD,resources.getLocale());
             SendDepartureEvent sendDepartureEvent = new SendDepartureEvent(SendDepartureEvent.ANY,jsonObject);
             App.eventBus.fireEvent(sendDepartureEvent);
+        });
+        tableShowA.setOnMouseClicked(event ->
+        {
+            System.out.println("Clicked"+tableShowA.getSelectionModel().getSelectedItem().getDataId());
+            JSONObject jsonObject = new HttpRequests().getById(tableShowA.getSelectionModel().getSelectedItem().getDataId(),"arrive/");
+            new Wtransfer(FxmlViews.Addition.addDialogA,resources.getLocale());
+            SendArriveEvent sendArriveEvent = new SendArriveEvent(SendArriveEvent.ANY,jsonObject);
+            System.out.println(jsonObject);
+            App.eventBus.fireEvent(sendArriveEvent);
         });
         enter.setOnAction(event ->
         {

@@ -12,11 +12,14 @@ import javafx.stage.Stage;
 import org.json.JSONObject;
 import uz.aeroport.App;
 import uz.aeroport.controllers.eventsController.AddDialogArriveEvent;
+import uz.aeroport.controllers.eventsController.SendArriveEvent;
 import uz.aeroport.utils.FxmlViews;
 import uz.aeroport.utils.widgets.MyResourceBundle;
 import uz.aeroport.utils.widgets.Wtransfer;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -114,7 +117,39 @@ public class AddDialogArriveController implements Initializable
     {
         prepareForLabels();
         prepareMultiLanguage(resources);
+        App.eventBus.addEventHandler(SendArriveEvent.ANY,event ->
+        {
+           this.jsonObject = event.getJsonObject();
+           System.out.println(event.getJsonObject());
+           fillWithData(jsonObject);
+           saveOrUpdate = false;
+        });
     }
+    private void fillWithData(JSONObject jsonObject)
+    {
+        timeField.setText(jsonObject.getString("time"));
+        flightField.setText(jsonObject.getString("flight"));
+        destFieldE.setText(jsonObject.getString("destinationEng"));
+        destFieldR.setText(jsonObject.getString("destinationRus"));
+        destField.setText(jsonObject.getString("destinationUzb"));
+        statusTimeField.setText(jsonObject.getString("statusTime"));
+        if(jsonObject.getString("status").equals("schedule")){
+            statusField.getSelectionModel().select(myResourceBundle.getString("Status1"));
+        }
+        if(jsonObject.getString("status").equals("expected")){
+            statusField.getSelectionModel().select(myResourceBundle.getString("Status2"));
+        }
+        if(jsonObject.getString("status").equals("arrive")){
+            statusField.getSelectionModel().select(myResourceBundle.getString("Status3"));
+        }
+        if(jsonObject.getString("status").equals("cancel")){
+            statusField.getSelectionModel().select(myResourceBundle.getString("Status4"));
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(jsonObject.getString("departDate"),formatter);
+        dateChooser.setValue(localDate);
+    }
+
     private void prepareMultiLanguage(ResourceBundle resources)
     {
         myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");

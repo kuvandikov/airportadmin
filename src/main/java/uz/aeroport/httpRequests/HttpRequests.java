@@ -151,9 +151,9 @@ public class HttpRequests
        }
 
    }
-   public JSONObject getById(Long id)
+   public JSONObject getById(Long id,String temp)
    {
-       url = URI.create(url.toString() + "departure/");
+       url = URI.create(url.toString() + temp);
        JSONObject jsonObject = null;
        HttpResponse httpResponse;
        CloseableHttpClient client =  HttpClientBuilder.create().build();
