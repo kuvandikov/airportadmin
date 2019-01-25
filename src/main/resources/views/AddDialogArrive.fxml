@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="519.0" prefWidth="617.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uz.aeroport.controllers.AddDialogArriveController">
+<AnchorPane prefHeight="537.0" prefWidth="617.0" style="-fx-background-color: white;" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uz.aeroport.controllers.AddDialogArriveController">
    <children>
       <Label fx:id="header" alignment="CENTER" layoutY="24.0" prefHeight="17.0" prefWidth="569.0" text="PRILYOT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
@@ -156,6 +156,28 @@
             </HBox>
             <HBox prefHeight="40.0" prefWidth="617.0">
                <children>
+                  <Label fx:id="airlines" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Rus">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox fx:id="airlinesSelect" prefHeight="25.0" prefWidth="181.0">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+                  <Label fx:id="warnAir" text="To`ldirlimagan" textFill="#f20707">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
                   <Label fx:id="ldirection11" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Eng">
                      <font>
                         <Font size="14.0" />
@@ -209,7 +231,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="25.0" fitWidth="25.0">
+                  <ImageView fx:id="img" fitHeight="25.0" fitWidth="25.0">
                      <image>
                         <Image url="@../pictures/icons/AddDialogIcons/Time Span_50px.png" />
                      </image>

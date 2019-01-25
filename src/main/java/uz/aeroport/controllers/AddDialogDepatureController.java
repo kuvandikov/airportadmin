@@ -3,6 +3,7 @@ package uz.aeroport.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.scene.image.ImageView;
 import uz.aeroport.App;
 import uz.aeroport.controllers.eventsController.AddDialogDepatureEvent;
 import javafx.fxml.FXML;
@@ -121,6 +122,8 @@ public class AddDialogDepatureController implements Initializable
 
     private boolean saveOrUpdate;
 
+    @FXML
+    private ImageView img;
     private static MyResourceBundle myResourceBundle;
 
     private  int getAirId = 0;
@@ -198,13 +201,30 @@ public class AddDialogDepatureController implements Initializable
         statusWord.add(myResourceBundle.getString("Status3"));
         statusWord.add(myResourceBundle.getString("Status4"));
         statusField.getItems().addAll(statusWord);
-        onClick(saveit,cancel,resources);
+        onClick(saveit,cancel,resources,statusField);
 
 
     }
 
-    private void onClick(JFXButton saveit, JFXButton cancel, ResourceBundle resources)
+    private void onClick(JFXButton saveit, JFXButton cancel, ResourceBundle resources, JFXComboBox<String> statusField)
     {
+        statusField.setOnAction(event ->
+        {
+            if(statusField.getSelectionModel().isSelected(0) || statusField.getSelectionModel().isSelected(3))
+            {
+                statusTimeField.setVisible(false);
+                img.setVisible(false);
+                ltimes.setVisible(false);
+                warn5.setVisible(false);
+            }
+            else
+            {
+                statusTimeField.setVisible(true);
+                img.setVisible(true);
+                ltimes.setVisible(true);
+            }
+
+        });
         cancel.setOnAction(event ->
         {
             Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -216,13 +236,18 @@ public class AddDialogDepatureController implements Initializable
             warn1.setVisible(timeField.getText().isEmpty());
             warn2.setVisible(flightField.getText().isEmpty());
             warn3.setVisible(destFieldU.getText().isEmpty());
-            if(statusField.getValue() == null){
+            if(this.statusField.getValue() == null){
                 warn4.setVisible(true);
             }
             else{
                 warn4.setVisible(false);
             }
-            warn5.setVisible(statusTimeField.getText().isEmpty());
+            if(statusTimeField.isVisible()){
+                warn5.setVisible(statusTimeField.getText().isEmpty());
+            }
+            else{
+                warn5.setVisible(false);
+            }
             warn6.setVisible(terminalField.getText().isEmpty());
             warn31.setVisible(destFieldR.getText().isEmpty());
             warn311.setVisible(destFieldE.getText().isEmpty());
@@ -253,16 +278,16 @@ public class AddDialogDepatureController implements Initializable
                     jsonObject.put("destinationRus",destFieldR.getText());
                     jsonObject.put("statusTime",statusTimeField.getText());
                     jsonObject.put("terminal",terminalField.getText());
-                    if(myResourceBundle.getString("Status1").equals(statusField.getValue())){
+                    if(myResourceBundle.getString("Status1").equals(this.statusField.getValue())){
                         jsonObject.put("status","schedule");
                     }
-                    if(myResourceBundle.getString("Status2").equals(statusField.getValue())){
+                    if(myResourceBundle.getString("Status2").equals(this.statusField.getValue())){
                     jsonObject.put("status","expected");
                     }
-                    if(myResourceBundle.getString("Status3").equals(statusField.getValue())){
+                    if(myResourceBundle.getString("Status3").equals(this.statusField.getValue())){
                         jsonObject.put("status","arrive");
                     }
-                    if(myResourceBundle.getString("Status3").equals(statusField.getValue())){
+                    if(myResourceBundle.getString("Status3").equals(this.statusField.getValue())){
                     jsonObject.put("status","cancel");
                     }
                     // arriveOrDepart bu yerda false bo`ladi

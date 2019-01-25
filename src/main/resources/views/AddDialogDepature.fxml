@@ -214,7 +214,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="25.0" fitWidth="25.0">
+                  <ImageView fx:id="img" fitHeight="25.0" fitWidth="25.0">
                      <image>
                         <Image url="@../pictures/icons/AddDialogIcons/Time Span_50px.png" />
                      </image>

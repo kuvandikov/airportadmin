@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 import uz.aeroport.App;
@@ -109,8 +110,20 @@ public class AddDialogArriveController implements Initializable
 
     private boolean saveOrUpdate;
 
+    @FXML
+    private Label airlines;
+
+    @FXML
+    private JFXComboBox airlinesSelect;
+
+    @FXML
+    private Label warnAir;
+
     private static MyResourceBundle myResourceBundle;
     private boolean arriveOrDepart;
+
+    @FXML
+    private ImageView img;
 
     private TableData tableDate;
     @Override
@@ -175,7 +188,7 @@ public class AddDialogArriveController implements Initializable
     {
         myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         mulitLanguage();
-        onClick(saveit,cancel,resources);
+        onClick(saveit,cancel,resources,statusField,myResourceBundle);
     }
 
     private void mulitLanguage()
@@ -195,6 +208,8 @@ public class AddDialogArriveController implements Initializable
         warn3.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn4.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn5.setText(myResourceBundle.getString("AddDialog.warnings"));
+        warnR.setText(myResourceBundle.getString("AddDialog.warnings"));
+        warnE.setText(myResourceBundle.getString("AddDialog.warnings"));
         List<String> statusWord = new ArrayList<>();
         statusWord.add(myResourceBundle.getString("Status1"));
         statusWord.add(myResourceBundle.getString("Status2"));
@@ -203,8 +218,25 @@ public class AddDialogArriveController implements Initializable
         statusField.getItems().addAll(statusWord);
     }
 
-    private void onClick(JFXButton saveit, JFXButton cance,ResourceBundle resources)
+    private void onClick(JFXButton saveit, JFXButton cance, ResourceBundle resources, JFXComboBox statusField, MyResourceBundle myResourceBundle)
     {
+        statusField.setOnAction(event -> {
+            if(statusField.getSelectionModel().isSelected(0) || statusField.getSelectionModel().isSelected(3)){
+              // bu yerda statusTime yo`qoladi
+                statusTimeField.setVisible(false);
+                img.setVisible(false);
+                ltimes.setVisible(false);
+                warn5.setVisible(false);
+            }
+            else
+            {
+                //bu yerda paydo bo`ladi statusTime
+                statusTimeField.setVisible(true);
+                img.setVisible(true);
+                ltimes.setVisible(true);
+            }
+        });
+
         cancel.setOnAction(event ->
         {
             Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -216,16 +248,26 @@ public class AddDialogArriveController implements Initializable
             warn1.setVisible(timeField.getText().isEmpty());
             warn2.setVisible(flightField.getText().isEmpty());
             warn3.setVisible(destField.getText().isEmpty());
-            if(statusField.getValue() == null){
+            if(this.statusField.getValue() == null){
                 warn4.setVisible(true);
             }
             else{
                 warn4.setVisible(false);
             }
-            warn5.setVisible(statusTimeField.getText().isEmpty());
+            if(statusTimeField.isVisible()){
+                warn5.setVisible(statusTimeField.getText().isEmpty());
+            }
+            else{
+                warn5.setVisible(false);
+            }
             warnE.setVisible(destFieldE.getText().isEmpty());
             warnR.setVisible(destFieldR.getText().isEmpty());
-
+            if(airlinesSelect.getValue() == null){
+                warnAir.setVisible(true);
+            }
+            else{
+                warnAir.setVisible(false);
+            }
             if(!(warn.isVisible()
                     || warn1.isVisible()
                     || warn3.isVisible()
@@ -234,6 +276,7 @@ public class AddDialogArriveController implements Initializable
                     || warnR.isVisible()
                     || warnE.isVisible()
                     || warn4.isVisible()
+                    || warnAir.isVisible()
             ))
             {
                 JSONObject jsonObject = new JSONObject();
@@ -251,16 +294,16 @@ public class AddDialogArriveController implements Initializable
                 jsonObject.put("destinationEng",destFieldE.getText());
                 jsonObject.put("destinationRus",destFieldR.getText());
                 jsonObject.put("statusTime",statusTimeField.getText());
-                if(myResourceBundle.getString("Status1").equals(statusField.getValue())){
+                if(AddDialogArriveController.myResourceBundle.getString("Status1").equals(this.statusField.getValue())){
                     jsonObject.put("status","schedule");
                 }
-                if(myResourceBundle.getString("Status2").equals(statusField.getValue())){
+                if(AddDialogArriveController.myResourceBundle.getString("Status2").equals(this.statusField.getValue())){
                     jsonObject.put("status","expected");
                 }
-                if(myResourceBundle.getString("Status3").equals(statusField.getValue())){
+                if(AddDialogArriveController.myResourceBundle.getString("Status3").equals(this.statusField.getValue())){
                     jsonObject.put("status","arrive");
                 }
-                if(myResourceBundle.getString("Status3").equals(statusField.getValue())){
+                if(AddDialogArriveController.myResourceBundle.getString("Status3").equals(this.statusField.getValue())){
                     jsonObject.put("status","cancel");
                 }
                 // arriveOrDepart bu yerda true bo`ladi
@@ -292,7 +335,7 @@ public class AddDialogArriveController implements Initializable
         warn5.setVisible(false);
         warnE.setVisible(false);
         warnR.setVisible(false);
-
+        warnAir.setVisible(false);
     }
 
 }
