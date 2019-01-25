@@ -146,7 +146,7 @@ public class AddDialogArriveController implements Initializable
             statusField.getSelectionModel().select(myResourceBundle.getString("Status4"));
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.parse(jsonObject.getString("departDate"),formatter);
+        LocalDate localDate = LocalDate.parse(jsonObject.getString("arriveDate"),formatter);
         dateChooser.setValue(localDate);
     }
 
@@ -220,7 +220,7 @@ public class AddDialogArriveController implements Initializable
                     jsonObject = new JSONObject();
                     saveOrUpdate = true;
                 }
-                jsonObject.put("departDate",dateChooser.getValue());
+                jsonObject.put("arriveDate",dateChooser.getValue());
                 jsonObject.put("time",timeField.getText());
                 jsonObject.put("flight",flightField.getText());
                 jsonObject.put("destinationUzb", destField.getText());

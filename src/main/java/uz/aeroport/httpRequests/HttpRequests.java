@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
 
 /**
  * Created by Jack on 13.01.2019.
@@ -78,10 +79,10 @@ public class HttpRequests
        }
        return responseServer;
    }
-   public void getAll(TableView<TableData> tableShowA,TableView<TableData> tableShowD, MyResourceBundle myResourceBundle,String temp)
+   public void getAll(TableView<TableData> tableShowA, TableView<TableData> tableShowD, MyResourceBundle myResourceBundle, String temp, LocalDate localDate)
    {
 
-        url = URI.create(url.toString() + temp);
+        url = URI.create(url.toString() + temp + "date=" + localDate.toString());
         HttpResponse response;
         CloseableHttpClient client =  HttpClientBuilder.create().build();
         HttpGet get = new HttpGet(url);
@@ -121,6 +122,7 @@ public class HttpRequests
            }
            else
            {
+               System.out.println("arriveni ichinda");
                tableShowA.getItems().clear();
                for(int i = 0 ; i < jsonArray.length();i ++)
                {
@@ -159,7 +161,6 @@ public class HttpRequests
        HttpResponse httpResponse;
        CloseableHttpClient client =  HttpClientBuilder.create().build();
        HttpGet get = new HttpGet(url+"id="+id);
-
        try
        {
            httpResponse = client.execute(get);

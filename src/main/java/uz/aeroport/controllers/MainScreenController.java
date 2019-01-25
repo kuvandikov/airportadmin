@@ -1,7 +1,7 @@
 package uz.aeroport.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import org.json.JSONObject;
 import uz.aeroport.App;
 import uz.aeroport.controllers.eventsController.AddDialogArriveEvent;
@@ -11,9 +11,6 @@ import uz.aeroport.controllers.eventsController.SendDepartureEvent;
 import uz.aeroport.httpRequests.HttpRequests;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import uz.aeroport.models.TableData;
 import uz.aeroport.utils.FxmlViews;
@@ -21,6 +18,8 @@ import uz.aeroport.utils.widgets.MyResourceBundle;
 import uz.aeroport.utils.widgets.Wtransfer;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 /**
@@ -89,19 +88,33 @@ public class MainScreenController implements Initializable
 
     private static int eventOnly = 0;
 
+    @FXML
+    private DatePicker arriveDate;
+
+    @FXML
+    private DatePicker departDate;
+
+    @FXML
+    private Button arriveSearchButton;
+
+    @FXML
+    private Button departSearchButton;
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+            LocalDate localDate = LocalDate.now();
+            arriveDate.setValue(localDate);
+            departDate.setValue(localDate);
             MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
             allEventsHere(myResourceBundle);
             changeMultiLanguage(myResourceBundle);
             bindData();
-            onClick(enter,enter1,resources);
+            onClick(enter,enter1,resources,arriveSearchButton,departSearchButton,myResourceBundle);
             updateTable(myResourceBundle);
 
 
     }
-
     private void changeMultiLanguage(MyResourceBundle myResourceBundle)
     {
         kelish.setText(myResourceBundle.getString("mainScreen.kelish"));
@@ -120,6 +133,10 @@ public class MainScreenController implements Initializable
 
         enter.setText(myResourceBundle.getString("mainScreen.enters"));
         enter1.setText(myResourceBundle.getString("mainScreen.enters"));
+
+        //bu yerda buttonlanaga set bo`ladi
+        arriveSearchButton.setText(myResourceBundle.getString("searchB"));
+        departSearchButton.setText(myResourceBundle.getString("searchB"));
     }
 
     private void allEventsHere(MyResourceBundle myResourceBundle)
@@ -128,13 +145,14 @@ public class MainScreenController implements Initializable
 
         tabPaneView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
         {
-            System.out.println(tabPaneView.getSelectionModel().getSelectedIndex());
-            if(tabPaneView.getSelectionModel().getSelectedIndex() == 0){
-                new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"arrive/");
+            //bu yerda tabPane bosilgandaki holati yozilgan
+            if(tabPaneView.getSelectionModel().getSelectedIndex() == 0)
+            {
+                new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"arrive/",arriveDate.getValue());
             }
             else
             {
-                new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"departure/");
+                new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"departure/",departDate.getValue());
             }
 
         });
@@ -143,25 +161,25 @@ public class MainScreenController implements Initializable
             App.eventBus.addEventHandler(AddDialogDepatureEvent.ANY,event ->
             {
                 // here Table Departure should be written
-                new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"departure/");
+                new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"departure/",departDate.getValue());
             });
             eventOnly++;
             App.eventBus.addEventHandler(AddDialogArriveEvent.ANY,event ->
             {
-              new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"arrive/");
+              new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"arrive/",arriveDate.getValue());
             });
         }
     }
 
-    public void updateTable(MyResourceBundle myResourceBundle) {
-        new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"arrive/");
+    public void updateTable(MyResourceBundle myResourceBundle)
+    {
+        new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"arrive/", arriveDate.getValue());
     }
-
-    private void onClick(JFXButton enter,JFXButton enter1,ResourceBundle resources)
+    private void onClick(JFXButton enter,JFXButton enter1,ResourceBundle resources,Button arriveB, Button departB,MyResourceBundle myResourceBundle)
     {
         tableShowD.setOnMouseClicked(event ->
         {
-            System.out.println("Clicked" + tableShowD.getSelectionModel().getSelectedItem().getDataId());
+            // bunda biror bir tablitsadan katak bosilsa o`sha katakni danniysi modalga chiqarilib beriladi ketish uchun
             JSONObject jsonObject = new HttpRequests().getById(tableShowD.getSelectionModel().getSelectedItem().getDataId(),"departure/");
             new Wtransfer(FxmlViews.Addition.addDialogD,resources.getLocale());
             SendDepartureEvent sendDepartureEvent = new SendDepartureEvent(SendDepartureEvent.ANY,jsonObject);
@@ -169,11 +187,10 @@ public class MainScreenController implements Initializable
         });
         tableShowA.setOnMouseClicked(event ->
         {
-            System.out.println("Clicked"+tableShowA.getSelectionModel().getSelectedItem().getDataId());
+            // bunda biror bir tablitsadan katak bosilsa o`sha katakni danniysi modalga chiqarilib beriladi kelish uchun
             JSONObject jsonObject = new HttpRequests().getById(tableShowA.getSelectionModel().getSelectedItem().getDataId(),"arrive/");
             new Wtransfer(FxmlViews.Addition.addDialogA,resources.getLocale());
             SendArriveEvent sendArriveEvent = new SendArriveEvent(SendArriveEvent.ANY,jsonObject);
-            System.out.println(jsonObject);
             App.eventBus.fireEvent(sendArriveEvent);
         });
         enter.setOnAction(event ->
@@ -189,10 +206,21 @@ public class MainScreenController implements Initializable
             new Wtransfer(FxmlViews.Addition.addDialogD,resources.getLocale());
 
         });
+        arriveB.setOnAction(event ->
+        {
+            // bu yerda tablega danniy chaqirib olib baradi datepickerdaki data bo`yicha Kelish jadvali bunda ArriveTable
+            new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"arrive/",arriveDate.getValue());
+        });
+        departB.setOnAction(event ->
+        {
+            // bu yerda tablega danniy chaqirib olib baradi datepickerdaki data bo`yicha Ketish jadvali bunda DepartTable
+            new HttpRequests().getAll(tableShowA,tableShowD,myResourceBundle,"departure/", departDate.getValue());
+        });
 
     }
     private void bindData()
     {
+        // bu yerda bind qilingan har bir katakchalari arrive uchun va depart uchun birgalikda
         countDId.setCellValueFactory(new PropertyValueFactory<TableData, Long>("id"));
         tableShowDtime.setCellValueFactory(new PropertyValueFactory<TableData, String>("time"));
         tableShowDm.setCellValueFactory(new PropertyValueFactory<TableData, String>("destination"));
