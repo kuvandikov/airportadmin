@@ -191,9 +191,10 @@ public class MainScreenController implements Initializable
         tableShowA.setOnMouseClicked(event ->
         {
             // bunda biror bir tablitsadan katak bosilsa o`sha katakni danniysi modalga chiqarilib beriladi kelish uchun
-            JSONObject jsonObject = new HttpRequests().getById(tableShowA.getSelectionModel().getSelectedItem().getDataId(),"arrive/");
+            TableData tableData = new TableData();
+            new Utils().copyFromOne(tableData,tableShowA);
             new Wtransfer(FxmlViews.Addition.addDialogA,resources.getLocale());
-            SendArriveEvent sendArriveEvent = new SendArriveEvent(SendArriveEvent.ANY,jsonObject);
+            SendArriveEvent sendArriveEvent = new SendArriveEvent(SendArriveEvent.ANY,tableData);
             App.eventBus.fireEvent(sendArriveEvent);
         });
         enter.setOnAction(event ->

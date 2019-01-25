@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import uz.aeroport.App;
 import uz.aeroport.controllers.eventsController.AddDialogArriveEvent;
 import uz.aeroport.controllers.eventsController.SendArriveEvent;
+import uz.aeroport.models.TableData;
 import uz.aeroport.utils.FxmlViews;
 import uz.aeroport.utils.widgets.MyResourceBundle;
 import uz.aeroport.utils.widgets.Wtransfer;
@@ -111,7 +112,7 @@ public class AddDialogArriveController implements Initializable
     private static MyResourceBundle myResourceBundle;
     private boolean arriveOrDepart;
 
-    private JSONObject jsonObject;
+    private TableData tableDate;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -119,15 +120,15 @@ public class AddDialogArriveController implements Initializable
         prepareMultiLanguage(resources);
         App.eventBus.addEventHandler(SendArriveEvent.ANY,event ->
         {
-           this.jsonObject = event.getJsonObject();
+           this.tableDate = event.getJsonObject();
            System.out.println(event.getJsonObject());
-           fillWithData(jsonObject);
+           fillWithData(tableDate);
            saveOrUpdate = false;
         });
     }
-    private void fillWithData(JSONObject jsonObject)
+    private void fillWithData(TableData jsonObject)
     {
-        timeField.setText(jsonObject.getString("time"));
+       /* timeField.setText(jsonObject.getString("time"));
         flightField.setText(jsonObject.getString("flight"));
         destFieldE.setText(jsonObject.getString("destinationEng"));
         destFieldR.setText(jsonObject.getString("destinationRus"));
@@ -147,9 +148,29 @@ public class AddDialogArriveController implements Initializable
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(jsonObject.getString("arriveDate"),formatter);
+        dateChooser.setValue(localDate);*/
+        timeField.setText(jsonObject.getTime());
+        flightField.setText(jsonObject.getFlight());
+        destFieldE.setText(jsonObject.getDestinationEng());
+        destFieldR.setText(jsonObject.getDestinationRus());
+        destField.setText(jsonObject.getDestinationUzb());
+        statusTimeField.setText(jsonObject.getStatusTime());
+        if(jsonObject.getStatus().equals("schedule")){
+            statusField.getSelectionModel().select(myResourceBundle.getString("Status1"));
+        }
+        if(jsonObject.getStatus().equals("expected")){
+            statusField.getSelectionModel().select(myResourceBundle.getString("Status2"));
+        }
+        if(jsonObject.getStatus().equals("arrive")){
+            statusField.getSelectionModel().select(myResourceBundle.getString("Status3"));
+        }
+        if(jsonObject.getStatus().equals("cancel")){
+            statusField.getSelectionModel().select(myResourceBundle.getString("Status4"));
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(jsonObject.getDepartDate());
         dateChooser.setValue(localDate);
     }
-
     private void prepareMultiLanguage(ResourceBundle resources)
     {
         myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
@@ -215,10 +236,13 @@ public class AddDialogArriveController implements Initializable
                     || warn4.isVisible()
             ))
             {
-
-                if(jsonObject == null){
-                    jsonObject = new JSONObject();
+                JSONObject jsonObject = new JSONObject();
+                if(tableDate == null){
                     saveOrUpdate = true;
+                }
+                if(tableDate != null){
+                    saveOrUpdate = false;
+                    jsonObject.put("id",tableDate.getDataId());
                 }
                 jsonObject.put("arriveDate",dateChooser.getValue());
                 jsonObject.put("time",timeField.getText());
@@ -244,7 +268,7 @@ public class AddDialogArriveController implements Initializable
                 Wtransfer wtransfer = new Wtransfer();
                 wtransfer.toGetController(FxmlViews.Addition.askedExit, resources.getLocale());
                 ExitDialogController exitDialogController = (ExitDialogController)wtransfer.getController();
-                exitDialogController.setLocaleToSave(resources.getLocale(),jsonObject , saveOrUpdate,arriveOrDepart);
+                exitDialogController.setLocaleToSave(resources.getLocale(), jsonObject, saveOrUpdate,arriveOrDepart);
                 wtransfer.showAndWait();
                 System.out.println(exitDialogController.success);
                 if(exitDialogController.success)

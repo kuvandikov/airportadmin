@@ -243,6 +243,7 @@ public class AddDialogDepatureController implements Initializable
                     }
                     if(this.tableData != null){
                         jsonObject.put("id",tableData.getDataId());
+                        saveOrUpdate = false;
                     }
                     jsonObject.put("departDate",dateChooser.getValue());
                     jsonObject.put("time",timeField.getText());
