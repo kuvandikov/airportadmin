@@ -11,12 +11,16 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.omg.SendingContext.RunTime;
 import uz.aeroport.httpRequests.HttpRequests;
 import uz.aeroport.utils.FxmlViews;
 import uz.aeroport.utils.widgets.MyResourceBundle;
 import uz.aeroport.utils.widgets.Wtransfer;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
@@ -51,7 +55,7 @@ public class LoginController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
+        //runToApi();
         MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         click.setText(myResourceBundle.getString("login.pass"));
         this.resourceBundle = resources;
@@ -96,6 +100,9 @@ public class LoginController implements Initializable{
         });
 
 
+
+    }
+    private void runToApi() {
 
     }
 

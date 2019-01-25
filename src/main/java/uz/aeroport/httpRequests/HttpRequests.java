@@ -101,7 +101,10 @@ public class HttpRequests
             tableData.setId((long) (i  + 1));
             tableData.setDataId(jsonObject.getLong("id"));
             tableData.setFlight(jsonObject.getString("flight"));
-            tableData.setDestination(jsonObject.getString("destinationUzb"));
+            tableData.setDestinationUzb(jsonObject.getString("destinationUzb"));
+            tableData.setTime(jsonObject.getString("time"));
+            tableData.setDestinationRus(jsonObject.getString("destinationRus"));
+            tableData.setDestinationEng(jsonObject.getString("destinationEng"));
            // tableData.setStatus(jsonObject.getString("status"));
             if(jsonObject.getString("status").equals("schedule")){
                 tableData.setStatus(myResourceBundle.getString("Status1"));
@@ -115,8 +118,9 @@ public class HttpRequests
             if(jsonObject.getString("status").equals("cancel")){
                 tableData.setStatus(myResourceBundle.getString("Status4"));
             }
-            tableData.setTime(jsonObject.getString("statusTime"));
+            tableData.setStatusTime(jsonObject.getString("statusTime"));
             tableData.setTerminal(jsonObject.getString("terminal"));
+            tableData.setDepartDate(jsonObject.getString("departDate"));
             tableShowD.getItems().add(tableData);
            }
            }
@@ -131,7 +135,7 @@ public class HttpRequests
                    tableData.setId((long) (i  + 1));
                    tableData.setDataId(jsonObject.getLong("id"));
                    tableData.setFlight(jsonObject.getString("flight"));
-                   tableData.setDestination(jsonObject.getString("destinationUzb"));
+                   tableData.setDestinationUzb(jsonObject.getString("destinationUzb"));
                    // tableData.setStatus(jsonObject.getString("status"));
                    if(jsonObject.getString("status").equals("schedule")){
                        tableData.setStatus(myResourceBundle.getString("Status1"));

@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import uz.aeroport.models.TableData;
 import uz.aeroport.utils.FxmlViews;
 import uz.aeroport.utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.Utils;
 import uz.aeroport.utils.widgets.Wtransfer;
 
 import java.net.URL;
@@ -134,9 +135,9 @@ public class MainScreenController implements Initializable
         enter.setText(myResourceBundle.getString("mainScreen.enters"));
         enter1.setText(myResourceBundle.getString("mainScreen.enters"));
 
-        //bu yerda buttonlanaga set bo`ladi
+        //bu yerda qidiruv buttonlarini texti set qilingan
         arriveSearchButton.setText(myResourceBundle.getString("searchB"));
-        departSearchButton.setText(myResourceBundle.getString("searchB"));
+        arriveSearchButton.setText(myResourceBundle.getString("searchB"));
     }
 
     private void allEventsHere(MyResourceBundle myResourceBundle)
@@ -180,9 +181,11 @@ public class MainScreenController implements Initializable
         tableShowD.setOnMouseClicked(event ->
         {
             // bunda biror bir tablitsadan katak bosilsa o`sha katakni danniysi modalga chiqarilib beriladi ketish uchun
-            JSONObject jsonObject = new HttpRequests().getById(tableShowD.getSelectionModel().getSelectedItem().getDataId(),"departure/");
+            //JSONObject jsonObject = new HttpRequests().getById(tableShowD.getSelectionModel().getSelectedItem().getDataId(),"departure/");
+            TableData tableData = new TableData();
+            new Utils().copyFromOne(tableData,tableShowD);
             new Wtransfer(FxmlViews.Addition.addDialogD,resources.getLocale());
-            SendDepartureEvent sendDepartureEvent = new SendDepartureEvent(SendDepartureEvent.ANY,jsonObject);
+            SendDepartureEvent sendDepartureEvent = new SendDepartureEvent(SendDepartureEvent.ANY,tableData);
             App.eventBus.fireEvent(sendDepartureEvent);
         });
         tableShowA.setOnMouseClicked(event ->

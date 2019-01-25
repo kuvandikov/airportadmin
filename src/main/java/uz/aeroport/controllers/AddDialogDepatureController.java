@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 import uz.aeroport.controllers.eventsController.SendDepartureEvent;
+import uz.aeroport.models.TableData;
 import uz.aeroport.utils.FxmlViews;
 import uz.aeroport.utils.widgets.MyResourceBundle;
 import uz.aeroport.utils.widgets.Wtransfer;
@@ -123,7 +124,7 @@ public class AddDialogDepatureController implements Initializable
     private static MyResourceBundle myResourceBundle;
 
     private  int getAirId = 0;
-    private JSONObject jsonObject;
+    private TableData tableData;
     private boolean arriveOrDepart;
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -132,7 +133,7 @@ public class AddDialogDepatureController implements Initializable
         App.eventBus.addEventHandler(SendDepartureEvent.ANY,event ->
         {
             fillWithData(event.getJsonObject());
-            this.jsonObject = event.getJsonObject();
+            this.tableData = event.getJsonObject();
             saveOrUpdate = false;
         });
         myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
@@ -141,32 +142,32 @@ public class AddDialogDepatureController implements Initializable
 
     }
 
-    private void fillWithData(JSONObject jsonObject)
+    private void fillWithData(TableData jsonObject)
     {
-        timeField.setText(jsonObject.getString("time"));
-        flightField.setText(jsonObject.getString("flight"));
-        destFieldE.setText(jsonObject.getString("destinationEng"));
-        destFieldR.setText(jsonObject.getString("destinationRus"));
-        destFieldU.setText(jsonObject.getString("destinationUzb"));
-        terminalField.setText(jsonObject.getString("terminal"));
-        statusTimeField.setText(jsonObject.getString("statusTime"));
-        if(jsonObject.getString("status").equals("schedule")){
+        timeField.setText(jsonObject.getTime());
+        flightField.setText(jsonObject.getFlight());
+        destFieldE.setText(jsonObject.getDestinationEng());
+        destFieldR.setText(jsonObject.getDestinationRus());
+        destFieldU.setText(jsonObject.getDestinationUzb());
+        terminalField.setText(jsonObject.getDestinationUzb());
+        statusTimeField.setText(jsonObject.getStatusTime());
+        if(jsonObject.getStatus().equals("schedule")){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status1"));
         }
-        if(jsonObject.getString("status").equals("expected")){
+        if(jsonObject.getStatus().equals("expected")){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status2"));
         }
-        if(jsonObject.getString("status").equals("arrive")){
+        if(jsonObject.getStatus().equals("arrive")){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status3"));
         }
-        if(jsonObject.getString("status").equals("cancel")){
+        if(jsonObject.getStatus().equals("cancel")){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status4"));
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.parse(jsonObject.getString("departDate"),formatter);
+        LocalDate localDate = LocalDate.parse(jsonObject.getDepartDate());
         dateChooser.setValue(localDate);
- //        jsonObject.put("departDate",dateChooser.getValue());
- //       jsonObject.put("statusTime",statusTimeField.getText());
+
+
 
     }
 
@@ -236,10 +237,12 @@ public class AddDialogDepatureController implements Initializable
                     || warn311.isVisible()
             ))
             {
-
-                    if(jsonObject == null){
-                        jsonObject = new JSONObject();
+                    JSONObject jsonObject = new JSONObject();
+                    if(this.tableData == null){
                         saveOrUpdate = true;
+                    }
+                    if(this.tableData != null){
+                        jsonObject.put("id",tableData.getDataId());
                     }
                     jsonObject.put("departDate",dateChooser.getValue());
                     jsonObject.put("time",timeField.getText());

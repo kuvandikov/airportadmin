@@ -79,6 +79,7 @@ public class ExitDialogController implements Initializable {
         no.setVisible(false);
         if(arriveOrDepart == false)
         {
+            System.out.println("depart");
             if(saveOrUpdate == false && new HttpRequests().departPut(jsonObject,"departure/"))
             {
                 System.out.println("update");

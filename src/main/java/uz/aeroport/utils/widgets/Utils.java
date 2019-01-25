@@ -1,6 +1,8 @@
 package uz.aeroport.utils.widgets;
 
+import javafx.scene.control.TableView;
 import org.json.JSONObject;
+import uz.aeroport.models.TableData;
 
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
@@ -49,4 +51,18 @@ public class Utils
         return checker;
     }
 
+    public void copyFromOne(TableData tableData, TableView<TableData> tableSh) {
+        tableSh.getSelectionModel().getSelectedItem().getDataId();
+        tableData.setDataId(tableSh.getSelectionModel().getSelectedItem().getDataId());
+        tableData.setStatusTime(tableSh.getSelectionModel().getSelectedItem().getStatusTime());
+        tableData.setStatus(tableSh.getSelectionModel().getSelectedItem().getStatus());
+        tableData.setDestinationUzb(tableSh.getSelectionModel().getSelectedItem().getDestinationUzb());
+        tableData.setDestinationEng(tableSh.getSelectionModel().getSelectedItem().getDestinationEng());
+        tableData.setDestinationRus(tableSh.getSelectionModel().getSelectedItem().getDestinationRus());
+        tableData.setFlight(tableSh.getSelectionModel().getSelectedItem().getFlight());
+        tableData.setTerminal(tableSh.getSelectionModel().getSelectedItem().getTerminal());
+        tableData.setTime(tableSh.getSelectionModel().getSelectedItem().getTime());
+        tableData.setDepartDate(tableSh.getSelectionModel().getSelectedItem().getDepartDate());
+        tableData.setImageView(tableSh.getSelectionModel().getSelectedItem().getImageView());
+    }
 }
