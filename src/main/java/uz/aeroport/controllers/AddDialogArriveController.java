@@ -12,8 +12,10 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 import uz.aeroport.App;
+import uz.aeroport.controllers.eventsController.AddAirportEvent;
 import uz.aeroport.controllers.eventsController.AddDialogArriveEvent;
 import uz.aeroport.controllers.eventsController.SendArriveEvent;
+import uz.aeroport.httpRequests.HttpRequests;
 import uz.aeroport.models.AirlinesList;
 import uz.aeroport.models.TableData;
 import uz.aeroport.utils.FxmlViews;
@@ -24,7 +26,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -119,7 +120,7 @@ public class AddDialogArriveController implements Initializable
     private Button add;
 
     @FXML
-    private JFXComboBox airlinesSelect;
+    private JFXComboBox<AirlinesList> airlinesSelect;
 
     @FXML
     private Label warnAir;
@@ -136,14 +137,30 @@ public class AddDialogArriveController implements Initializable
     {
         prepareForLabels();
         prepareEveryThingToStart(resources);
+        callBackEvents();
+    }
+
+    private void callBackEvents()
+    {
         App.eventBus.addEventHandler(SendArriveEvent.ANY,event ->
         {
-           this.tableDate = event.getJsonObject();
-           System.out.println(event.getJsonObject());
-           fillWithData(tableDate);
-           saveOrUpdate = false;
+            this.tableDate = event.getJsonObject();
+            System.out.println(event.getJsonObject());
+            fillWithData(tableDate);
+            saveOrUpdate = false;
         });
+        App.eventBus.addEventHandler(AddAirportEvent.ANY, event ->
+        {
+            //registration events
+            List<AirlinesList> lists = new ArrayList<>();
+            lists = new HttpRequests().getAllAirLines();
+            airlinesSelect.getItems().clear();
+            airlinesSelect.getItems().addAll(lists);
+            airlinesSelect.getSelectionModel().selectLast();
+        });
+
     }
+
     private void fillWithData(TableData jsonObject)
     {
         timeField.setText(jsonObject.getTime());
@@ -205,6 +222,8 @@ public class AddDialogArriveController implements Initializable
         statusWord.add(myResourceBundle.getString("Status4"));
         statusField.getItems().addAll(statusWord);
         List<AirlinesList> lists = new ArrayList<>();
+        lists = new HttpRequests().getAllAirLines();
+        airlinesSelect.getItems().addAll(lists);
 
 
     }

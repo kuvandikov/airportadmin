@@ -12,6 +12,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.JSONObject;
+import uz.aeroport.App;
+import uz.aeroport.controllers.eventsController.AddAirportEvent;
 import uz.aeroport.httpRequests.HttpRequests;
 import uz.aeroport.utils.widgets.MyResourceBundle;
 
@@ -69,6 +71,10 @@ public class AddAirLinesController implements Initializable {
 
     @FXML
     private Label warn2;
+
+    @FXML
+    private JFXButton cancel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -132,7 +138,8 @@ public class AddAirLinesController implements Initializable {
                         imgShow.setImage(null);
                         nameField.setText("");
                         result.setVisible(true);
-
+                        AddAirportEvent addAirportEvent = new AddAirportEvent(AddAirportEvent.ANY);
+                        App.eventBus.fireEvent(addAirportEvent);
                     }
                     else
                     {
@@ -156,5 +163,6 @@ public class AddAirLinesController implements Initializable {
             uploadBtn.setText(myResourceBundle.getString("airLines.upload"));
             warn2.setText(myResourceBundle.getString("AddDialog.warnings"));
             result.setText(myResourceBundle.getString("infoSave"));
+            cancel.setText(myResourceBundle.getString("navExit"));
     }
 }

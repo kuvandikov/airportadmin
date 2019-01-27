@@ -1,12 +1,16 @@
 package uz.aeroport.utils.widgets;
 
 import javafx.scene.control.TableView;
+import org.json.JSONArray;
 import org.json.JSONObject;
+import uz.aeroport.models.AirlinesList;
 import uz.aeroport.models.TableData;
 
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -64,5 +68,17 @@ public class Utils
         tableData.setTime(tableSh.getSelectionModel().getSelectedItem().getTime());
         tableData.setDepartDate(tableSh.getSelectionModel().getSelectedItem().getDepartDate());
         tableData.setImageView(tableSh.getSelectionModel().getSelectedItem().getImageView());
+    }
+    public List<AirlinesList> getFromJson(JSONArray jsonArray){
+       List<AirlinesList> lists = new ArrayList<>();
+       for(int i = 0 ; i < jsonArray.length(); i ++)
+       {
+           JSONObject jsonObject = jsonArray.getJSONObject(i);
+           AirlinesList airlinesList = new AirlinesList();
+           airlinesList.setId(jsonObject.getLong("id"));
+           airlinesList.setName(jsonObject.getString("nameAirline"));
+           lists.add(airlinesList);
+       }
+       return lists;
     }
 }

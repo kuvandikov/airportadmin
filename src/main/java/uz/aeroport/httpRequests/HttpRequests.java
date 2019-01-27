@@ -272,6 +272,7 @@ public class HttpRequests
             response = client.execute(get);
             String entity =  EntityUtils.toString(response.getEntity(),"UTF-8");
             JSONArray jsonArray = new JSONArray(entity);
+            lists =  new Utils().getFromJson(jsonArray);
         } catch (IOException e) {
             e.printStackTrace();
         }

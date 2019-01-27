@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uz.aeroport.controllers.AddAirLinesController">
+   <children>
+      <VBox layoutX="46.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="titleOfModal" alignment="CENTER" prefHeight="48.0" prefWidth="525.0" text="Label" textAlignment="RIGHT">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="43.0" prefWidth="525.0">
+               <children>
+                  <Label fx:id="nameLabel" prefHeight="43.0" prefWidth="179.0" text="Aviaqompaniya nomi">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+                  <JFXTextField fx:id="nameField" prefHeight="25.0" prefWidth="239.0" />
+                  <Label fx:id="warn1" prefHeight="43.0" prefWidth="133.0" text="to`ldirilmagan">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="43.0" prefWidth="525.0">
+               <children>
+                  <Label fx:id="logoLabel" alignment="CENTER" prefHeight="43.0" prefWidth="171.0" text="Logoni yuklash" />
+                  <Button fx:id="uploadBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" text="Yuklash">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/pictures/icons/Upload_52px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label fx:id="warn2" prefHeight="43.0" prefWidth="133.0" text="to`ldirilmagan">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="80.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <ImageView fx:id="imgShow" fitHeight="150.0" fitWidth="392.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets left="100.0" />
+               </VBox.margin>
+            </ImageView>
+            <HBox prefHeight="29.0" prefWidth="525.0">
+               <children>
+                  <JFXButton fx:id="saveit" buttonType="RAISED" prefHeight="25.0" prefWidth="90.0" ripplerFill="#55eb4a" style="-fx-background-color: #290add; -fx-text-fill: white;" text="Saqlash">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="cancel" buttonType="RAISED" prefHeight="25.0" prefWidth="90.0" ripplerFill="RED" style="-fx-background-color: ff9a00; -fx-text-fill: white;" text="Bekor">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="result" alignment="CENTER" prefHeight="48.0" prefWidth="303.0" text="Label">
+               <VBox.margin>
+                  <Insets left="150.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
