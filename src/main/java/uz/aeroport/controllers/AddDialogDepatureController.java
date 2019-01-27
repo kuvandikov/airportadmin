@@ -15,6 +15,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 import uz.aeroport.controllers.eventsController.SendDepartureEvent;
+import uz.aeroport.httpRequests.HttpRequests;
+import uz.aeroport.models.AirlinesList;
 import uz.aeroport.models.TableData;
 import uz.aeroport.utils.FxmlViews;
 import uz.aeroport.utils.widgets.MyResourceBundle;
@@ -120,6 +122,18 @@ public class AddDialogDepatureController implements Initializable
     @FXML
     private AnchorPane anchorId;
 
+    @FXML
+    private Label airlines;
+
+    @FXML
+    private JFXComboBox<AirlinesList> airlinesSelect;
+
+    @FXML
+    private Button add;
+
+    @FXML
+    private Label warnAir;
+
     private boolean saveOrUpdate;
 
     @FXML
@@ -154,21 +168,26 @@ public class AddDialogDepatureController implements Initializable
         destFieldU.setText(jsonObject.getDestinationUzb());
         terminalField.setText(jsonObject.getDestinationUzb());
         statusTimeField.setText(jsonObject.getStatusTime());
-        if(jsonObject.getStatus().equals("schedule")){
+        if(jsonObject.getStatus().equals(myResourceBundle.getString("Status1"))){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status1"));
         }
-        if(jsonObject.getStatus().equals("expected")){
+        if(jsonObject.getStatus().equals(myResourceBundle.getString("Status2"))){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status2"));
         }
-        if(jsonObject.getStatus().equals("arrive")){
+        if(jsonObject.getStatus().equals(myResourceBundle.getString("Status3"))){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status3"));
         }
-        if(jsonObject.getStatus().equals("cancel")){
+        if(jsonObject.getStatus().equals(myResourceBundle.getString("Status4"))){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status4"));
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(jsonObject.getDepartDate());
         dateChooser.setValue(localDate);
+        airlinesSelect.getItems().forEach(airlinesList -> {
+            if(airlinesList.getId().equals(jsonObject.getAirlineId())){
+                airlinesSelect.getSelectionModel().select(airlinesList);
+            }
+        });
 
 
 
@@ -195,6 +214,8 @@ public class AddDialogDepatureController implements Initializable
         warn6.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn31.setText(myResourceBundle.getString("AddDialog.warnings"));
         warn311.setText(myResourceBundle.getString("AddDialog.warnings"));
+        warnAir.setText(myResourceBundle.getString("AddDialog.warnings"));
+        airlines.setText(myResourceBundle.getString("airLines.name"));
         List<String> statusWord = new ArrayList<>();
         statusWord.add(myResourceBundle.getString("Status1"));
         statusWord.add(myResourceBundle.getString("Status2"));
@@ -202,7 +223,9 @@ public class AddDialogDepatureController implements Initializable
         statusWord.add(myResourceBundle.getString("Status4"));
         statusField.getItems().addAll(statusWord);
         onClick(saveit,cancel,resources,statusField);
-
+        List<AirlinesList> lists = new ArrayList<>();
+        lists = new HttpRequests().getAllAirLines();
+        airlinesSelect.getItems().addAll(lists);
 
     }
 
@@ -248,6 +271,12 @@ public class AddDialogDepatureController implements Initializable
             else{
                 warn5.setVisible(false);
             }
+            if(airlinesSelect.getValue() == null){
+                warnAir.setVisible(true);
+            }
+            else{
+                warnAir.setVisible(false);
+            }
             warn6.setVisible(terminalField.getText().isEmpty());
             warn31.setVisible(destFieldR.getText().isEmpty());
             warn311.setVisible(destFieldE.getText().isEmpty());
@@ -260,6 +289,7 @@ public class AddDialogDepatureController implements Initializable
                     || warn4.isVisible()
                     || warn31.isVisible()
                     || warn311.isVisible()
+                    || warnAir.isVisible()
             ))
             {
                     JSONObject jsonObject = new JSONObject();
@@ -290,6 +320,7 @@ public class AddDialogDepatureController implements Initializable
                     if(myResourceBundle.getString("Status3").equals(this.statusField.getValue())){
                     jsonObject.put("status","cancel");
                     }
+                    jsonObject.put("airlineId",airlinesSelect.getSelectionModel().getSelectedItem().getId());
                     // arriveOrDepart bu yerda false bo`ladi
                     arriveOrDepart = false;
                     Wtransfer wtransfer = new Wtransfer();
@@ -322,6 +353,7 @@ public class AddDialogDepatureController implements Initializable
         warn6.setVisible(false);
         warn31.setVisible(false);
         warn311.setVisible(false);
+        warnAir.setVisible(false);
     }
 
     public int getGetAirId() {
