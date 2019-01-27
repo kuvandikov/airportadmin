@@ -238,6 +238,24 @@ public class HttpRequests
         }
         return change;
     }
+    public boolean postImage(JSONObject jsonObject)
+    {
+        boolean answer = false;
+        url = URI.create(url.toString()+"airlines/");
+        CloseableHttpClient client = HttpClientBuilder.create().build();
+        HttpPost post = new HttpPost(url);
+        StringEntity stringEntity = new StringEntity(jsonObject.toString(),"UTF-8");
+        stringEntity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,"application/json"));
+        post.setEntity(stringEntity);
+        try
+        {
+            HttpResponse response = client.execute(post);
+            answer = (response != null) ? true : false;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return answer;
+    }
 
 
 }

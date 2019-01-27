@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.json.JSONObject;
+import uz.aeroport.httpRequests.HttpRequests;
 import uz.aeroport.utils.widgets.MyResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -59,7 +61,11 @@ public class AddAirLinesController implements Initializable {
     private JFXButton saveit;
     private MyResourceBundle myResourceBundle;
 
+    private byte[] img;
     private BufferedImage bf;
+
+    @FXML
+    private Label result;
 
     @FXML
     private Label warn2;
@@ -76,8 +82,10 @@ public class AddAirLinesController implements Initializable {
     private void startFills() {
             warn1.setStyle("-fx-text-fill: red");
             warn2.setStyle("-fx-text-fill: red");
+            result.setStyle("-fx-text-fill: green");
             warn1.setVisible(false);
             warn2.setVisible(false);
+            result.setVisible(false);
     }
 
     private void onClick(JFXButton saveit, Button uploadBtn) {
@@ -96,7 +104,7 @@ public class AddAirLinesController implements Initializable {
                     bf = ImageIO.read(file);
                     Image im = SwingFXUtils.toFXImage(bf,null);
                     imgShow.setImage(im);
-                    byte [] img = Files.readAllBytes(file.toPath());
+                    this.img = Files.readAllBytes(file.toPath());
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -116,7 +124,22 @@ public class AddAirLinesController implements Initializable {
                 warn1.setVisible(nameField.getText().isEmpty());
                 if(bf != null && !nameField.getText().isEmpty())
                 {
-                    System.out.println("tayyor yozishga");
+                   JSONObject jsonObject = new JSONObject();
+                   jsonObject.put("image",this.img);
+                   jsonObject.put("nameAirline",nameField.getText());
+                    if(new HttpRequests().postImage(jsonObject))
+                    {
+                        imgShow.setImage(null);
+                        nameField.setText("");
+                        result.setVisible(true);
+
+                    }
+                    else
+                    {
+                        result.setText(myResourceBundle.getString("infoError"));
+                        result.setStyle("-fx-text-fill: red");
+                        result.setVisible(true);
+                    }
                 }
 
 
@@ -132,5 +155,6 @@ public class AddAirLinesController implements Initializable {
             saveit.setText(myResourceBundle.getString("changePass.save"));
             uploadBtn.setText(myResourceBundle.getString("airLines.upload"));
             warn2.setText(myResourceBundle.getString("AddDialog.warnings"));
+            result.setText(myResourceBundle.getString("infoSave"));
     }
 }
