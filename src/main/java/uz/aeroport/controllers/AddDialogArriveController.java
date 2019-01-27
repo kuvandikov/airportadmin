@@ -310,6 +310,7 @@ public class AddDialogArriveController implements Initializable
                 jsonObject.put("destinationEng",destFieldE.getText());
                 jsonObject.put("destinationRus",destFieldR.getText());
                 jsonObject.put("statusTime",statusTimeField.getText());
+                jsonObject.put("airlineId",airlinesSelect.getSelectionModel().getSelectedItem().getId());
                 if(AddDialogArriveController.myResourceBundle.getString("Status1").equals(this.statusField.getValue())){
                     jsonObject.put("status","schedule");
                 }

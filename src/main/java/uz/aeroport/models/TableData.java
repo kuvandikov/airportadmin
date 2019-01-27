@@ -21,6 +21,7 @@ public class TableData
     private String statusTime;
     private String terminal;
     private String departDate;
+    private AirlinesList airlinesList;
     public TableData() {
     }
 
@@ -134,5 +135,13 @@ public class TableData
 
     public void setDepartDate(String departDate) {
         this.departDate = departDate;
+    }
+
+    public AirlinesList getAirlinesList() {
+        return airlinesList;
+    }
+
+    public void setAirlinesList(AirlinesList airlinesList) {
+        this.airlinesList = airlinesList;
     }
 }
