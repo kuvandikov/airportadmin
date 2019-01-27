@@ -2,12 +2,11 @@ package uz.aeroport.httpRequests;
 
 
 import javafx.scene.control.TableView;
-import org.apache.http.client.methods.HttpPut;
-import uz.aeroport.models.TableData;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -16,6 +15,8 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import uz.aeroport.models.AirlinesList;
+import uz.aeroport.models.TableData;
 import uz.aeroport.utils.widgets.MyResourceBundle;
 import uz.aeroport.utils.widgets.Utils;
 
@@ -24,6 +25,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Jack on 13.01.2019.
@@ -31,10 +34,11 @@ import java.time.LocalDate;
 public class HttpRequests
 {
    private  URI url = URI.create("http://localhost:8080/");
+   private CloseableHttpClient client;
    public boolean dataPost(JSONObject jsonObject, String temp)
    {
        url = URI.create(url.toString() + temp);
-       CloseableHttpClient client =  HttpClientBuilder.create().build();
+       this.client =  HttpClientBuilder.create().build();
        HttpPost postRequest = new HttpPost(url);
        StringEntity se = null;
        Boolean responseServer = false;
@@ -58,7 +62,7 @@ public class HttpRequests
    public boolean departPut(JSONObject jsonObject,String temp)
    {
        url = URI.create(url.toString() + temp);
-       CloseableHttpClient client = HttpClientBuilder.create().build();
+       this.client = HttpClientBuilder.create().build();
        HttpPut put = new HttpPut(url);
        StringEntity stringEntity = null;
        boolean responseServer = false;
@@ -84,7 +88,7 @@ public class HttpRequests
 
         url = URI.create(url.toString() + temp + "date=" + localDate.toString());
         HttpResponse response;
-        CloseableHttpClient client =  HttpClientBuilder.create().build();
+        this.client =  HttpClientBuilder.create().build();
         HttpGet get = new HttpGet(url);
        try
        {
@@ -168,7 +172,7 @@ public class HttpRequests
        url = URI.create(url.toString() + temp);
        JSONObject jsonObject = null;
        HttpResponse httpResponse;
-       CloseableHttpClient client =  HttpClientBuilder.create().build();
+       this.client =  HttpClientBuilder.create().build();
        HttpGet get = new HttpGet(url+"id="+id);
        try
        {
@@ -185,11 +189,11 @@ public class HttpRequests
         url = URI.create(url.toString() + "checker/");
         boolean check = true;
         HttpResponse httpResponse;
-        CloseableHttpClient closeableHttpClient = HttpClientBuilder.create().build();
+        this.client = HttpClientBuilder.create().build();
         HttpGet httpGet = new HttpGet(url);
        try
        {
-           httpResponse = closeableHttpClient.execute(httpGet);
+           httpResponse = client.execute(httpGet);
            String json = EntityUtils.toString(httpResponse.getEntity(),"UTF-8");
            jsonObject = new JSONObject(json);
 
@@ -204,11 +208,11 @@ public class HttpRequests
         url = URI.create(url.toString() + "checker/");
         boolean check = true;
         HttpResponse httpResponse;
-        CloseableHttpClient closeableHttpClient = HttpClientBuilder.create().build();
+        this.client = HttpClientBuilder.create().build();
         HttpGet httpGet = new HttpGet(url);
         try
         {
-            httpResponse = closeableHttpClient.execute(httpGet);
+            httpResponse = client.execute(httpGet);
             String json = EntityUtils.toString(httpResponse.getEntity(),"UTF-8");
             jsonObject = new JSONObject(json);
 
@@ -225,13 +229,13 @@ public class HttpRequests
         boolean change = false;
 
         HttpPost post = new HttpPost(url);
-        CloseableHttpClient http =  HttpClientBuilder.create().build();
+        this.client =  HttpClientBuilder.create().build();
         StringEntity stringEntity = new StringEntity(jsonObject.toString(),"UTF-8");
         stringEntity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,"application/json"));
         post.setEntity(stringEntity);
         try
         {
-            HttpResponse  response = http.execute(post);
+            HttpResponse  response = client.execute(post);
             change = (response != null) ? true : false;
         } catch (IOException e) {
             e.printStackTrace();
@@ -242,7 +246,7 @@ public class HttpRequests
     {
         boolean answer = false;
         url = URI.create(url.toString()+"airlines/");
-        CloseableHttpClient client = HttpClientBuilder.create().build();
+        this.client = HttpClientBuilder.create().build();
         HttpPost post = new HttpPost(url);
         StringEntity stringEntity = new StringEntity(jsonObject.toString(),"UTF-8");
         stringEntity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,"application/json"));
@@ -255,6 +259,24 @@ public class HttpRequests
             e.printStackTrace();
         }
         return answer;
+    }
+    public List<AirlinesList> getAllAirLines()
+    {
+        List<AirlinesList> lists = new ArrayList<>();
+        url = URI.create(url.toString()+"airlines/");
+        this.client = HttpClientBuilder.create().build();
+        HttpGet get = new HttpGet(url);
+        HttpResponse response;
+        try
+        {
+            response = client.execute(get);
+            String entity =  EntityUtils.toString(response.getEntity(),"UTF-8");
+            JSONArray jsonArray = new JSONArray(entity);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lists;
+
     }
 
 

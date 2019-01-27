@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import uz.aeroport.App;
 import uz.aeroport.controllers.eventsController.AddDialogArriveEvent;
 import uz.aeroport.controllers.eventsController.SendArriveEvent;
+import uz.aeroport.models.AirlinesList;
 import uz.aeroport.models.TableData;
 import uz.aeroport.utils.FxmlViews;
 import uz.aeroport.utils.widgets.MyResourceBundle;
@@ -23,6 +24,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -133,7 +135,7 @@ public class AddDialogArriveController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         prepareForLabels();
-        prepareMultiLanguage(resources);
+        prepareEveryThingToStart(resources);
         App.eventBus.addEventHandler(SendArriveEvent.ANY,event ->
         {
            this.tableDate = event.getJsonObject();
@@ -144,27 +146,6 @@ public class AddDialogArriveController implements Initializable
     }
     private void fillWithData(TableData jsonObject)
     {
-       /* timeField.setText(jsonObject.getString("time"));
-        flightField.setText(jsonObject.getString("flight"));
-        destFieldE.setText(jsonObject.getString("destinationEng"));
-        destFieldR.setText(jsonObject.getString("destinationRus"));
-        destField.setText(jsonObject.getString("destinationUzb"));
-        statusTimeField.setText(jsonObject.getString("statusTime"));
-        if(jsonObject.getString("status").equals("schedule")){
-            statusField.getSelectionModel().select(myResourceBundle.getString("Status1"));
-        }
-        if(jsonObject.getString("status").equals("expected")){
-            statusField.getSelectionModel().select(myResourceBundle.getString("Status2"));
-        }
-        if(jsonObject.getString("status").equals("arrive")){
-            statusField.getSelectionModel().select(myResourceBundle.getString("Status3"));
-        }
-        if(jsonObject.getString("status").equals("cancel")){
-            statusField.getSelectionModel().select(myResourceBundle.getString("Status4"));
-        }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.parse(jsonObject.getString("arriveDate"),formatter);
-        dateChooser.setValue(localDate);*/
         timeField.setText(jsonObject.getTime());
         flightField.setText(jsonObject.getFlight());
         destFieldE.setText(jsonObject.getDestinationEng());
@@ -187,11 +168,13 @@ public class AddDialogArriveController implements Initializable
         LocalDate localDate = LocalDate.parse(jsonObject.getDepartDate());
         dateChooser.setValue(localDate);
     }
-    private void prepareMultiLanguage(ResourceBundle resources)
+    private void prepareEveryThingToStart(ResourceBundle resources)
     {
         myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         mulitLanguage();
         onClick(saveit,cancel,resources,statusField,myResourceBundle,add);
+
+
     }
 
     private void mulitLanguage()
@@ -221,6 +204,9 @@ public class AddDialogArriveController implements Initializable
         statusWord.add(myResourceBundle.getString("Status3"));
         statusWord.add(myResourceBundle.getString("Status4"));
         statusField.getItems().addAll(statusWord);
+        List<AirlinesList> lists = new ArrayList<>();
+
+
     }
 
     private void onClick(JFXButton saveit, JFXButton cance, ResourceBundle resources, JFXComboBox statusField, MyResourceBundle myResourceBundle, Button add)
