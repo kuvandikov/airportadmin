@@ -169,19 +169,26 @@ public class AddDialogArriveController implements Initializable
         destFieldR.setText(jsonObject.getDestinationRus());
         destField.setText(jsonObject.getDestinationUzb());
         statusTimeField.setText(jsonObject.getStatusTime());
-        if(jsonObject.getStatus().equals("schedule")){
+        if(jsonObject.getStatus().equals(myResourceBundle.getString("Status1"))){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status1"));
         }
-        if(jsonObject.getStatus().equals("expected")){
+        if(jsonObject.getStatus().equals(myResourceBundle.getString("Status2"))){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status2"));
         }
-        if(jsonObject.getStatus().equals("arrive")){
+        if(jsonObject.getStatus().equals(myResourceBundle.getString("Status3"))){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status3"));
         }
-        if(jsonObject.getStatus().equals("cancel")){
+        if(jsonObject.getStatus().equals(myResourceBundle.getString("Status4"))){
             statusField.getSelectionModel().select(myResourceBundle.getString("Status4"));
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        airlinesSelect.getItems().forEach(airlinesList ->
+        {
+            System.out.println(airlinesList);
+            if(airlinesList.getId().equals(jsonObject.getAirlineId())){
+                airlinesSelect.getSelectionModel().select(airlinesList);
+            }
+        });
         LocalDate localDate = LocalDate.parse(jsonObject.getDepartDate());
         dateChooser.setValue(localDate);
     }

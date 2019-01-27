@@ -68,6 +68,7 @@ public class Utils
         tableData.setTime(tableSh.getSelectionModel().getSelectedItem().getTime());
         tableData.setDepartDate(tableSh.getSelectionModel().getSelectedItem().getDepartDate());
         tableData.setImageView(tableSh.getSelectionModel().getSelectedItem().getImageView());
+        tableData.setAirlineId(tableSh.getSelectionModel().getSelectedItem().getAirlineId());
     }
     public List<AirlinesList> getFromJson(JSONArray jsonArray){
        List<AirlinesList> lists = new ArrayList<>();

@@ -125,6 +125,7 @@ public class HttpRequests
             tableData.setStatusTime(jsonObject.getString("statusTime"));
             tableData.setTerminal(jsonObject.getString("terminal"));
             tableData.setDepartDate(jsonObject.getString("departDate"));
+            tableData.setAirlineId(jsonObject.getLong("airlineId"));
             tableShowD.getItems().add(tableData);
            }
            }
@@ -159,6 +160,7 @@ public class HttpRequests
                    tableData.setDepartDate(jsonObject.getString("arriveDate"));
                    tableData.setTime(jsonObject.getString("time"));
                    tableData.setStatusTime(jsonObject.getString("statusTime"));
+                   tableData.setAirlineId(jsonObject.getLong("airlineId"));
                    tableShowA.getItems().add(tableData);
                }
            }

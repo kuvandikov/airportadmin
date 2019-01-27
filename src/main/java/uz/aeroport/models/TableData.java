@@ -21,7 +21,7 @@ public class TableData
     private String statusTime;
     private String terminal;
     private String departDate;
-    private AirlinesList airlinesList;
+    private Long airlineId;
     public TableData() {
     }
 
@@ -137,11 +137,11 @@ public class TableData
         this.departDate = departDate;
     }
 
-    public AirlinesList getAirlinesList() {
-        return airlinesList;
+    public Long getAirlineId() {
+        return airlineId;
     }
 
-    public void setAirlinesList(AirlinesList airlinesList) {
-        this.airlinesList = airlinesList;
+    public void setAirlineId(Long airlineId) {
+        this.airlineId = airlineId;
     }
 }
