@@ -2,14 +2,23 @@ package uz.aeroport.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import uz.aeroport.utils.widgets.MyResourceBundle;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
 
 /**
@@ -48,15 +57,70 @@ public class AddAirLinesController implements Initializable {
 
     @FXML
     private JFXButton saveit;
+    private MyResourceBundle myResourceBundle;
 
+    private BufferedImage bf;
 
-
+    @FXML
+    private Label warn2;
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        MyResourceBundle myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
+        startFills();
+        myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         multiLanguage(myResourceBundle);
+        onClick(saveit,uploadBtn);
 
+    }
+
+    private void startFills() {
+            warn1.setStyle("-fx-text-fill: red");
+            warn2.setStyle("-fx-text-fill: red");
+            warn1.setVisible(false);
+            warn2.setVisible(false);
+    }
+
+    private void onClick(JFXButton saveit, Button uploadBtn) {
+            uploadBtn.setOnAction(event ->
+            {
+                FileChooser fileChooser  = new FileChooser();
+                fileChooser.setTitle(myResourceBundle.getString("airLines.logo"));
+                FileChooser.ExtensionFilter ex1 = new FileChooser.ExtensionFilter("JPG files(*.jpg)","*.jpg");
+                FileChooser.ExtensionFilter ex2 = new FileChooser.ExtensionFilter("PNG files(*.png)","*.png");
+                fileChooser.getExtensionFilters().addAll(ex1,ex2);
+                Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+                File file = fileChooser.showOpenDialog(stage);
+
+                try
+                {
+                    bf = ImageIO.read(file);
+                    Image im = SwingFXUtils.toFXImage(bf,null);
+                    imgShow.setImage(im);
+                    byte [] img = Files.readAllBytes(file.toPath());
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            });
+
+            saveit.setOnAction(event ->
+            {
+                if(bf == null){
+                    warn2.setVisible(true);
+                }
+                else
+                {
+                    warn2.setVisible(false);
+                }
+                warn1.setVisible(nameField.getText().isEmpty());
+                if(bf != null && !nameField.getText().isEmpty())
+                {
+                    System.out.println("tayyor yozishga");
+                }
+
+
+            });
 
     }
 
@@ -67,6 +131,6 @@ public class AddAirLinesController implements Initializable {
             logoLabel.setText(myResourceBundle.getString("airLines.logo"));
             saveit.setText(myResourceBundle.getString("changePass.save"));
             uploadBtn.setText(myResourceBundle.getString("airLines.upload"));
-
+            warn2.setText(myResourceBundle.getString("AddDialog.warnings"));
     }
 }
