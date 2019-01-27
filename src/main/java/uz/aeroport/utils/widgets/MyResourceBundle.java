@@ -12,10 +12,12 @@ public class MyResourceBundle {
     // feature variables
     private ResourceBundle bundle;
     private String fileEncoding;
+    private Locale locale;
 
     public MyResourceBundle(Locale locale, String fileEncoding){
         this.bundle = ResourceBundle.getBundle("multilanguage.My_Bundle", locale);
         this.fileEncoding = fileEncoding;
+        this.locale = locale;
     }
     public MyResourceBundle(Locale locale){
         this(locale, "UTF-8");
@@ -28,6 +30,9 @@ public class MyResourceBundle {
         } catch (UnsupportedEncodingException e) {
             return value;
         }
+    }
+    public Locale getLocale(){
+        return this.locale;
     }
 
 }

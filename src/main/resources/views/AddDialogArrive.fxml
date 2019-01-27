@@ -156,28 +156,6 @@
             </HBox>
             <HBox prefHeight="40.0" prefWidth="617.0">
                <children>
-                  <Label fx:id="airlines" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Rus">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <JFXComboBox fx:id="airlinesSelect" prefHeight="25.0" prefWidth="181.0">
-                     <HBox.margin>
-                        <Insets left="25.0" />
-                     </HBox.margin>
-                  </JFXComboBox>
-                  <Label fx:id="warnAir" text="To`ldirlimagan" textFill="#f20707">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="40.0" prefWidth="617.0">
-               <children>
                   <Label fx:id="ldirection11" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="Eng">
                      <font>
                         <Font size="14.0" />
@@ -197,6 +175,43 @@
                      </font>
                      <HBox.margin>
                         <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="617.0">
+               <children>
+                  <Label fx:id="airlines" alignment="CENTER" prefHeight="26.0" prefWidth="202.0" text="AviaQompaniya">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox fx:id="airlinesSelect" prefHeight="25.0" prefWidth="181.0">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+                  <Button fx:id="add" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/pictures/icons/Plus_64px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="22.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="warnAir" text="To`ldirlimagan" textFill="#f20707">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" />
                      </HBox.margin>
                   </Label>
                </children>

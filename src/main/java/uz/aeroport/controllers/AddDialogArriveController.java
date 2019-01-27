@@ -114,6 +114,9 @@ public class AddDialogArriveController implements Initializable
     private Label airlines;
 
     @FXML
+    private Button add;
+
+    @FXML
     private JFXComboBox airlinesSelect;
 
     @FXML
@@ -188,7 +191,7 @@ public class AddDialogArriveController implements Initializable
     {
         myResourceBundle = new MyResourceBundle(resources.getLocale(),"UTF-8");
         mulitLanguage();
-        onClick(saveit,cancel,resources,statusField,myResourceBundle);
+        onClick(saveit,cancel,resources,statusField,myResourceBundle,add);
     }
 
     private void mulitLanguage()
@@ -210,6 +213,8 @@ public class AddDialogArriveController implements Initializable
         warn5.setText(myResourceBundle.getString("AddDialog.warnings"));
         warnR.setText(myResourceBundle.getString("AddDialog.warnings"));
         warnE.setText(myResourceBundle.getString("AddDialog.warnings"));
+        warnAir.setText(myResourceBundle.getString("AddDialog.warnings"));
+        airlines.setText(myResourceBundle.getString("airLines"));
         List<String> statusWord = new ArrayList<>();
         statusWord.add(myResourceBundle.getString("Status1"));
         statusWord.add(myResourceBundle.getString("Status2"));
@@ -218,8 +223,14 @@ public class AddDialogArriveController implements Initializable
         statusField.getItems().addAll(statusWord);
     }
 
-    private void onClick(JFXButton saveit, JFXButton cance, ResourceBundle resources, JFXComboBox statusField, MyResourceBundle myResourceBundle)
+    private void onClick(JFXButton saveit, JFXButton cance, ResourceBundle resources, JFXComboBox statusField, MyResourceBundle myResourceBundle, Button add)
     {
+
+        add.setOnAction(event ->
+        {
+                //call upload modal for Logo
+                new Wtransfer(FxmlViews.Addition.addAirLinesModal,myResourceBundle.getLocale());
+        });
         statusField.setOnAction(event -> {
             if(statusField.getSelectionModel().isSelected(0) || statusField.getSelectionModel().isSelected(3)){
               // bu yerda statusTime yo`qoladi

@@ -17,5 +17,6 @@ public interface FxmlViews {
         String askedExit = "views/ExitDialog.fxml";
         String addDialogA = "views/AddDialogArrive.fxml";
         String addDialogD = "views/AddDialogDepature.fxml";
+        String addAirLinesModal = "views/AddAirlines.fxml";
     }
 }
