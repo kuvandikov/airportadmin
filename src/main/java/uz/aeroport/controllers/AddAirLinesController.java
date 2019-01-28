@@ -16,6 +16,7 @@ import uz.aeroport.App;
 import uz.aeroport.controllers.eventsController.AddAirportEvent;
 import uz.aeroport.httpRequests.HttpRequests;
 import uz.aeroport.utils.widgets.MyResourceBundle;
+import uz.aeroport.utils.widgets.Utils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -130,7 +131,8 @@ public class AddAirLinesController implements Initializable {
                 if(bf != null && !nameField.getText().isEmpty())
                 {
                    JSONObject jsonObject = new JSONObject();
-                   jsonObject.put("image",this.img);
+                   String saveImage =  new Utils().transferByteIntoString(this.img);
+                   jsonObject.put("image",saveImage);
                    jsonObject.put("nameAirline",nameField.getText());
                     if(new HttpRequests().postImage(jsonObject))
                     {
@@ -150,6 +152,11 @@ public class AddAirLinesController implements Initializable {
 
 
             });
+            cancel.setOnAction(event ->
+            {
+                Stage stage = (Stage) (((Button)event.getSource()).getScene()).getWindow();
+                stage.close();
+            });
 
     }
 
@@ -162,6 +169,6 @@ public class AddAirLinesController implements Initializable {
             uploadBtn.setText(myResourceBundle.getString("airLines.upload"));
             warn2.setText(myResourceBundle.getString("AddDialog.warnings"));
             result.setText(myResourceBundle.getString("infoSave"));
-            cancel.setText(myResourceBundle.getString("navExit"));
+            cancel.setText(myResourceBundle.getString("nav.exit"));
     }
 }
