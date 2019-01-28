@@ -10,6 +10,7 @@ import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Locale;
 
@@ -81,5 +82,15 @@ public class Utils
            lists.add(airlinesList);
        }
        return lists;
+    }
+    // har doim bazaga rasim yozish oldindan byteni string atib yozamiz
+    public byte[] transferStringIntoByte(String temp){
+            byte[] tmp = Base64.getDecoder().decode(temp);
+            return tmp;
+    }
+    //har doim bazadan olgan stringni byte qilmoqchi bo`lsang uni boshda bytga oylantiramiz
+    public String transferByteIntoString(byte[] temp){
+        String tmp = Base64.getEncoder().encodeToString(temp);
+        return tmp;
     }
 }

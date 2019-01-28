@@ -104,7 +104,6 @@ public class AddAirLinesController implements Initializable {
                 fileChooser.getExtensionFilters().addAll(ex1,ex2);
                 Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
                 File file = fileChooser.showOpenDialog(stage);
-
                 try
                 {
                     bf = ImageIO.read(file);
