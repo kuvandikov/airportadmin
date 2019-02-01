@@ -31,12 +31,10 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception
     {
 
-        String cwd = new File("").getAbsolutePath();
-        Scanner cine = new Scanner(new File(cwd + "/src/main/resources/multilanguage/Language.txt"));
-        String temp = "";
-        temp = cine.next();
-        System.out.println(temp);
-        Locale locale = new Utils().getLocale(temp);
+        String cwd = "";
+        Scanner cin = new Scanner(new File("C:/lng/Language.txt"));
+        cwd = cin.next();
+        Locale locale = new Utils().getLocale(cwd);
         Wtransfer wtransfer = null;
         if(locale != null)
         {

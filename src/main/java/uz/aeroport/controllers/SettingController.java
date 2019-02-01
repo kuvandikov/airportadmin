@@ -48,11 +48,11 @@ public class SettingController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        String cwd = new File("").getAbsolutePath();
+        String cwd = "";
         Scanner cine = null;
         try {
-            cine = new Scanner(new File(cwd + "/src/main/resources/multilanguage/Language.txt"));
-            address = cwd + "/src/main/resources/multilanguage/Language.txt";
+            cine = new Scanner(new File("C:/lng/Language.txt"));
+            address = "C:/lng/Language.txt";
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
