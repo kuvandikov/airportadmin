@@ -136,6 +136,7 @@ public class MainScreenController implements Initializable
         //bu yerda qidiruv buttonlarini texti set qilingan
         arriveSearchButton.setText(myResourceBundle.getString("searchB"));
         arriveSearchButton.setText(myResourceBundle.getString("searchB"));
+        departDate.getEditor().setDisable(false);
     }
 
     private void allEventsHere(MyResourceBundle myResourceBundle)

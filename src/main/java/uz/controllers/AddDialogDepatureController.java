@@ -272,6 +272,11 @@ public class AddDialogDepatureController implements Initializable
 
     private void onClick(JFXButton saveit, JFXButton cancel, ResourceBundle resources, JFXComboBox<String> statusField)
     {
+        add.setOnAction(event ->
+        {
+            //call upload modal for Logo
+            new Wtransfer(FxmlViews.Addition.addAirLinesModal,resources.getLocale());
+        });
         statusField.setOnAction(event ->
         {
             if(statusField.getSelectionModel().isSelected(0) || statusField.getSelectionModel().isSelected(3))
